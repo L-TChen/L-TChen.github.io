@@ -29,7 +29,6 @@ main = hakyll $ do
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
-{-
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
@@ -50,15 +49,13 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
--}
-
 
     match "index.html" $ do
         route idRoute
         compile $ do
-            --posts <- recentFirst =<< loadAll "posts/*"
+            posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    --listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" postCtx (return posts) `mappend`
                     constField "title" "About"               `mappend`
                     defaultContext
 
@@ -70,7 +67,7 @@ main = hakyll $ do
     match "templates/*" $ compile templateBodyCompiler
 
 --------------------------------------------------------------------------------
---postCtx :: Context String
---postCtx =
---    dateField "date" "%B %e, %Y" `mappend`
---    defaultContext
+postCtx :: Context String
+postCtx =
+    dateField "date" "%B %e, %Y" `mappend`
+    defaultContext
