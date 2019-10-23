@@ -1,22 +1,15 @@
-dist: bionic
-notifications:
-  email: false
 language: haskell
+cabal: "2.4"
 ghc: 
-  - "8.4.4"
+  - "8.6.5"
 cache:
   directories:
-    - $HOME/.stack
-before_install:
-# Download and unpack the stack executable
-  - mkdir -p ~/.local/bin
-  - export PATH=$HOME/.local/bin:$PATH
-  - travis_retry curl -L https://get.haskellstack.org/stable/linux-x86_64.tar.gz | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-        
+    - $HOME/.cabal
 install:
-  - stack build --system-ghc
+  - cabal new-install hakyll --flags="-previewServer -watchServer"
+  - ghc --make site.hs
 script:
-  - stack exec site build
+  - ./site build
 deploy:
   provider: pages
   local_dir: "_site/"
