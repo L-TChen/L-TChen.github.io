@@ -1,0 +1,36 @@
+dist: bionic
+
+branches:
+  only:
+    - source
+notifications:
+  email: false
+sudo: false
+language: c
+matrix:
+  include:
+      addons:
+        apt: 
+          packages:
+            - ghc
+            - libghc-hakyll-dev
+              #            - libghc-text-dev
+              #            - libghc-feed-dev
+              #            - libghc-mtl-dev
+              #            - libghc-parsec3-dev
+              #            - libghc-old-time-dev 
+before_install:
+  - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$PATH
+install:
+  - ghc --make site.hs
+script:
+  - ./site build
+deploy:
+  provider: pages
+  local_dir: "_site/"
+  target_branch: master
+  skip_cleanup: true
+  github_token: $GH_TOKEN # Set in the settings page of your repository, as a secure variable
+  on:
+    branch: source
+  keep_history: true
