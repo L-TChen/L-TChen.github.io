@@ -1,4 +1,7 @@
 language: haskell
+branches:
+  only: 
+    - source
 cabal: "2.4"
 ghc: 
   - "8.6.5"
@@ -6,10 +9,10 @@ cache:
   directories:
     - $HOME/.cabal
 install:
-  - cabal new-install hakyll --flags="-previewServer -watchServer"
-  - ghc --make site.hs
+  - cabal new-install hakyll --lib --flags="-previewServer -watchServer"
+  - cabal new-build
 script:
-  - ./site build
+  - cabal new-run site build
 deploy:
   provider: pages
   local_dir: "_site/"
