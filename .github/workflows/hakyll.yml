@@ -38,8 +38,7 @@ jobs:
         cabal update
     - name: Build dependencies and the site generator
       run: |
-        cabal install hakyll --lib --flags="-previewServer -watchServer"
-        cabal build
+        cabal build --constraint "hakyll -previewServer -watchServer"
     - name: Build the site
       env:
         # citeproc requires the locale environment variable.
