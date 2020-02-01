@@ -16,7 +16,7 @@ jobs:
     - name: Build dependencies
       run: |
         cabal update
-        cabal build --only-dependencies
+        cabal install hakyll --lib --flags="-previewServer -watchServer"
     - name: Build the site generator
       run: |
         cabal build
