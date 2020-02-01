@@ -6,25 +6,29 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ghc: [ '8.6.5' ]
+        cabal: [ '3.0' ]
 
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-haskell@v1
       with:
-        ghc-version: '8.6.5'
-        cabal-version: '3.0'
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
     - name: Cache ~/.cabal/packages
       uses: actions/cache@v1
       with:
         path: ~/.cabal/packages
-        key: cabal-packages-${{ runner.os }}-${{ env.ghc_version }}
+        key: cabal-packages-${{ runner.os }}-${{ matrix.ghc }}
     - name: Cache ~/.cabal/store
       uses: actions/cache@v1
       with:
         path: ~/.cabal/store
-        key: cabal-store-${{ runner.OS }}-${{ env.ghc_version }}-${{ hashFiles('cabal.project.freeze') }}
+        key: cabal-store-${{ runner.OS }}-${{ matrix.ghc }}-${{ hashFiles('cabal.project.freeze') }}
         restore-keys: |
-          cabal-store-${{ runner.OS }}-${{ env.ghc_version }}-
+          cabal-store-${{ runner.OS }}-${{ matrix.ghc }}-
           cabal-store-${{ runner.OS }}-
     - name: Update the package list
       run: |
