@@ -22,6 +22,9 @@ jobs:
       with:
         path: ~/.cabal/packages
         key: cabal-packages-${{ runner.os }}-${{ matrix.ghc }}
+        restore-keys: |
+          cabal-packages-${{ runner.OS }}-${{ matrix.ghc }}
+          cabal-packages-${{ runner.OS }}-
     - name: Cache ~/.cabal/store
       uses: actions/cache@v1
       with:
@@ -30,6 +33,14 @@ jobs:
         restore-keys: |
           cabal-store-${{ runner.OS }}-${{ matrix.ghc }}-
           cabal-store-${{ runner.OS }}-
+    - name: Cache dist-newstyle
+      uses: actions/cache@v1
+      with:
+        path: dist-newstyle
+        key: dist-newstyle-${{ runner.OS }}-${{ matrix.ghc }}-${{ hashFiles('cabal.project.freeze') }}
+        restore-keys: |
+          dist-newstyle-${{ runner.OS }}-${{ matrix.ghc }}-
+          dist-newstyle-${{ runner.OS }}-
     - name: Update the package list
       run: |
         cabal update
