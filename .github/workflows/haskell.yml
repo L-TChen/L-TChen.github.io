@@ -17,14 +17,6 @@ jobs:
       with:
         ghc-version: ${{ matrix.ghc }}
         cabal-version: ${{ matrix.cabal }}
-    - name: Cache ~/.cabal/packages
-      uses: actions/cache@v1
-      with:
-        path: ~/.cabal/packages
-        key: cabal-packages-${{ runner.os }}-${{ matrix.ghc }}
-        restore-keys: |
-          cabal-packages-${{ runner.OS }}-${{ matrix.ghc }}
-          cabal-packages-${{ runner.OS }}-
     - name: Cache ~/.cabal/store
       uses: actions/cache@v1
       with:
