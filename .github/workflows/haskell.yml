@@ -25,9 +25,11 @@ jobs:
         cabal update
         cabal install hakyll --lib --flags="-previewServer -watchServer"
         cabal build
-    - name: Build the site
-      run: |
-        cabal exec -- site build
+        #    - name: Build the site
+        #      env:
+        #        LANG=en_US.UTF-8
+        #      run: |
+        #        cabal exec -- site build
     - uses: peaceiris/actions-gh-pages@v2.10.1
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
