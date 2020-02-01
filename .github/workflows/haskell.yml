@@ -67,3 +67,5 @@ jobs:
         if: github.ref == 'refs/heads/source'
         # Rename `source` to the branch which contains the source code
         # if: github.ref == 'refs/heads/master'
+      with:
+        emptyCommits: false
