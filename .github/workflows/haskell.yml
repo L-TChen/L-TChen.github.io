@@ -13,16 +13,24 @@ jobs:
       with:
         ghc-version: '8.6.5'
         cabal-version: '3.0'
-    - uses: actions/cache@v1
+    - name: Cache ~/.cabal/packages
+      uses: actions/cache@v1
+      with:
+        path: ~/.cabal/packages
+        key: cabal-packages-${{ runner.os }}-${{ env.GHC_VERSION }}
+    - name: Cache ~/.cabal/store
+      uses: actions/cache@v1
       with:
         path: ~/.cabal/store
         key: cabal-store-${{ runner.OS }}-${{ env.GHC_VERSION }}-${{ hashFiles('cabal.project.freeze') }}
         restore-keys: |
           cabal-store-${{ runner.OS }}-${{ env.GHC_VERSION }}-
           cabal-store-${{ runner.OS }}-
-    - name: Build dependencies and the site generator
+    - name: Update the package list
       run: |
         cabal update
+    - name: Build dependencies and the site generator
+      run: |
         cabal install hakyll --lib --flags="-previewServer -watchServer"
         cabal build
     - name: Build the site
