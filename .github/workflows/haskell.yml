@@ -25,23 +25,22 @@ jobs:
         cabal update
         cabal install hakyll --lib --flags="-previewServer -watchServer"
         cabal build
-        #    - name: Build the site
-        #      env:
-        #        # citeproc requires the locale environment variable.
-        #        LANG=en_US.UTF-8
-        #      run: |
-        #        cabal exec -- site build
-        #    - uses: peaceiris/actions-gh-pages@v2.10.1
-        #      env:
-        #        # See https://github.com/marketplace/actions/github-pages-action
-        #        # to learn how to set up.
-        #        #        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #        PUBLISH_BRANCH: master
-        #        # Use the following instead for a project site.
-        #        #PUBLISH_BRANCH: gh-pages
-        #        PUBLISH_DIR: _site
-        #        SCRIPT_MODE: true
-        #        if: github.ref == 'refs/heads/source'
-        #        # Rename `source` to the branch which contains the source code
-        #        if: github.ref == 'refs/heads/master'
+    - name: Build the site
+      env:
+        # citeproc requires the locale environment variable.
+        LANG: en_US.UTF-8
+      run: |
+        cabal exec -- site build
+    - uses: peaceiris/actions-gh-pages@v2.10.1
+      env:
+        # See https://github.com/marketplace/actions/github-pages-action
+        # to learn how to set up.
+        # ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: master
+        # Use the following instead for a project site.
+        # PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: _site
+        if: github.ref == 'refs/heads/source'
+        # Rename `source` to the branch which contains the source code
+        # if: github.ref == 'refs/heads/master'
