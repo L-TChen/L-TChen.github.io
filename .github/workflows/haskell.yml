@@ -1,0 +1,32 @@
+name: Haskell CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: '8.6.5'
+        cabal-version: '3.0'
+    - name: Build dependencies
+      run: |
+        cabal update
+        cabal build --only-dependencies
+    - name: Build the site generator
+      run: |
+        cabal build
+    - name: Build the site
+      run: |
+        cabal exec -- site build
+    - name: 'Deploy'
+      uses: peaceiris/actions-gh-pages@v2.10.1
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: master
+        PUBLISH_DIR: _site
+        if: github.ref == 'refs/heads/source'
