@@ -45,6 +45,9 @@ jobs:
         LANG: en_US.UTF-8
       run: |
         cabal exec -- site build
+    - name: Check the site output
+      run: |
+        cabal exec -- site check
     - uses: peaceiris/actions-gh-pages@v2.10.1
       env:
         # See https://github.com/marketplace/actions/github-pages-action
