@@ -13,18 +13,22 @@ jobs:
       with:
         ghc-version: '8.6.5'
         cabal-version: '3.0'
-    - name: Build dependencies
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cabal/store
+        key: cabal-store-${{ runner.OS }}-${{ env.GHC_VERSION }}-${{ hashFiles('cabal.project.freeze') }}
+        restore-keys: |
+          cabal-store-${{ runner.OS }}-${{ env.GHC_VERSION }}-
+          cabal-store-${{ runner.OS }}-
+    - name: Build dependencies and the site generator
       run: |
         cabal update
         cabal install hakyll --lib --flags="-previewServer -watchServer"
-    - name: Build the site generator
-      run: |
         cabal build
     - name: Build the site
       run: |
         cabal exec -- site build
-    - name: 'Deploy'
-      uses: peaceiris/actions-gh-pages@v2.10.1
+    - uses: peaceiris/actions-gh-pages@v2.10.1
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: master
