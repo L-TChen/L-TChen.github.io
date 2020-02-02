@@ -39,6 +39,8 @@ jobs:
     - name: Build dependencies and the site generator
       run: |
         cabal build --constraint "hakyll -previewServer -watchServer"
+        # Uncomment the following if external link check is not required.
+        # cabal build --constraint "hakyll -previewServer -watchServer -checkExternal"
     - name: Build the site
       env:
         # citeproc requires the locale environment variable.
@@ -50,16 +52,21 @@ jobs:
         cabal exec -- site check
     - uses: peaceiris/actions-gh-pages@v2.10.1
       env:
-        # See https://github.com/marketplace/actions/github-pages-action
-        # to learn how to set up.
-        # ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Type the following in the terminal to get private/public keys:
+        #
+        # ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
+        #
+        # and add them to the GitHub repo. For details, see
+        # https://github.com/marketplace/actions/github-pages-action
+        #
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+
+        # Ensure to match the source branch specified on the GitHub setting.
+        #
         PUBLISH_BRANCH: master
-        # Use the following instead for a project site.
-        # PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: _site
         if: github.ref == 'refs/heads/source'
-        # Rename `source` to the branch which contains the source code
+        # Rename `source` to the branch for the source code
         # if: github.ref == 'refs/heads/master'
       with:
         emptyCommits: false
