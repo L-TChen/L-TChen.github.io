@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.com/L-TChen/L-TChen.github.io.svg?branch=source)](https://travis-ci.com/L-TChen/L-TChen.github.io)
+![Hakyll site CI](https://github.com/L-TChen/L-TChen.github.io/workflows/Hakyll%20site%20CI/badge.svg)
