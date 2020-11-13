@@ -6,36 +6,36 @@ import           Hakyll.Web.Pandoc.Biblio
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "images/*" $ do
-        route   idRoute
+    match "assets/images/*" $ do
+        route $ gsubRoute "assets/" (const "")
         compile copyFileCompiler
 
-    match "css/*" $ do
-        route   idRoute
+    match "assets/css/*" $ do
+        route $ gsubRoute "assets/" (const "")
         compile compressCssCompiler
 
-    match "bib/*" $ compile biblioCompiler
-    match "csl/*" $ compile cslCompiler
+    match "assets/bib/*" $ compile biblioCompiler
+    match "assets/csl/*" $ compile cslCompiler
 
-    match "cv.md" $ do
-        route   $ setExtension "html"
+    match "content/cv.md" $ do
+        route   $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "publications.md" $ do
-        route   $ setExtension "html"
-        compile $ pandocBiblioCompiler "csl/elsevier-with-titles.csl" "bib/published.bib"
+    match "content/publications.md" $ do
+        route   $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
+        compile $ pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/published.bib"
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
-
-    match "posts/*" $ do
+{-
+    match "content/posts/*" $ do
+        route $ gsubRoute "content/" (const "/")
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
-
     create ["posts.html"] $ do
         route idRoute
         compile $ do
@@ -49,13 +49,14 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
+-}
 
-    match "index.html" $ do
-        route idRoute
+    match "content/index.html" $ do
+        route $ gsubRoute "content/" (const "")
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
+            --posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
+            --        listField "posts" postCtx (return posts) `mappend`
                     constField "title" "About"               `mappend`
                     defaultContext
 
