@@ -2,30 +2,27 @@
   title: Liang-Ting Chen
 ---
 
-About
------
+### About
 __Chen, Liang-Ting 陳亮廷__  
 Postdoctoral researcher  
 [Institute of Information Science](https://www.iis.sinica.edu.tw), [Academia Sinica](https://www.sinica.edu.tw/)  
 Room N602, IIS, 128 Academia Road, Section 2, Taipei 115201, Taiwan
 
-Interests
----------
+### Interests
 
-My research interests include 
+My research interests include, but not limit to, 
 
   * automata theory
   * modal logic
   * category theory
-  * type theory
-  * dependently typed programming and formalisation
+  * foundations and applications of dependently typed programming
 
-Roles
------
+In general I find the categorical perspective of [theory B](https://cstheory.stackexchange.com/a/1523/51895) interesting to me.
 
-Manuscripts
------------
+### Publications
 
-Publications
-------------
+---
+nocite: |
+  @*
+---
 
