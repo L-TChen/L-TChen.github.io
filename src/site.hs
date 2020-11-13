@@ -6,7 +6,7 @@ import           Hakyll.Web.Pandoc.Biblio
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-  match "assets/images/*" $ do
+  match "assets/img/*" $ do
       route $ gsubRoute "assets/" (const "")
       compile copyFileCompiler
 
