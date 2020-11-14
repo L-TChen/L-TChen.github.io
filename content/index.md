@@ -4,12 +4,12 @@
 
 #### __Chen, Liang-Ting 陳亮廷__
 
-<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-right rounded-circle px-3 pb-3">
+<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-sm-right rounded-circle p-2">
 
-Postdoctoral researcher  
+Postdoctoral Researcher  
 [Institute of Information Science](https://www.iis.sinica.edu.tw), [Academia Sinica](https://www.sinica.edu.tw/)  
-Room N602, IIS, 128 Academia Road, Section 2  
-Taipei 115201, Taiwan
+No. 128, Sec. 2, Academia Rd.  
+Taipei 115201, Taiwan  
 
 #### Interests
 
