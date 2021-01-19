@@ -13,7 +13,7 @@ Taipei 115201, Taiwan
 
 #### Interests
 
-My research interests include, but not limit to, 
+My research interests include, but are not limited to, 
 
   * automata theory
   * modal logic
