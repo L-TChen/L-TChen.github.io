@@ -26,7 +26,7 @@ jobs:
         path: |
           ~/.stack
           .stack-work
-        key: stack-${{ runner.OS }}-${{ matrix.ghc }}-${{ hashFiles('stack.html') }}
+        key: stack-${{ runner.OS }}-${{ matrix.ghc }}-${{ hashFiles('stack.yaml.lock') }}
         restore-keys: |
           stack-store-${{ runner.OS }}-${{ matrix.ghc }}-
           stack-store-${{ runner.OS }}-
