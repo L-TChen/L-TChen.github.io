@@ -28,7 +28,7 @@ jobs:
         path: |
           ~/.stack
           .stack-work
-        key: stack-${{ runner.OS }}-${{ matrix.ghc }}-${{ hashFiles('stack.yaml.lock') }}
+        key: stack-${{ runner.OS }}-${{ hashFiles('stack.yaml.lock') }}
 
     - name: Build dependencies and the site generator
       if: ${{ !steps.cache.outputs.cache-hit }}
