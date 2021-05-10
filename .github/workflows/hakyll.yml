@@ -23,20 +23,18 @@ jobs:
 
     - name: Cache ~/.stack and .stack-work
       uses: actions/cache@v2
+      id: cache
       with:
         path: |
           ~/.stack
           .stack-work
         key: stack-${{ runner.OS }}-${{ matrix.ghc }}-${{ hashFiles('stack.yaml.lock') }}
-        restore-keys: |
-          stack-store-${{ runner.OS }}-${{ matrix.ghc }}-
-          stack-store-${{ runner.OS }}-
 
     - name: Build dependencies and the site generator
+      if: ${{ !steps.cache.outputs.cache-hit }}
       run: |
         stack build ${FLAGS}
         npm install
-        # mkdir -p assets/css
 
     - name: Build the site
       env:
@@ -54,3 +52,4 @@ jobs:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_dir: _site
         publish_branch: master
+        force_orphan: true
