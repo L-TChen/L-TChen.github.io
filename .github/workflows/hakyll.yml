@@ -6,9 +6,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ghc: [ '8.10.4' ]
     env:
       FLAGS: "--flag hakyll:-previewServer --flag hakyll:-watchServer --flag hakyll:-checkexternal"
 
@@ -16,7 +13,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: haskell/actions/setup@v1
       with:
-        ghc-version: ${{ matrix.ghc }}
+        ghc-version: '8.10.5'
         enable-stack: true
         stack-no-global: true
         stack-version: 'latest'
@@ -34,7 +31,6 @@ jobs:
       if: ${{ !steps.cache.outputs.cache-hit }}
       run: |
         stack build ${FLAGS}
-        npm install
 
     - name: Build the site
       env:

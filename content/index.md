@@ -4,7 +4,7 @@
 
 #### __Chen, Liang-Ting 陳亮廷__
 
-<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-sm-right rounded-circle p-2">
+<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-sm-end rounded-circle p-2">
 
 Postdoctoral Researcher  
 [Institute of Information Science](https://www.iis.sinica.edu.tw), [Academia Sinica](https://www.sinica.edu.tw/)  
