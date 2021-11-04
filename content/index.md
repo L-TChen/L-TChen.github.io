@@ -34,7 +34,7 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
 
 #### Grants
 
-  * (Cowriting) *A type-theoretic foundation for metaprogramming*\
+  * (Cowriting) *Type-Theoretic Foundations for Metaprogramming*\
     Ministry of Science and Technology of Taiwan (MOST 109-2222-E-001-002-MY3)\
     PI: Hsiang-Shang Ko\
     TWD$ 2,851,000
