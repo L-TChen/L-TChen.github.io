@@ -32,10 +32,14 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
   * Reviewer for conferences:\
     PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
 
+#### Award
+
+  - *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science (2017)
+
 #### Grants
 
-  * (Cowriting) *Type-Theoretic Foundations for Metaprogramming*\
-    Ministry of Science and Technology of Taiwan (MOST 109-2222-E-001-002-MY3)\
+  * (Cowriting) *Type-Theoretic Foundations for Metaprogramming* (2020--2022) \
+    Funded by Ministry of Science and Technology of Taiwan (MOST 109-2222-E-001-002-MY3)\
     PI: Hsiang-Shang Ko\
     TWD$ 2,851,000
     
