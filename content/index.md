@@ -26,8 +26,8 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
     Programme committee member (2021)
 
   * *Formosan Summer School on Logic, Language, and Computation* (FLOLAC)\
-    Co-organiser (2018 and 2020, with [Hsiang-Shang Ko](https://josh-hs-ko.github.io))\
-    Lecturer (2014, 2016, 2018, and 2020)
+    Co-organiser (2018, 2020, 2022 with [Hsiang-Shang Ko](https://josh-hs-ko.github.io))\
+    Lecturer (2014, 2016, 2018, 2020, 2022)
 
   * Reviewer for conferences:\
     PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
@@ -43,7 +43,6 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
     PI: Hsiang-Shang Ko\
     TWD$ 2,851,000
     
-
 #### Publications
 
 ---
