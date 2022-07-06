@@ -1,8 +1,12 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
-import           Hakyll
-import           Hakyll.Web.Pandoc.Biblio
+import           Hakyll hiding (pandocBiblioCompiler)
+
+import           Control.Monad                 (liftM)
+import           Text.Pandoc                   (Extension (..), Pandoc,
+                                                ReaderOptions (..),
+                                                enableExtension)
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -20,7 +24,7 @@ main = hakyll $ do
   match "content/**.md" $ do
       route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
       let indexCtx = defaultContext
-      compile $ pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/published.bib"
+      compile $ pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
         >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
         >>= loadAndApplyTemplate "templates/head.html" indexCtx
@@ -33,3 +37,14 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+pandocBiblioCompiler :: String -> String -> Compiler (Item String)
+pandocBiblioCompiler cslFileName bibFileName = do
+  csl <- load $ fromFilePath cslFileName
+  bibs <- loadAll $ fromGlob bibFileName
+  liftM writePandoc
+    (getResourceBody >>= readPandocBiblios ropt csl bibs)
+  where ropt = defaultHakyllReaderOptions
+          { -- The following option enables citation rendering
+            readerExtensions = enableExtension Ext_citations $ readerExtensions defaultHakyllReaderOptions
+          }
