@@ -13,7 +13,7 @@ Postdoctoral Researcher
 [Academia Sinica](https://www.sinica.edu.tw/), Taiwan 
 
 
-### Interests
+### Research
 
 My research interests include, but are not limited to, 
 
@@ -24,7 +24,7 @@ My research interests include, but are not limited to,
 
 I generally find the categorical perspective of [theory B](https://cstheory.stackexchange.com/a/1523/51895) interesting to me.
 
-### Academic services
+### Academic service
 
   * *Workshop on Type-Driven Development* (TyDe)\
     Programme committee member (2021)
