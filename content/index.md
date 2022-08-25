@@ -26,6 +26,9 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
 
 ### Academic service
 
+  * *International Conference on Functional Programming* (ICFP)\
+    Programme committee member (2023)
+
   * *Workshop on Type-Driven Development* (TyDe)\
     Programme committee member (2021)
 
