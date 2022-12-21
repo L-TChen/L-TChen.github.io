@@ -54,7 +54,7 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
 
 ### Publications
 
-(See also: [DBLP](https://dblp.org/pid/153/3116) or [Google Scholar](https://scholar.google.com/citations?user=9jA3dngAAAAJ))
+(See also: [DBLP](https://dblp.org/pid/153/3116-1.html) or [Google Scholar](https://scholar.google.com/citations?user=9jA3dngAAAAJ))
 
 ---
 nocite: |

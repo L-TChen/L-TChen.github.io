@@ -1,5 +1,4 @@
-resolver: nightly-2022-07-04
-compiler: ghc-9.2.3
+resolver: lts-20.4
 
 packages:
 - .
