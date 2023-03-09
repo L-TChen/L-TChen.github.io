@@ -27,10 +27,10 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
 ### Academic service
 
   * *International Conference on Functional Programming* (ICFP)\
-    Programme committee member (2023)
+    Programme committee member, 2023
 
   * *Workshop on Type-Driven Development* (TyDe)\
-    Programme committee member (2021)
+    Programme committee member, 2021
 
   * *Formosan Summer School on Logic, Language, and Computation* (FLOLAC)\
     Co-organiser (2018, 2020, 2022 with [Hsiang-Shang Ko](https://josh-hs-ko.github.io))\
@@ -41,16 +41,14 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
 
 ### Award
 
-  - *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science (2017)
+  - *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
 
-  - PhD Studentship from the EPSRC Project *Coalgebraic Logic—Extending the Scope* (2009)
+  - PhD Studentship from the EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
 
-### Grants
+### Invited Talk
 
-  * (Cowriting) *Type-Theoretic Foundations for Metaprogramming* (2020--2023) \
-    Funded by Ministry of Science and Technology of Taiwan (MOST 109-2222-E-001-002-MY3)\
-    PI: Hsiang-Shang Ko\
-    TWD$ 2,851,000
+  - *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
+    Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
 
 ### Publications
 

@@ -1,5 +1,6 @@
-<article>
-    <section class="header">
+<article class="container py-3">
+    <h1>$title$</h1>
+    <section>
         Posted on $date$
         $if(author)$
             by $author$
@@ -8,4 +9,12 @@
     <section>
         $body$
     </section>
+    <script src="https://utteranc.es/client.js"
+        repo="L-TChen/L-TChen.github.io"
+        issue-term="pathname"
+        label="blog-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
 </article>

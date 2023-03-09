@@ -21,11 +21,20 @@ main = hakyll $ do
   match "assets/bib/*" $ compile biblioCompiler
   match "assets/csl/*" $ compile cslCompiler
 
-  match "content/**.md" $ do
+  match "content/*.md" $ do
       route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
       let indexCtx = defaultContext
       compile $ pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
+        >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
+        >>= loadAndApplyTemplate "templates/head.html" indexCtx
+        >>= relativizeUrls
+
+  match "content/posts/**.md" $ do
+      route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
+      let indexCtx = defaultContext
+      compile $ pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
+        >>= loadAndApplyTemplate "templates/post.html" indexCtx
         >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
         >>= loadAndApplyTemplate "templates/head.html" indexCtx
         >>= relativizeUrls
