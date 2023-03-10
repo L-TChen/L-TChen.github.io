@@ -48,7 +48,7 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
-    dateField "date" "%Y-%-m-%-d" `mappend`
+    dateField "date" "%B %e, %Y" `mappend`
     defaultContext
 
 pandocBiblioCompiler :: String -> String -> Compiler (Item String)
