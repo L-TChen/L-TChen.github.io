@@ -6,7 +6,10 @@ import           Hakyll hiding (pandocBiblioCompiler)
 import           Control.Monad                 (liftM)
 import           Text.Pandoc                   (Extension (..), Pandoc,
                                                 ReaderOptions (..),
-                                                enableExtension)
+                                                WriterOptions (..),
+                                                enableExtension,
+                                                writerHTMLMathMethod,
+                                                HTMLMathMethod(..))
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -32,11 +35,12 @@ main = hakyll $ do
 
   match "content/posts/**.md" $ do
       route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
+
       let indexCtx = defaultContext
       compile $ pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
-        >>= loadAndApplyTemplate "templates/post.html" indexCtx
+        >>= loadAndApplyTemplate "templates/post.html"   indexCtx
         >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
-        >>= loadAndApplyTemplate "templates/head.html" indexCtx
+        >>= loadAndApplyTemplate "templates/head.html"   indexCtx
         >>= relativizeUrls
 
   match "templates/*" $ compile templateBodyCompiler
@@ -51,9 +55,15 @@ pandocBiblioCompiler :: String -> String -> Compiler (Item String)
 pandocBiblioCompiler cslFileName bibFileName = do
   csl <- load $ fromFilePath cslFileName
   bibs <- loadAll $ fromGlob bibFileName
-  liftM writePandoc
+  liftM (writePandocWith wopt)
     (getResourceBody >>= readPandocBiblios ropt csl bibs)
-  where ropt = defaultHakyllReaderOptions
-          { -- The following option enables citation rendering
-            readerExtensions = enableExtension Ext_citations $ readerExtensions defaultHakyllReaderOptions
-          }
+  where
+    ropt = defaultHakyllReaderOptions
+      { -- The following option enables citation rendering
+        readerExtensions = enableExtension Ext_citations $ readerExtensions defaultHakyllReaderOptions
+      }
+    wopt = defaultHakyllWriterOptions
+      {
+        writerHTMLMathMethod = MathJax "" 
+      }
+  
