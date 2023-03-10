@@ -36,7 +36,7 @@ main = hakyll $ do
   match "content/posts/**.md" $ do
       route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
 
-      let indexCtx = defaultContext
+      let indexCtx = postCtx
       compile $ pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
         >>= loadAndApplyTemplate "templates/post.html"   indexCtx
         >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
@@ -48,7 +48,7 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
+    dateField "date" "%Y-%-m-%-d" `mappend`
     defaultContext
 
 pandocBiblioCompiler :: String -> String -> Compiler (Item String)
