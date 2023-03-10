@@ -1,0 +1,150 @@
+---
+title: Markdown with MathJax
+author: Liang-Ting Chen
+date: 2023-03-10
+tags: [markdown, test]
+---
+
+# Level-1 heading
+
+## Level-2 heading
+
+### Level-3 heading
+
+#### Level-4 heading
+
+##### Level-5 heading
+
+###### Level-6 heading
+
+But there is no level-7 heading
+
+The [Level-1 heading] is referred.
+
+* * * *
+
+#### Block quote
+
+> This is a block quote. This
+> paragraph has two lines.
+>
+> 1. This is a list inside a block quote.
+> 2. Second item.
+
+#### Verbatim blocks
+
+    if (a > 3) {
+      moveShip(5 * gravity, DOWN);
+    }
+
+#### Fenced code blocks
+
+```haskell
+qsort [] = []
+```
+
+#### Lists
+
+* one
+* two
+* three
+
+#### Ordered lists
+
+1. one
+2. two
+3. three
+
+#### Checklists
+
+- [ ] An unchecked task list item
+- [x] Checked item
+
+#### Definition lists
+
+Term 1
+:   Definition 1
+
+Term 2 with *inline markup*
+:   Definition 2
+
+        { some code, part of Definition 2 }
+
+    Third paragraph of definition 2.
+
+
+### Footnotes
+
+Here is a footnote reference [^1].
+
+[^1]: Here is the footnote.
+
+#### Example lists
+
+(@good)  My first example will be numbered (1).
+(@)  My second example will be numbered (2).
+
+As (@good) illustrates, ...
+
+* * * *
+
+#### Tables
+
+-------------------------------------------------------------
+ Centered   Default           Right Left
+  Header    Aligned         Aligned Aligned
+----------- ------- --------------- -------------------------
+   First    row                12.0 Example of a row that
+                                    spans multiple lines.
+
+  Second    row                 5.0 Here's another one. Note
+                                    the blank line between
+                                    rows.
+-------------------------------------------------------------
+
+### Grid tables
+
++---------------------+-----------------------+
+| Location            | Temperature 1961-1990 |
+|                     | in degree Celsius     |
+|                     +-------+-------+-------+
+|                     | min   | mean  | max   |
++=====================+=======+=======+=======+
+| Antarctica          | -89.2 | N/A   | 19.8  |
++---------------------+-------+-------+-------+
+| Earth               | -89.2 | 14    | 56.7  |
++---------------------+-------+-------+-------+
+
+#### Highlighting
+
+I am [Liang-Ting Chen]{.mark} from ~~Thailand~~ Taiwan.
+Do you know exponentials $x^y$, x^y^, or H~2~O
+
+### $\LaTeX$ macros
+
+Here we define a $\LaTeX$ macro and use it in the following math mode:
+
+    \newcommand{\tuple}[1]{\langle #1 \rangle}
+    $$\tuple{a, b, c}$$
+
+rendered as follows:
+
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+
+$$\tuple{a, b, c}$$
+
+
+$$
+\int\,f(x) \mathrm{d}x
+$$
+
+A pullback diagram using [XyJax](https://sonoisa.github.io/xyjax/xyjax.html)
+$$\xymatrix{
+U \ar@/_/[ddr]_y \ar@{.>}[dr]|{\langle x,y \rangle} \ar@/^/[drr]^x \\
+ & X \times_Z Y \ar[d]^q \ar[r]_p & X \ar[d]_f \\
+ & Y \ar[r]^g & Z
+}$$
+
+#### Small caps
+
+[Agda]{.smallcaps} in small caps and Agda.
