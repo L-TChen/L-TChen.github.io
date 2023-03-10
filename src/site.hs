@@ -60,7 +60,12 @@ pandocBiblioCompiler cslFileName bibFileName = do
   where
     ropt = defaultHakyllReaderOptions
       { -- The following option enables citation rendering
-        readerExtensions = enableExtension Ext_citations $ readerExtensions defaultHakyllReaderOptions
+        readerExtensions =
+          enableExtension Ext_superscript $
+          enableExtension Ext_subscript $
+          enableExtension Ext_citations $
+          enableExtension Ext_grid_tables $
+          readerExtensions defaultHakyllReaderOptions
       }
     wopt = defaultHakyllWriterOptions
       {
