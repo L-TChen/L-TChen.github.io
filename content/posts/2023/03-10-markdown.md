@@ -1,8 +1,9 @@
 ---
 title: Markdown with MathJax
 author: Liang-Ting Chen
-date: 2023-03-10
-tags: [markdown, test]
+tags:
+- markdown
+- test
 ---
 
 # Level-1 heading
