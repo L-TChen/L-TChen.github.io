@@ -47,6 +47,7 @@ main = hakyll $ do
     compile $
       pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
         >>= loadAndApplyTemplate "templates/default.html" indexCtx
+        >>= loadAndApplyTemplate "templates/footer.html" indexCtx
         >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
         >>= loadAndApplyTemplate "templates/head.html" indexCtx
         >>= relativizeUrls
@@ -59,6 +60,7 @@ main = hakyll $ do
     compile $
       pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
         >>= loadAndApplyTemplate "templates/post.html" indexCtx
+        >>= loadAndApplyTemplate "templates/footer.html" indexCtx
         >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
         >>= loadAndApplyTemplate "templates/head.html" indexCtx
         >>= relativizeUrls
