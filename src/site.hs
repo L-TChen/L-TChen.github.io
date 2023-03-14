@@ -39,7 +39,7 @@ main = hakyll $ do
   match "assets/bib/*" $ compile biblioCompiler
   match "assets/csl/*" $ compile cslCompiler
 
-  match "templates/*" $ compile templateBodyCompiler
+  match "templates/*.html" $ compile templateBodyCompiler
 
   match "content/*.md" $ do
     route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
