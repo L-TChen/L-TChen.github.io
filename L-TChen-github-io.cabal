@@ -7,10 +7,9 @@ executable site
   main-is:          site.hs
   hs-source-dirs:   src
   build-depends:    base == 4.*
-                  , hakyll == 4.15.*
-                  , pandoc >= 2.11 && < 2.20
+                  , hakyll < 4.17
                   , filepath >=1.0 && <1.5
-                  , time >=1.8 && <1.12
+                  , pandoc >= 2.11 && < 4
+                  , time >=1.8 && <1.13
   ghc-options:      -threaded
   default-language: Haskell2010
--- other-modules:    BibCompiler

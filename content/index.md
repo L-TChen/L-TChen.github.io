@@ -10,7 +10,10 @@
 Postdoctoral Researcher
 
 [Institute of Information Science](https://www.iis.sinica.edu.tw)\
-[Academia Sinica](https://www.sinica.edu.tw/), Taiwan 
+[Academia Sinica](https://www.sinica.edu.tw/), Taiwan\
+
+[ltchen@iis.sinica.edu.tw](javascript:location='&#109;&#97;i&#108;t&#111;&#58;\u006c\u0074\u0063\u0068\u0065\u006e\u0040\u0069\u0069\u0073\u002e\u0073\u0069\u006e\u0069\u0063\u0061\u002e\u0065\u0064\u0075\u002e\u0074\u0077';void 0)
+
 
 
 ### Research
