@@ -7,7 +7,7 @@
 
 <img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-sm-end rounded-circle p-5">
 
-Postdoctoral Researcher
+~Postdoctoral Researcher~ Assistant Research Fellow
 
 [Institute of Information Science](https://www.iis.sinica.edu.tw)\
 [Academia Sinica](https://www.sinica.edu.tw/), Taiwan\
