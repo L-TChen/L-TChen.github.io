@@ -40,7 +40,7 @@ I generally find the categorical perspective of [theory B](https://cstheory.stac
     Lecturer (2014, 2016, 2018, 2020, 2022)
 
   * Reviewer for conferences:\
-    PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
+    CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
 
 ### Award
 
