@@ -34,11 +34,14 @@ If you find my work interesting to you, please feel free to send me an email wit
 
 ### Academic service
 
+* *Workshop on Mathematically Structured Functional Programming* (MSFP)\
+  PC member, 2024
+
 * *International Conference on Functional Programming* (ICFP)\
-  Programme committee member, 2023
+  PC member, 2023
 
 * *Workshop on Type-Driven Development* (TyDe)\
-  Programme committee member, 2021
+  PC member, 2021
 
 * *Formosan Summer School on Logic, Language, and Computation* (FLOLAC)\
   Co-organiser (2024, 2022, 2020, 2018 with [Hsiang-Shang Ko](https://josh-hs-ko.github.io))\
