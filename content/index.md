@@ -37,7 +37,7 @@ If you find my work interesting to you, please feel free to send me an email wit
 * *ACM SIGPLAN Haskell Symposium 2024*\
   PC member, 2024
 
-* *Workshop on Mathematically Structured Functional Programming* (MSFP)\
+* *10th Workshop on Mathematically Structured Functional Programming* (MSFP)\
   PC member, 2024
 
 * *28th ACM SIGPLAN International Conference on Functional Programming* (ICFP)\
