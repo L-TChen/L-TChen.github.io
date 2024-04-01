@@ -61,6 +61,8 @@ If you find my work interesting to you, please feel free to send me an email wit
 
 ### Invited Talk
 
+* *From Datatype Genericity to Language Genericity*\
+  [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
 * *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
   Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
 
