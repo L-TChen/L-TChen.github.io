@@ -57,7 +57,7 @@ If you find my work interesting to you, please feel free to send me an email wit
 
 * *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
 
-* *PhD Studentship from the EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
+* PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
 
 ### Invited Talk
 
