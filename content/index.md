@@ -34,14 +34,18 @@ If you find my work interesting to you, please feel free to send me an email wit
 
 ### Academic service
 
-* *ACM SIGPLAN Haskell Symposium 2024*\
+* *ACM SIGPLAN International Conference on Functional Programming* (ICFP)\
+  PC member, 2023\
+  Student research competition PC member, 2024
+
+* *ACM SIGPLAN Haskell Symposium*\
   PC member, 2024
 
-* *10th Workshop on Mathematically Structured Functional Programming* (MSFP)\
+* *Workshop on Mathematically Structured Functional Programming* (MSFP)\
   PC member, 2024
 
-* *28th ACM SIGPLAN International Conference on Functional Programming* (ICFP)\
-  PC member, 2023
+* *Asian Symposium on Programming Languages and Systems* (APLAS)\
+  Student research competition PC member, 2024
 
 * *Workshop on Type-Driven Development* (TyDe)\
   PC member, 2021
@@ -51,7 +55,7 @@ If you find my work interesting to you, please feel free to send me an email wit
   Lecturer (2024, 2022, 2020, 2018, 2016, 2014)
 
 * Reviewer for conferences:\
-  CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
+  ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
 
 ### Award
 
