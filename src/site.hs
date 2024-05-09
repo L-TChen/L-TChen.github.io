@@ -28,6 +28,10 @@ import Text.Pandoc
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
+  match "assets/html/**" $ do
+    route $ gsubRoute "assets/html/" (const "")
+    compile copyFileCompiler
+
   match "assets/img/*" $ do
     route $ gsubRoute "assets/" (const "")
     compile copyFileCompiler

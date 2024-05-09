@@ -141,6 +141,11 @@
           <text macro="access" prefix=". "/>
         </else>
       </choose>
+      <choose>
+        <if variable="note">
+          <text variable="note" prefix=" (" suffix=")"/>
+        </if>
+      </choose>
     </layout>
   </bibliography>
 </style>
