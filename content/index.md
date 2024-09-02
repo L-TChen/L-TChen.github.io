@@ -27,7 +27,15 @@ Recently, I have been exploring the computational and logical aspects of type th
 I have worked on both the theory and practice of programming languages using [Agda](https://agda.readthedocs.io/), a proof assistant and a dependently typed language.
 This approach allows me to produce reliable, reproducible, and sometimes useful results.
 
-### Prospective postdocs / assistants
+#### Hiring 徵才啟事
+
+##### 兼任助理、暑期實習
+
+歡迎有興趣探索「程式語言」以及「型別論」基礎的學生與我聯絡細節。
+
+兼任助理初步會以補充背景知識，例如論文或教科書閱讀並定期報告、討論為主；同時使用定理證明系統 Agda 加強程式及數學論證能力，並動手嘗試不同作法，逐步發展可能的研究題目。若是暑期實習生則規劃在兩個月間，參加相關暑期課程，接著試著從相關學術興趣出發，發展一個符合程度且可用 Agda 形式化的問題開始，從研究中學習此領域的知識跟原則，藉此可判斷是否合適。 
+
+##### Prospective postdocs / research assistants
 
 I have some funding available to hire a self-motivated postdoc and research assistants to join me at Academia Sinica.\
 If you find my work interesting to you, please feel free to send me an email with your résumé to initiate the conversation.
@@ -40,6 +48,9 @@ If you find my work interesting to you, please feel free to send me an email wit
 
 * *ACM SIGPLAN Haskell Symposium*\
   PC member, 2024
+
+* *ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation* (PEPM)\
+  PC member, 2025
 
 * *Workshop on Mathematically Structured Functional Programming* (MSFP)\
   PC member, 2024
