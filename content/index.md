@@ -42,6 +42,9 @@ If you find my work interesting to you, please feel free to send me an email wit
 
 ### Academic service
 
+* *International Conference on Types for Proofs and Programs* (TYPES)\
+  PC member, 2025
+  
 * *ACM SIGPLAN International Conference on Functional Programming* (ICFP)\
   PC member, 2023\
   Student research competition PC member, 2024
