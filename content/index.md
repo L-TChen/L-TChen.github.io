@@ -3,22 +3,35 @@
   title: Liang-Ting Chen
 ---
 
+
+::: {.row}
+
+::: {.col}
+
 ## __Chen, Liang-Ting 陳亮廷__
 
-<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-sm-end rounded-circle p-5">
+✉️ [ltchen@iis.sinica.edu.tw](javascript:location='&#109;&#97;i&#108;t&#111;&#58;\u006c\u0074\u0063\u0068\u0065\u006e\u0040\u0069\u0069\u0073\u002e\u0073\u0069\u006e\u0069\u0063\u0061\u002e\u0065\u0064\u0075\u002e\u0074\u0077';void 0)
 
-Assistant Research Fellow (Assistant Professor)
-
+Assistant Research Fellow (Assistant Professor)\
 [Institute of Information Science](https://www.iis.sinica.edu.tw)\
 [Academia Sinica](https://www.sinica.edu.tw/), Taiwan\
 
-[ltchen@iis.sinica.edu.tw](javascript:location='&#109;&#97;i&#108;t&#111;&#58;\u006c\u0074\u0063\u0068\u0065\u006e\u0040\u0069\u0069\u0073\u002e\u0073\u0069\u006e\u0069\u0063\u0061\u002e\u0065\u0064\u0075\u002e\u0074\u0077';void 0)
-
-### About me
+### 🧑🏻‍🔬 About Me
 
 I am an assistant research fellow in the [Theory Research Group](https://www.iis.sinica.edu.tw/en/page/ResearchOverview/Groups/Theory.html) at the Institute of Information Science, [Academia Sinica](https://en.wikipedia.org/wiki/Academia_Sinica) in Taiwan.
 
-#### Research Interests
+I have a double major in Mathematics and Computer Science & Information Engineering from the [National Cheng Kung University](https://www.ncku.edu.tw), Taiwan.
+I earned my PhD in [Computer Science](https://www.birmingham.ac.uk/schools/computer-science) at the [Universtion of Birmingham](https://www.birmingham.ac.uk), the UK, under the supervision of [Achim Jung](https://achimjungbham.github.io).
+Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
+:::
+
+::: {.col}
+<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-sm-end rounded-circle">
+
+:::
+:::
+
+#### 📜 Research Interests
 
 I am generally interested in mathematical structures in computer science, specifically, the so-called ['theory B'](https://cstheory.stackexchange.com/a/1523/51895) of theoretical computer science.
 My work so far spans dependently typed programming, programming languages, logic, and automata theory, employing logical and categorical methods.
@@ -27,66 +40,72 @@ Recently, I have been exploring the computational and logical aspects of type th
 I have worked on both the theory and practice of programming languages using [Agda](https://agda.readthedocs.io/), a proof assistant and a dependently typed language.
 This approach allows me to produce reliable, reproducible, and sometimes useful results.
 
-#### 徵才啟事
+*  *  *  *
 
-##### 兼任助理、暑期實習
+#### 🫵🏼 徵才啟事 🫵🏼
 
-歡迎有興趣探索「程式語言」以及「型別論」基礎的學生與我聯絡細節。
+有興趣探索「程式語言」或「型別論」的學生，歡迎寄信給我詳談細節。
 
-兼任助理初步會以補充背景知識，例如論文或教科書閱讀並定期報告、討論為主；同時使用定理證明系統 Agda 加強程式及數學論證能力，並動手嘗試不同作法，逐步發展可能的研究題目。若是暑期實習生則規劃在兩個月間，參加相關暑期課程，接著試著從相關學術興趣出發，發展一個符合程度且可用 Agda 形式化的問題開始，從研究中學習此領域的知識跟原則，藉此可判斷是否合適。 
+兼任助理
+: 初步以背景知識研習為主，同時使用定理證明系統 Agda 加強數學論證能力及實作能力，逐步發展研究題目。
 
-##### Prospective postdocs
+暑期實習生
+: 在兩個月間，參加相關暑期課程，從實習生自己的興趣發展可用 Agda 形式化的問題，藉此學習此領域的知識跟原則，判斷是否適合進一步發展。
 
-I have some funding available to hire a self-motivated postdoc to join me at Academia Sinica.\
+Prospective postdocs
+: I have some funding available to hire a self-motivated postdoc to join me at Academia Sinica.
 If you find my work interesting to you, please feel free to send me an email with your résumé to initiate the conversation.
 
-### Academic service
+*  *  *  *
 
-* European Symposium on Programming (ESOP)\
-  PC member, 2026
-* *International Conference on Types for Proofs and Programs* (TYPES)\
-  PC member, 2025
+### 🛠️ Academic Service
+
+*European Symposium on Programming* (ESOP)
+: PC member (2026)
+
+*International Conference on Types for Proofs and Programs* (TYPES)
+: PC member (2025)
   
-* *ACM SIGPLAN International Conference on Functional Programming* (ICFP)\
-  PC member, 2023\
-  Student research competition PC member, 2024
+*ACM SIGPLAN International Conference on Functional Programming* (ICFP)
+: PC member (2023), SRC PC member (2024)
 
-* *ACM SIGPLAN Haskell Symposium*\
-  PC member, 2024
+*ACM SIGPLAN Haskell Symposium*
+: PC member (2024)
 
-* *ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation* (PEPM)\
-  PC member, 2025
+*ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation* (PEPM)
+: PC member (2025)
 
-* *Workshop on Mathematically Structured Functional Programming* (MSFP)\
-  PC member, 2024
+*Workshop on Mathematically Structured Functional Programming* (MSFP)
+: PC member (2024)
 
-* *Asian Symposium on Programming Languages and Systems* (APLAS)\
-  Student research competition PC member, 2024
+*Asian Symposium on Programming Languages and Systems* (APLAS)
+: SRC PC member (2024)
 
-* *Workshop on Type-Driven Development* (TyDe)\
-  PC member, 2021
+*Workshop on Type-Driven Development* (TyDe)
+: PC member (2021)
 
-* *Formosan Summer School on Logic, Language, and Computation* (FLOLAC)\
-  Co-organiser (2024, 2022, 2020, 2018 with [Hsiang-Shang Ko](https://josh-hs-ko.github.io))\
-  Lecturer (2024, 2022, 2020, 2018, 2016, 2014)
+*Formosan Summer School on Logic, Language, and Computation* ([FLOLAC](https://flolac.iis.sinica.edu.tw/))
+: Co-organiser (2024, 2022, 2020, 2018) with [Hsiang-Shang Ko](https://josh-hs-ko.github.io), Lecturer (2024, 2022, 2020, 2018, 2016, 2014)
 
-* Reviewer for conferences:\
-  ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
+External reviewer for the following conferences:
+: ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
 
-### Award
+### 🏅 Award
 
 * *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
 
 * PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
 
-### Invited Talk
+### 🎤 Invited Talk
 
 * *From Datatype Genericity to Language Genericity*\
   [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
 * *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
   Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
 
-### Publications
+*  *  *  *
+
+### 📜 Publications
 
 (See also: [DBLP](https://dblp.org/pid/153/3116-1.html) or [Google Scholar](https://scholar.google.com/citations?user=9jA3dngAAAAJ))
 
