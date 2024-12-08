@@ -1,6 +1,6 @@
 <html lang="en" data-bs-theme="auto">
 <head>
-<script src="src/bootstrap-auto-dark-mode.js"></script>
+<script src="/src/bootstrap-auto-dark-mode.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script async src="https://kit.fontawesome.com/d25dd1f650.js" crossorigin="anonymous"></script>
@@ -10,11 +10,9 @@
 <script>
   MathJax = {
     loader: {
-      load: ['output/svg', 'input/tex-full', 'ui/safe', '[custom]/xypic.js'],
-      paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+      load: ['output/svg', 'input/tex-full', 'ui/safe']
     },
     tex: {
-      packages: {'[+]': ['xypic']}
     },
     svg: {
       scale: 0.95,

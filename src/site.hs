@@ -22,8 +22,10 @@ import Text.Pandoc
     ReaderOptions (..),
     WriterOptions (..),
     enableExtension,
+    extensionsFromList,
     writerHTMLMathMethod,
   )
+import System.Info (arch)
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -69,6 +71,22 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/head.html" indexCtx
         >>= relativizeUrls
 
+  create ["posts.html"] $ do
+    route idRoute
+    compile $ do
+      posts <- recentFirst =<< loadAll "posts/*"
+      let archiveCtx =
+            listField "posts" postCtx (return posts) `mappend`
+            constField "title" "Posts"               `mappend`
+            defaultContext
+
+      makeItem ""
+        >>= loadAndApplyTemplate "templates/post-list.html" archiveCtx
+        >>= loadAndApplyTemplate "templates/footer.html" archiveCtx
+        >>= loadAndApplyTemplate "templates/navbar.html" archiveCtx
+        >>= loadAndApplyTemplate "templates/head.html" archiveCtx
+        >>= relativizeUrls
+
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
@@ -91,12 +109,12 @@ ropt :: ReaderOptions
 ropt =
   defaultHakyllReaderOptions
     { -- The following option enables citation rendering
-      readerExtensions =
-        enableExtension Ext_superscript $
-          enableExtension Ext_subscript $
-            enableExtension Ext_citations $
-              enableExtension Ext_grid_tables $
-                readerExtensions defaultHakyllReaderOptions
+      readerExtensions = extensionsFromList
+        [ Ext_superscript
+        , Ext_subscript
+        , Ext_citations 
+        , Ext_grid_tables 
+        ] <> readerExtensions defaultHakyllReaderOptions
     }
 
 wopt :: WriterOptions
