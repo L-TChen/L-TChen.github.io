@@ -3,10 +3,7 @@
   title: Liang-Ting Chen
 ---
 
-
-::: {.row}
-
-::: {.col}
+<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" height="28%" class="float-sm-end rounded-circle" alt="Profile Photo">
 
 ## __Chen, Liang-Ting 陳亮廷__
 
@@ -14,22 +11,19 @@
 
 Assistant Research Fellow (Assistant Professor)\
 [Institute of Information Science](https://www.iis.sinica.edu.tw)\
-[Academia Sinica](https://www.sinica.edu.tw/), Taiwan\
+[Academia Sinica](https://www.sinica.edu.tw/), Taiwan 
+
+::: {.row .justify-content-center}
+
+::: {.col}
 
 ### 🧑🏻‍🔬 About Me
 
-I am an assistant research fellow in the [Theory Research Group](https://www.iis.sinica.edu.tw/en/page/ResearchOverview/Groups/Theory.html) at the Institute of Information Science, [Academia Sinica](https://en.wikipedia.org/wiki/Academia_Sinica) in Taiwan.
+I am an assistant research fellow in the [Theory Research Group](https://www.iis.sinica.edu.tw/en/page/ResearchOverview/Groups/Theory.html) at the Institute of Information Science, [Academia Sinica](https://en.wikipedia.org/wiki/Academia_Sinica).
 
-I have a double major in Mathematics and Computer Science & Information Engineering from the [National Cheng Kung University](https://www.ncku.edu.tw), Taiwan.
+I have a double major in Mathematics and Computer Science from the [National Cheng Kung University](https://www.ncku.edu.tw), Taiwan.
 I earned my PhD in [Computer Science](https://www.birmingham.ac.uk/schools/computer-science) at the [Universtion of Birmingham](https://www.birmingham.ac.uk), the UK, under the supervision of [Achim Jung](https://achimjungbham.github.io).
 Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
-:::
-
-::: {.col}
-<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="float-sm-end rounded-circle">
-
-:::
-:::
 
 #### 📜 Research Interests
 
@@ -40,9 +34,16 @@ Recently, I have been exploring the computational and logical aspects of type th
 I have worked on both the theory and practice of programming languages using [Agda](https://agda.readthedocs.io/), a proof assistant and a dependently typed language.
 This approach allows me to produce reliable, reproducible, and sometimes useful results.
 
-*  *  *  *
+#### 🏅 Award
 
-#### 🫵🏼 徵才啟事 🫵🏼
+* *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
+
+* PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
+:::
+
+::: {.col}
+
+#### 🫵🏼 Hiring 徵才啟事 🫵🏼
 
 有興趣探索「程式語言」或「型別論」的學生，歡迎寄信給我詳談細節。
 
@@ -55,6 +56,15 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 Prospective postdocs
 : I have some funding available to hire a self-motivated postdoc to join me at Academia Sinica.
 If you find my work interesting to you, please feel free to send me an email with your résumé to initiate the conversation.
+
+#### 🎤 Invited Talk
+
+* *From Datatype Genericity to Language Genericity*\
+  [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
+* *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
+  Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
+:::
+:::
 
 *  *  *  *
 
@@ -90,22 +100,10 @@ If you find my work interesting to you, please feel free to send me an email wit
 External reviewer for the following conferences:
 : ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
 
-### 🏅 Award
-
-* *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
-
-* PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
-
-### 🎤 Invited Talk
-
-* *From Datatype Genericity to Language Genericity*\
-  [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
-* *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
-  Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
 
 *  *  *  *
 
-### 📜 Publications
+### ✍🏼 Publications
 
 (See also: [DBLP](https://dblp.org/pid/153/3116-1.html) or [Google Scholar](https://scholar.google.com/citations?user=9jA3dngAAAAJ))
 
