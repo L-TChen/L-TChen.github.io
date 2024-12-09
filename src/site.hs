@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 
-import Control.Monad (liftM)
+import Control.Monad (liftM, foldM)
 import Data.List (intercalate)
 import Data.Maybe (fromJust)
 import Data.Monoid (mappend)
@@ -52,10 +52,7 @@ main = hakyll $ do
     let indexCtx = defaultContext
     compile $
       pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
-        >>= loadAndApplyTemplate "templates/default.html" indexCtx
-        >>= loadAndApplyTemplate "templates/footer.html" indexCtx
-        >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
-        >>= loadAndApplyTemplate "templates/head.html" indexCtx
+        >>= loadAndApplyTemplates indexCtx defaultTemplate
         >>= relativizeUrls
 
   match "content/posts/**.md" $ do
@@ -65,27 +62,31 @@ main = hakyll $ do
     let indexCtx = postCtx
     compile $
       pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
-        >>= loadAndApplyTemplate "templates/post.html" indexCtx
-        >>= loadAndApplyTemplate "templates/footer.html" indexCtx
-        >>= loadAndApplyTemplate "templates/navbar.html" indexCtx
-        >>= loadAndApplyTemplate "templates/head.html" indexCtx
+        >>= loadAndApplyTemplates indexCtx postTemplate
         >>= relativizeUrls
 
   create ["posts.html"] $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "posts/*"
+      posts <- recentFirst =<< loadAll "content/posts/**"
       let archiveCtx =
             listField "posts" postCtx (return posts) `mappend`
             constField "title" "Posts"               `mappend`
             defaultContext
 
       makeItem ""
-        >>= loadAndApplyTemplate "templates/post-list.html" archiveCtx
-        >>= loadAndApplyTemplate "templates/footer.html" archiveCtx
-        >>= loadAndApplyTemplate "templates/navbar.html" archiveCtx
-        >>= loadAndApplyTemplate "templates/head.html" archiveCtx
+        >>= loadAndApplyTemplates archiveCtx postsTemplate
         >>= relativizeUrls
+
+  where
+    baseTemplate =
+      [ "templates/footer.html"
+      , "templates/navbar.html"
+      , "templates/head.html"
+      ]
+    postsTemplate   = "templates/posts.html" : "templates/default.html" : baseTemplate
+    postTemplate    = "templates/post.html" : baseTemplate
+    defaultTemplate = "templates/default.html" : baseTemplate
 
 --------------------------------------------------------------------------------
 postCtx :: Context String
@@ -129,3 +130,7 @@ pandocBiblioCompiler cslFileName bibFileName = do
   bibs <- loadAll $ fromGlob bibFileName
   writePandocWith wopt
     <$> (getResourceBody >>= readPandocBiblios ropt csl bibs)
+
+loadAndApplyTemplates :: Foldable t => Context String -> t Identifier -> Item String -> Compiler (Item String)
+loadAndApplyTemplates ctx ids it =
+    foldM (\item tpl -> loadAndApplyTemplate tpl ctx item) it ids

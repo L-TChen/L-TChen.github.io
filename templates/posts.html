@@ -1,2 +1,13 @@
-Here you can find all my previous posts:
-$partial("templates/post-list.html")$
+<main class="post container py-5">
+    <div class="row justify-content-center">
+    <div class="col-md-8">
+    <ul>
+        $-for(posts)$
+            <li>
+                <a href="$url$">$title$</a> - $date$
+            </li>
+        $endfor$
+    </ul>
+    </div>
+    </div>
+</main>
