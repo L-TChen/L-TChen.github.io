@@ -39,6 +39,13 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 * *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
 
 * PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
+
+#### 🎤 Invited Talk
+
+* *From Datatype Genericity to Language Genericity*\
+  [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
+* *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
+  Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
 :::
 
 ::: {.col}
@@ -57,49 +64,55 @@ Prospective postdocs
 : I have some funding available to hire a self-motivated postdoc to join me at Academia Sinica.
 If you find my work interesting to you, please feel free to send me an email with your résumé to initiate the conversation.
 
-#### 🎤 Invited Talk
-
-* *From Datatype Genericity to Language Genericity*\
-  [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
-* *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
-  Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
 :::
 :::
 
 *  *  *  *
 
-### 🛠️ Academic Service
+### 🛠️ Service
 
-*European Symposium on Programming* (ESOP)
-: PC member (2026)
+::: {.row .justify-content-center}
 
-*International Conference on Types for Proofs and Programs* (TYPES)
-: PC member (2025)
+::: {.col}
+
+#### PC Membership
+
+2026
+: * *European Symposium on Programming* (ESOP)
+
+2025
+: * *International Conference on Types for Proofs and Programs* (TYPES)
+* *ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation* (PEPM)
   
-*ACM SIGPLAN International Conference on Functional Programming* (ICFP)
-: PC member (2023), SRC PC member (2024)
+2024
+: * *ACM Student Research Competition* (SRC) at ICFP
+* *ACM SIGPLAN Haskell Symposium*
+* *Workshop on Mathematically Structured Functional Programming* (MSFP)
+* SRC at *Asian Symposium on Programming Languages and Systems* (APLAS)
 
-*ACM SIGPLAN Haskell Symposium*
-: PC member (2024)
+2023
+: * *ACM SIGPLAN International Conference on Functional Programming*
 
-*ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation* (PEPM)
-: PC member (2025)
+2021
+: * *Workshop on Type-Driven Development* (TyDe)
 
-*Workshop on Mathematically Structured Functional Programming* (MSFP)
-: PC member (2024)
+:::
 
-*Asian Symposium on Programming Languages and Systems* (APLAS)
-: SRC PC member (2024)
+::: {.col}
 
-*Workshop on Type-Driven Development* (TyDe)
-: PC member (2021)
+#### Organising
 
-*Formosan Summer School on Logic, Language, and Computation* ([FLOLAC](https://flolac.iis.sinica.edu.tw/))
+* *Formosan Summer School on Logic, Language, and Computation* ([FLOLAC](https://flolac.iis.sinica.edu.tw/))
 : Co-organiser (2024, 2022, 2020, 2018) with [Hsiang-Shang Ko](https://josh-hs-ko.github.io), Lecturer (2024, 2022, 2020, 2018, 2016, 2014)
 
-External reviewer for the following conferences:
-: ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
+* *Agda Implementors' Meeting XXXVII* ([AIM XXXVII](https://wiki.portal.chalmers.se/agda/Main/AIMXXXVII))
+: Local organiser
 
+#### External Review
+
+ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
+:::
+:::
 
 *  *  *  *
 
