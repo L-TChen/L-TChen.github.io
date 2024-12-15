@@ -19,7 +19,7 @@ jobs:
         stack-version: 'latest'
 
     - name: Cache ~/.stack and .stack-work
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       id: cache
       with:
         path: |
