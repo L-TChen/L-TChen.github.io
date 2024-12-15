@@ -63,7 +63,7 @@ If you find my work interesting to you, please feel free to send me an email wit
 I am generally interested in mathematical structures in computer science, specifically, the so-called ['theory B'](https://cstheory.stackexchange.com/a/1523/51895) of theoretical computer science.
 My work so far spans dependently typed programming, programming languages, logic, and automata theory, employing logical and categorical methods.
 
-Recently, I have been exploring the computational and logical aspects of type theory, particularly through the lens of the lens of [Curry-Howard](https://en.wikipedia.org/wiki/Curry–Howard_correspondence) correspondence.
+Recently, I have been exploring the computational and logical aspects of type theory, particularly through the lens of [Curry-Howard](https://en.wikipedia.org/wiki/Curry–Howard_correspondence) correspondence.
 I have worked on both the theory and practice of programming languages using [Agda](https://agda.readthedocs.io/), a proof assistant and a dependently typed language.
 This approach allows me to produce reliable, reproducible, and sometimes useful results.
 
