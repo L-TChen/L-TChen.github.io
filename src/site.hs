@@ -6,7 +6,7 @@ import Data.List (intercalate)
 import Data.Maybe (fromJust)
 import Data.Monoid (mappend)
 import Data.Time.Format
-import Hakyll hiding (pandocBiblioCompiler)
+
 import System.FilePath
   ( dropExtension,
     joinPath,
@@ -27,6 +27,8 @@ import Text.Pandoc
   )
 import System.Info (arch)
 
+import Hakyll hiding (pandocBiblioCompiler)
+import Hakyll.Web.Sass ( sassCompiler )
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -38,9 +40,10 @@ main = hakyll $ do
     route $ gsubRoute "assets/" (const "")
     compile copyFileCompiler
 
-  match "assets/css/*" $ do
-    route $ gsubRoute "assets/" (const "")
-    compile compressCssCompiler
+  scssDependency <- makePatternDependency "bootstrap/package.json"
+  rulesExtraDependencies [scssDependency] $ match "assets/scss/default.scss" $ do
+      route $ setExtension "css" `composeRoutes` gsubRoute "assets/scss/" (const "css/")
+      compile (fmap compressCss <$> sassCompiler)
 
   match "assets/bib/*" $ compile biblioCompiler
   match "assets/csl/*" $ compile cslCompiler

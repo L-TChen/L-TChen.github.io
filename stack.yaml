@@ -4,3 +4,10 @@ packages:
 - .
 
 system-ghc: true
+
+extra-deps:
+# - 'hakyll-4.15.1.1'
+- 'hakyll-sass-0.2.4'
+
+ghc-options:
+  hlibsass: -optc -Wno-error=int-conversion

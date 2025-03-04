@@ -8,6 +8,7 @@ executable site
   hs-source-dirs:   src
   build-depends:    base == 4.*
                   , hakyll < 4.17
+                  , hakyll-sass >= 0.2 && <0.3
                   , filepath >=1.0 && <1.5
                   , pandoc >= 2.11 && < 4
                   , time >=1.8 && <1.13
