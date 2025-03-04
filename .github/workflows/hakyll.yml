@@ -11,6 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: true
+        
     - uses: haskell/actions/setup@v2
       with:
         ghc-version: '9.4.8'

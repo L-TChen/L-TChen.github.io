@@ -107,8 +107,8 @@ Summer interns
 
 #### 💰 Funding
 
-* 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types* (NSTC 114-2222-E-001-001-MY3, TWD$2,181,000)
-* 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming* (109-2222-E-001-002-MY3, TWD$2,851,000, PI: Hsiang-Shang Ko)
+* 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD$2,181,000)
+* 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD$2,851,000, PI: Hsiang-Shang Ko)
 
 :::
 :::
