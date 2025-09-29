@@ -16,7 +16,7 @@ jobs:
         
     - uses: haskell/actions/setup@v2
       with:
-        ghc-version: '9.4.8'
+        ghc-version: '9.6.7'
         enable-stack: true
         stack-no-global: true
         stack-version: 'latest'
@@ -45,7 +45,7 @@ jobs:
       run: |
         stack build ${FLAGS} --exec "site check --internal-links"
 
-    - uses: peaceiris/actions-gh-pages@v3
+    - uses: peaceiris/actions-gh-pages@v4
       if: github.ref == 'refs/heads/source'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -25,7 +25,7 @@ Assistant Research Fellow (Assistant Professor)\
 I am an assistant research fellow in the [Theory Research Group](https://www.iis.sinica.edu.tw/en/page/ResearchOverview/Groups/Theory.html) at the Institute of Information Science, [Academia Sinica](https://en.wikipedia.org/wiki/Academia_Sinica).
 
 I have a double major in Mathematics and Computer Science from the [National Cheng Kung University](https://www.ncku.edu.tw), Taiwan.
-I earned my PhD in [Computer Science](https://www.birmingham.ac.uk/schools/computer-science) at the [Universtion of Birmingham](https://www.birmingham.ac.uk), the UK, under the supervision of [Achim Jung](https://achimjungbham.github.io).
+I earned my PhD in [Computer Science](https://www.birmingham.ac.uk/schools/computer-science) at the [University of Birmingham](https://www.birmingham.ac.uk), the UK, under the supervision of [Achim Jung](https://achimjungbham.github.io).
 Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
 
 :::
@@ -39,9 +39,11 @@ Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
 ::: {.row}
 
 ::: {.col-12 .col-md-6}
-Prospective postdocs
-: I have some funding available to hire a self-motivated postdoc to join me at Academia Sinica.
-If you find my work interesting to you, please feel free to send me an email with your résumé to initiate the conversation.
+Prospective research assistants
+: I have some funding available to hire self-motivated research assistants to join me at Academia Sinica.
+If you are interested in the research topics of my recent work, please feel free to drop me an email with a brief statement and your résumé to initiate a conversation.
+
+Please note that, due to current geopolitical circumstances, only short-term student visits can be accommodated for Chinese applicants.
 :::
 
 ::: {.col-12 .col-md-6}
