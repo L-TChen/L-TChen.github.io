@@ -98,6 +98,9 @@ Summer interns
 
 #### 🎤 Invited Talk
 
+* *From Datatype-Generic Programming to Language-Generic Programming*\
+  Workshop on Type-Driven Development ([TyDe 2026](https://conf.researchr.org/details/icfp-splash-2025/tyde-2025-papers/10/From-Datatype-Generic-Programming-to-Language-Generic-Programming)), Singapore, Singapore, 2026
+
 * *From Datatype Genericity to Language Genericity*\
   [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
 * *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
@@ -126,6 +129,7 @@ Summer interns
 
 2026
 : * *European Symposium on Programming* (ESOP)
+* *ACM SIGPLAN International Conference on Functional Programming* (ICFP)
 
 2025
 : * *International Conference on Types for Proofs and Programs* (TYPES)
