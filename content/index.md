@@ -99,7 +99,7 @@ Summer interns
 #### 🎤 Invited Talk
 
 * *From Datatype-Generic Programming to Language-Generic Programming*\
-  Workshop on Type-Driven Development ([TyDe 2026](https://conf.researchr.org/details/icfp-splash-2025/tyde-2025-papers/10/From-Datatype-Generic-Programming-to-Language-Generic-Programming)), Singapore, Singapore, 2026
+  Workshop on Type-Driven Development ([TyDe 2025](https://conf.researchr.org/details/icfp-splash-2025/tyde-2025-papers/10/From-Datatype-Generic-Programming-to-Language-Generic-Programming)), Singapore, Singapore, 2025
 
 * *From Datatype Genericity to Language Genericity*\
   [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
