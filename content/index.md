@@ -40,10 +40,10 @@ Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
 
 ::: {.col-12 .col-md-6}
 Prospective research assistants
-: I have some funding available to hire self-motivated research assistants to join me at Academia Sinica.
+: I have funding available to hire self-motivated research assistants to join me at Academia Sinica.
 If you are interested in the research topics of my recent work, please feel free to drop me an email with a brief statement and your résumé to initiate a conversation.
 
-Please note that, due to current geopolitical circumstances, only short-term student visits can be accommodated for Chinese applicants.
+For Chinese applicants, please note that only short-term student visits can be accommodated due to the current geopolitical circumstances.
 :::
 
 ::: {.col-12 .col-md-6}
