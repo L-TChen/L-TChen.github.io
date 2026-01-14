@@ -73,20 +73,6 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.col-12 .col-md-6}
 
-#### 🧑‍🏫 Supervision
-
-##### Past
-
-Summer interns
-: * Yu-Chuan Yu 游棫荃, Bridging Combinatorial and Algebraic proof: An Algebraic Approach with Agda ([abstract](/pdf/2024 - 游棫荃 - Bridging Combinatorial and Algebraic proof.pdf)), 2024
-* Chih-Hsiang Chuang 莊智翔, Circuit Realization of Truth Tables and Boolean Functions in Agda ([abstract](/pdf/2024 - 莊智翔 - Circuit realization of truth tables and Boolean functions in Agda.pdf)), 2024
-* Ting-Wu Chang 張庭梧, Constructions and Properties of the Heighway Dragon Curve Formalized in Agda ([abstract](/pdf/2024 - 張庭梧 - Constructions and Properties of the Heighway Dragon Curve Formalized in Agda.pdf)), 2024
-* Wen Chun Kao 高文君, Verification of Correctness and Time Complexity of Skew Binomial Heap via CALF ([abstract](/pdf/2024 - 高文君 - Verification of Correctness and Time Complexity of Skew Binomial Heap via CALF.pdf)), 2024
-
-:::
-
-::: {.col-12 .col-md-6}
-
 #### 🏅 Award
 
 * *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
@@ -94,6 +80,7 @@ Summer interns
 * PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
 
 :::
+
 ::: {.col-12 .col-md-6}
 
 #### 🎤 Invited Talk
@@ -106,9 +93,6 @@ Summer interns
 * *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
   Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
 
-:::
-
-::: {.col-12 .col-md-6}
 
 #### 💰 Funding
 
@@ -116,6 +100,26 @@ Summer interns
 * 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD$2,851,000, PI: Hsiang-Shang Ko)
 
 :::
+
+::: {.col-12 .col-md-6}
+
+#### 🧑‍🏫 Supervision
+
+Postdoc
+
+: * [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
+
+Summer Internship
+
+: * Yi-Ting Lo 羅翊庭, A Security Analysis of a Cryptographic Handshake Protocol, ([abstract](/pdf/2025 - 羅翊庭 - A Security Analysis of a Cryptographic Handshake Protocol.pdf)), 2025
+* Anderson Wu 吳智堯, Propositions as Descriptions of Universes of Types and their Categorical Structures, 2025
+* Yu-Chuan Yu 游棫荃, Bridging Combinatorial and Algebraic proof: An Algebraic Approach with Agda ([abstract](/pdf/2024 - 游棫荃 - Bridging Combinatorial and Algebraic proof.pdf)), 2024
+* Chih-Hsiang Chuang 莊智翔, Circuit Realization of Truth Tables and Boolean Functions in Agda ([abstract](/pdf/2024 - 莊智翔 - Circuit realization of truth tables and Boolean functions in Agda.pdf)), 2024
+* Ting-Wu Chang 張庭梧, Constructions and Properties of the Heighway Dragon Curve Formalized in Agda ([abstract](/pdf/2024 - 張庭梧 - Constructions and Properties of the Heighway Dragon Curve Formalized in Agda.pdf)), 2024
+* Wen Chun Kao 高文君, Verification of Correctness and Time Complexity of Skew Binomial Heap via CALF ([abstract](/pdf/2024 - 高文君 - Verification of Correctness and Time Complexity of Skew Binomial Heap via CALF.pdf)), 2024
+
+:::
+
 :::
 
 *  *  *  *
