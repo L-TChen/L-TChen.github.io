@@ -13,7 +13,7 @@ packages:
     hackage: hakyll-sass-0.2.4
 snapshots:
 - completed:
-    sha256: 238fa745b64f91184f9aa518fe04bdde6552533d169b0da5256670df83a0f1a9
-    size: 721141
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/44.yaml
-  original: lts-22.44
+    sha256: 6406d8039dd538f18fc0d242f01c7066ee386d81ba3c8751b914ac1ae193ec5d
+    size: 728959
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/24/35.yaml
+  original: lts-24.35

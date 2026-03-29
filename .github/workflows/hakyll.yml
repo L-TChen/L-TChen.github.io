@@ -1,56 +1,75 @@
 name: Hakyll site CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - source
+  pull_request:
+    branches:
+      - source
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     env:
       FLAGS: "--flag hakyll:-previewServer --flag hakyll:-watchServer --flag hakyll:-checkexternal"
+      LANG: en_US.UTF-8
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: true
-        
-    - uses: haskell/actions/setup@v2
-      with:
-        ghc-version: '9.6.7'
-        enable-stack: true
-        stack-no-global: true
-        stack-version: 'latest'
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
 
-    - name: Cache ~/.stack and .stack-work
-      uses: actions/cache@v4
-      id: cache
-      with:
-        path: |
-          ~/.stack
-          .stack-work
-        key: stack-${{ runner.OS }}-${{ hashFiles('stack.yaml.lock') }}
+      - uses: actions/configure-pages@v5
 
-    - name: Build dependencies and the site generator
-      if: ${{ !steps.cache.outputs.cache-hit }}
-      run: |
-        stack build ${FLAGS}
+      - uses: haskell-actions/setup@v2
+        with:
+          ghc-version: "9.10.3"
+          enable-stack: true
+          stack-no-global: true
+          stack-version: latest
 
-    - name: Build the site
-      env:
-        LANG: en_US.UTF-8
-      run: |
-        stack build ${FLAGS} --exec "site build"
+      - name: Cache Stack state
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.stack
+            .stack-work
+          key: stack-${{ runner.os }}-${{ hashFiles('stack.yaml', 'stack.yaml.lock', 'package.yaml', 'L-TChen-github-io.cabal') }}
+          restore-keys: |
+            stack-${{ runner.os }}-
 
-    - name: Check the site output
-      run: |
-        stack build ${FLAGS} --exec "site check --internal-links"
+      - name: Build the site generator
+        run: stack build ${FLAGS}
 
-    - uses: peaceiris/actions-gh-pages@v4
-      if: github.ref == 'refs/heads/source'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: _site
-        publish_branch: master
-        force_orphan: true
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
+      - name: Build the site
+        run: stack exec -- site build
+
+      - name: Check the site output
+        run: stack exec -- site check --internal-links
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/source'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

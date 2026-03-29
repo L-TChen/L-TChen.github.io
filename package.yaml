@@ -1,0 +1,23 @@
+name: L-TChen-github-io
+version: 0.1.0.0
+github: L-TChen/L-TChen.github.io
+
+ghc-options: -Wall
+
+dependencies:
+  - base >= 4.14 && < 5
+  - filepath
+  - hakyll
+  - hakyll-sass
+  - pandoc
+  - time
+
+executables:
+  site:
+    main: site.hs
+    source-dirs:
+      - src
+    other-modules:
+      - Publications
+    ghc-options:
+      - -threaded

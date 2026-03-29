@@ -1,12 +1,9 @@
-resolver: lts-22.44
+resolver: lts-24.35
 
 packages:
 - .
 
-system-ghc: true
-
 extra-deps:
-# - 'hakyll-4.15.1.1'
 - 'hakyll-sass-0.2.4'
 
 ghc-options:

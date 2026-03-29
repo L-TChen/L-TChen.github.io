@@ -242,7 +242,7 @@ takeBalancedParens :: String -> (String, String)
 takeBalancedParens = takeBalancedDelimited '(' ')'
 
 takeBalancedDelimited :: Char -> Char -> String -> (String, String)
-takeBalancedDelimited open close = go 1 []
+takeBalancedDelimited open close = go (1 :: Int) []
   where
     go _ acc [] = (reverse acc, [])
     go depth acc (character : remaining)
@@ -254,7 +254,7 @@ takeBalancedDelimited open close = go 1 []
       | otherwise = go depth (character : acc) remaining
 
 takeBalancedQuotes :: String -> (String, String)
-takeBalancedQuotes = go False 0 []
+takeBalancedQuotes = go False (0 :: Int) []
   where
     go _ _ acc [] = (reverse acc, [])
     go escaped braceDepth acc (character : remaining)
@@ -266,7 +266,7 @@ takeBalancedQuotes = go False 0 []
       | otherwise = go False braceDepth (character : acc) remaining
 
 splitTopLevelComma :: String -> Maybe (String, String)
-splitTopLevelComma = go 0 False []
+splitTopLevelComma = go (0 :: Int) False []
   where
     go _ _ _ [] = Nothing
     go braceDepth inQuotes acc (character : remaining)
@@ -335,7 +335,7 @@ normalizePublicationTitle =
   normalizeBibText . sentenceCaseBibTitle . stripOuterTitleBraces
 
 sentenceCaseBibTitle :: String -> String
-sentenceCaseBibTitle = go True 0
+sentenceCaseBibTitle = go True (0 :: Int)
   where
     go _ _ [] = []
     go capitalizeNext braceDepth (character : remaining)

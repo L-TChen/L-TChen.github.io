@@ -1,17 +1,31 @@
-name:               L-TChen-github-io
-version:            0.1.0.0
-build-type:         Simple
-cabal-version:      >= 1.10
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.38.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           L-TChen-github-io
+version:        0.1.0.0
+homepage:       https://github.com/L-TChen/L-TChen.github.io#readme
+bug-reports:    https://github.com/L-TChen/L-TChen.github.io/issues
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/L-TChen/L-TChen.github.io
 
 executable site
-  main-is:          site.hs
-  hs-source-dirs:   src
-  other-modules:    Publications
-  build-depends:    base == 4.*
-                  , hakyll < 4.17
-                  , hakyll-sass >= 0.2 && <0.3
-                  , filepath >=1.0 && <1.5
-                  , pandoc >= 2.11 && < 4
-                  , time >=1.8 && <1.13
-  ghc-options:      -threaded
+  main-is: site.hs
+  other-modules:
+      Publications
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -threaded
+  build-depends:
+      base >=4.14 && <5
+    , filepath
+    , hakyll
+    , hakyll-sass
+    , pandoc
+    , time
   default-language: Haskell2010

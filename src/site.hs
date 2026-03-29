@@ -4,14 +4,10 @@
 import Control.Monad (foldM)
 import Data.Char (isSpace)
 import Data.List (intercalate, sortOn)
-import Data.Monoid (mappend)
 import Data.Ord (Down (..))
-import Data.Time.Format
 
 import System.FilePath
-  ( dropExtension,
-    joinPath,
-    splitDirectories,
+  ( joinPath,
     splitPath,
     takeBaseName,
     takeDirectory,
@@ -26,13 +22,14 @@ import Text.Pandoc
   )
 
 import Hakyll hiding (pandocBiblioCompiler)
+import Hakyll.Core.Dependencies (DependencyKind (KindContent))
 import Hakyll.Web.Sass ( sassCompiler )
 import Publications (replacePublicationsFromBib)
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-  summerInternsDependency <- makePatternDependency "content/interns/interns.md"
-  summerInternsTemplateDependency <- makePatternDependency "templates/summer-interns.html"
+  summerInternsDependency <- makePatternDependency KindContent "content/interns/interns.md"
+  summerInternsTemplateDependency <- makePatternDependency KindContent "templates/summer-interns.html"
 
   match "assets/html/**" $ do
     route $ gsubRoute "assets/html/" (const "")
@@ -46,7 +43,7 @@ main = hakyll $ do
     route $ gsubRoute "content/interns/" (const "")
     compile copyFileCompiler
 
-  scssDependency <- makePatternDependency "bootstrap/package.json"
+  scssDependency <- makePatternDependency KindContent "bootstrap/package.json"
   rulesExtraDependencies [scssDependency] $ match "assets/scss/default.scss" $ do
       route $ setExtension "css" `composeRoutes` gsubRoute "assets/scss/" (const "css/")
       compile (fmap compressCss <$> sassCompiler)
