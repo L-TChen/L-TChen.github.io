@@ -1,0 +1,39 @@
+<div class="publications-list">
+$for(publications)$
+<article class="publication-entry">
+<h4 class="publication-title">$title$</h4>
+$if(abstractText)$
+<div class="publication-authors-block">
+<input class="publication-abstract-toggle" type="checkbox" id="$abstractId$">
+<div class="publication-authors-row"><p class="publication-authors">$authors$</p><label class="publication-abstract-label" for="$abstractId$">Abstract</label></div>
+<div class="publication-abstract-body">
+<p>$abstractText$</p>
+</div>
+</div>
+$else$
+<div class="publication-authors-row">
+<p class="publication-authors">$authors$</p>
+</div>
+$endif$
+<p class="publication-meta">$venueAndYear$</p>
+$if(doiUrl)$
+<div class="publication-links"><a class="publication-link" href="$doiUrl$">DOI</a>
+$-if(slideUrl)$<a class="publication-link" href="$slideUrl$">Slides</a>$endif-$
+$if(preprintUrl)$<a class="publication-link" href="$preprintUrl$">Preprint</a>$endif-$
+</div>
+$else$
+$if(slideUrl)$
+<div class="publication-links"><a class="publication-link" href="$slideUrl$">Slides</a>
+$if(preprintUrl)$<a class="publication-link" href="$preprintUrl$">Preprint</a>$endif$
+</div>
+$else$
+$if(preprintUrl)$
+<div class="publication-links">
+<a class="publication-link" href="$preprintUrl$">Preprint</a>
+</div>
+$endif$
+$endif$
+$endif$
+</article>
+$endfor$
+</div>

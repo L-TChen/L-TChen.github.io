@@ -1,6 +1,7 @@
 ---
   lang: en-GB
   title: Liang-Ting Chen
+  interns-limit: 5
 ---
 ::: {.row}
 
@@ -96,8 +97,8 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 #### 💰 Funding
 
-* 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD$2,181,000)
-* 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD$2,851,000, PI: Hsiang-Shang Ko)
+* 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD&#36;2,181,000)
+* 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD&#36;2,851,000, PI: Hsiang-Shang Ko)
 
 :::
 
@@ -105,15 +106,15 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 #### 🧑‍🏫 Supervision
 
-Postdoc
+##### Postdoc
 
-: * [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
+* [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
 
-Summer Internship
+##### Recent Summer Interns
 
-<!--SUMMER_INTERNS-->
+$partial("templates/summer-interns.html")$
 
-[See all summer interns](/interns.html)
+[More](/interns.html)
 
 :::
 
@@ -171,4 +172,4 @@ ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16
 
 (See also: [DBLP](https://dblp.org/pid/153/3116-1.html) or [Google Scholar](https://scholar.google.com/citations?user=9jA3dngAAAAJ))
 
-<!--PUBLICATIONS-->
+$partial("templates/publications.html")$

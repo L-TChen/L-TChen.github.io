@@ -44,7 +44,6 @@
 
 .publication-entry {
   position: relative;
-  padding: .45rem 0;
   border: 0;
   border-radius: 0;
   background: var(--publication-surface);
@@ -58,7 +57,7 @@
 }
 
 .publication-authors-block {
-  margin-bottom: .25rem;
+  margin-bottom: 0;
 }
 
 .publication-authors-row {
@@ -66,7 +65,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   gap: .35rem .5rem;
-  margin-bottom: .25rem;
+  margin-bottom: 0;
 }
 
 .publication-authors,
@@ -81,6 +80,7 @@
 
 .publication-meta {
   color: var(--publication-muted);
+  margin-top: 0;
 }
 
 .publication-abstract-toggle {

@@ -24,12 +24,14 @@ import Text.Pandoc
 import Hakyll hiding (pandocBiblioCompiler)
 import Hakyll.Core.Dependencies (DependencyKind (KindContent))
 import Hakyll.Web.Sass ( sassCompiler )
-import Publications (replacePublicationsFromBib)
+import Publications (loadPublicationsPageCtx)
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
   summerInternsDependency <- makePatternDependency KindContent "content/interns/interns.md"
   summerInternsTemplateDependency <- makePatternDependency KindContent "templates/summer-interns.html"
+  publicationsDependency <- makePatternDependency KindContent "assets/bib/published.bib"
+  publicationsTemplateDependency <- makePatternDependency KindContent "templates/publications.html"
 
   match "assets/html/**" $ do
     route $ gsubRoute "assets/html/" (const "")
@@ -53,24 +55,29 @@ main = hakyll $ do
 
   match "templates/*.html" $ compile templateBodyCompiler
 
-  rulesExtraDependencies [summerInternsDependency, summerInternsTemplateDependency] $ do
+  rulesExtraDependencies
+    [ summerInternsDependency
+    , summerInternsTemplateDependency
+    , publicationsDependency
+    , publicationsTemplateDependency
+    ] $ do
     match "content/index.md" $ do
       route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
       compile $ do
-        recentInterns <- take 8 <$> loadSummerInterns summerInternsSource
-        pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
-          >>= replaceSummerInternsPlaceholder recentInterns
-          >>= replacePublicationsFromBib
-          >>= loadAndApplyTemplates defaultContext defaultTemplate
+        page <- getUnderlying
+        summerInternsCtx <- loadSummerInternsPageCtx page
+        publicationsCtx <- loadPublicationsPageCtx page
+        let pageCtx = summerInternsCtx `mappend` publicationsCtx
+        pandocBiblioTemplateCompiler pageCtx "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
+          >>= loadAndApplyTemplates (pageCtx `mappend` defaultContext) defaultTemplate
           >>= relativizeUrls
 
     match "content/interns/interns.md" $ do
       route $ constRoute "interns.html"
       compile $ do
-        interns <- loadSummerInterns summerInternsSource
-        pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
-          >>= replaceSummerInternsPlaceholder interns
-          >>= loadAndApplyTemplates defaultContext defaultTemplate
+        pageCtx <- loadSummerInternsPageCtx =<< getUnderlying
+        pandocBiblioTemplateCompiler pageCtx "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
+          >>= loadAndApplyTemplates (pageCtx `mappend` defaultContext) defaultTemplate
           >>= relativizeUrls
 
   match ("content/*.md" .&&. complement "content/index.md") $ do
@@ -137,6 +144,27 @@ summerInternCtx =
       Nothing  -> noResult "summer intern has no abstract"
   )
 
+loadSummerInternsPageCtx :: Identifier -> Compiler (Context String)
+loadSummerInternsPageCtx page = do
+  limit <- loadPageListLimit "interns-limit" page
+  interns <- loadSummerInterns summerInternsSource
+  let boundedInterns = maybe interns (`take` interns) limit
+  return $
+    listField "interns" summerInternCtx (return boundedInterns) `mappend`
+    constField "internsUrl" "/interns.html"
+
+loadPageListLimit :: String -> Identifier -> Compiler (Maybe Int)
+loadPageListLimit fieldName page = do
+  metadata <- getMetadata page
+  case lookupString fieldName metadata of
+    Nothing -> return Nothing
+    Just value ->
+      case reads value of
+        [(count, "")] | count >= 0 -> return $ Just count
+        _ ->
+          fail $
+            "Could not parse " ++ fieldName ++ " in " ++ toFilePath page ++ ": " ++ value
+
 loadSummerInterns :: Identifier -> Compiler [Item SummerIntern]
 loadSummerInterns source = do
   metadata <- getMetadata source
@@ -200,37 +228,6 @@ breakOn needle haystack = search [] haystack
 trimWhitespace :: String -> String
 trimWhitespace = reverse . dropWhile isSpace . reverse . dropWhile isSpace
 
-summerInternsPlaceholder :: String
-summerInternsPlaceholder = "<!--SUMMER_INTERNS-->"
-
-renderSummerInterns :: [Item SummerIntern] -> Compiler String
-renderSummerInterns interns =
-  itemBody <$>
-  ( makeItem ""
-      >>= loadAndApplyTemplate
-            "templates/summer-interns.html"
-            (listField "interns" summerInternCtx (return interns) `mappend` defaultContext)
-  )
-
-replaceSummerInternsPlaceholder :: [Item SummerIntern] -> Item String -> Compiler (Item String)
-replaceSummerInternsPlaceholder interns item = do
-  renderedInterns <- renderSummerInterns interns
-  return $ fmap (replaceLiteral summerInternsPlaceholder renderedInterns) item
-
-replaceLiteral :: Eq a => [a] -> [a] -> [a] -> [a]
-replaceLiteral needle replacement = go
-  where
-    go haystack
-      | needle `isPrefixOf` haystack = replacement ++ go (drop (length needle) haystack)
-      | otherwise =
-          case haystack of
-            [] -> []
-            x : xs -> x : go xs
-
-    isPrefixOf [] _ = True
-    isPrefixOf _ [] = False
-    isPrefixOf (x : xs) (y : ys) = x == y && isPrefixOf xs ys
-
 postCtx :: Context String
 postCtx =
   dateField "date" "%B %e, %Y" `mappend`
@@ -272,6 +269,14 @@ pandocBiblioCompiler cslFileName bibFileName = do
   bibs <- loadAll $ fromGlob bibFileName
   writePandocWith wopt
     <$> (getResourceBody >>= readPandocBiblios ropt csl bibs)
+
+pandocBiblioTemplateCompiler :: Context String -> String -> String -> Compiler (Item String)
+pandocBiblioTemplateCompiler ctx cslFileName bibFileName = do
+  csl <- load $ fromFilePath cslFileName
+  bibs <- loadAll $ fromGlob bibFileName
+  markdown <- getResourceBody >>= applyAsTemplate ctx
+  writePandocWith wopt
+    <$> readPandocBiblios ropt csl bibs markdown
 
 loadAndApplyTemplates :: Foldable t => Context String -> t Identifier -> Item String -> Compiler (Item String)
 loadAndApplyTemplates ctx ids it =

@@ -1,5 +1,5 @@
 module Publications
-  ( replacePublicationsFromBib
+  ( loadPublicationsPageCtx
   ) where
 
 import Data.Char (isAlpha, isAlphaNum, isSpace, toLower, toUpper)
@@ -7,18 +7,23 @@ import Data.List (intercalate, sortOn)
 import Data.Maybe (listToMaybe)
 import Data.Ord (Down (..))
 
-import Hakyll (Compiler, Item, unsafeCompiler)
-
-replacePublicationsFromBib :: Item String -> Compiler (Item String)
-replacePublicationsFromBib item = do
-  publications <- loadPublications publishedBibPath
-  pure $ fmap (replaceLiteral publicationsPlaceholder (renderPublications publications)) item
+import Hakyll
+  ( Compiler,
+    Context,
+    Identifier,
+    Item (..),
+    defaultContext,
+    field,
+    getMetadata,
+    listField,
+    lookupString,
+    makeItem,
+    noResult,
+    unsafeCompiler,
+  )
 
 publishedBibPath :: FilePath
 publishedBibPath = "assets/bib/published.bib"
-
-publicationsPlaceholder :: String
-publicationsPlaceholder = "<!--PUBLICATIONS-->"
 
 data Publication = Publication
   { publicationTitle :: String
@@ -36,12 +41,34 @@ data BibEntry = BibEntry
   { bibEntryFields :: [(String, String)]
   }
 
-loadPublications :: FilePath -> Compiler [Publication]
+publicationCtx :: Context Publication
+publicationCtx =
+  field "title" (return . escapePublicationHtml . publicationTitle . itemBody)
+    <> field "authors" (return . escapePublicationHtml . formatAuthorList . publicationAuthors . itemBody)
+    <> field "venueAndYear" (return . escapePublicationHtml . formatVenueAndYear . itemBody)
+    <> field "abstractId" (return . publicationAbstractId . itemBody)
+    <> field "abstractText" publicationAbstractField
+    <> field "doiUrl" (optionalEscapedField publicationDoi)
+    <> field "slideUrl" (optionalEscapedField publicationSlideUrl)
+    <> field "preprintUrl" (optionalEscapedField publicationPreprintUrl)
+
+loadPublicationsPageCtx :: Identifier -> Compiler (Context String)
+loadPublicationsPageCtx page = do
+  limit <- loadPageListLimit "publications-limit" page
+  publications <- loadPublications publishedBibPath
+  let boundedPublications = maybe publications (`take` publications) limit
+  return $
+    listField "publications" publicationCtx (return boundedPublications)
+      <> defaultContext
+
+loadPublications :: FilePath -> Compiler [Item Publication]
 loadPublications bibPath =
-  sortOn (\publication -> (Down (publicationYear publication), publicationOrder publication))
-    . zipWith bibEntryToPublication [0 ..]
-    . parseBibEntries
-    <$> unsafeCompiler (readFile bibPath)
+  mapM makeItem
+    =<< ( sortOn (\publication -> (Down (publicationYear publication), publicationOrder publication))
+            . zipWith bibEntryToPublication [0 ..]
+            . parseBibEntries
+            <$> unsafeCompiler (readFile bibPath)
+        )
 
 bibEntryToPublication :: Int -> BibEntry -> Publication
 bibEntryToPublication order entry =
@@ -85,82 +112,33 @@ extractLocalAssetLink fieldNames noteLinks entry =
     isLabelMatch expected label =
       label == expected || label == expected ++ "s"
 
-renderPublications :: [Publication] -> String
-renderPublications publications =
-  "<div class=\"publications-list\">"
-    ++ concatMap renderPublication publications
-    ++ "</div>"
+publicationAbstractId :: Publication -> String
+publicationAbstractId publication =
+  "publication-abstract-" ++ show (publicationOrder publication)
 
-renderPublication :: Publication -> String
-renderPublication publication =
-  "<article class=\"publication-entry\">"
-    ++ "<h4 class=\"publication-title\">" ++ escapePublicationHtml (publicationTitle publication) ++ "</h4>"
-    ++ renderPublicationAuthors publication
-    ++ renderPublicationLine "publication-meta" (formatVenueAndYear publication)
-    ++ renderPublicationLinks publication
-    ++ "</article>"
+publicationAbstractField :: Item Publication -> Compiler String
+publicationAbstractField item =
+  case publicationAbstract (itemBody item) of
+    Just abstractText -> return $ escapePublicationHtml abstractText
+    Nothing           -> noResult "publication has no abstract"
 
-renderPublicationLine :: String -> String -> String
-renderPublicationLine className value
-  | null value = ""
-  | otherwise =
-      "<p class=\"" ++ className ++ "\">" ++ escapePublicationHtml value ++ "</p>"
+optionalEscapedField :: (Publication -> Maybe String) -> Item Publication -> Compiler String
+optionalEscapedField selector item =
+  case selector (itemBody item) of
+    Just value -> return $ escapePublicationHtml value
+    Nothing    -> noResult "publication field is missing"
 
-renderPublicationAuthors :: Publication -> String
-renderPublicationAuthors publication =
-  case publicationAbstract publication of
-    Nothing ->
-      "<div class=\"publication-authors-row\">"
-        ++ renderPublicationLine "publication-authors" (formatAuthorList $ publicationAuthors publication)
-        ++ "</div>"
-    Just abstractText ->
-      let toggleId = "publication-abstract-" ++ show (publicationOrder publication)
-       in "<div class=\"publication-authors-block\">"
-            ++ "<input class=\"publication-abstract-toggle\" type=\"checkbox\" id=\""
-            ++ toggleId
-            ++ "\">"
-            ++ "<div class=\"publication-authors-row\">"
-            ++ renderPublicationLine "publication-authors" (formatAuthorList $ publicationAuthors publication)
-            ++ renderPublicationAbstractLabel toggleId
-            ++ "</div>"
-            ++ renderPublicationAbstractBody abstractText
-            ++ "</div>"
-
-renderPublicationLinks :: Publication -> String
-renderPublicationLinks publication =
-  case links of
-    [] -> ""
-    _  ->
-      "<div class=\"publication-links\">"
-        ++ concatMap renderLink links
-        ++ "</div>"
-  where
-    links = concat
-      [ maybeToList ((\url -> ("DOI", url)) <$> publicationDoi publication)
-      , maybeToList ((\url -> ("Slides", url)) <$> publicationSlideUrl publication)
-      , maybeToList ((\url -> ("Preprint", url)) <$> publicationPreprintUrl publication)
-      ]
-
-    renderLink (label, url) =
-      "<a class=\"publication-link\" href=\""
-        ++ escapePublicationHtml url
-        ++ "\">"
-        ++ escapePublicationHtml label
-        ++ "</a>"
-
-renderPublicationAbstractLabel :: String -> String
-renderPublicationAbstractLabel toggleId =
-  "<label class=\"publication-abstract-label\" for=\""
-    ++ escapePublicationHtml toggleId
-    ++ "\">Abstract</label>"
-
-renderPublicationAbstractBody :: String -> String
-renderPublicationAbstractBody abstractText =
-  "<div class=\"publication-abstract-body\">"
-    ++ "<p>"
-    ++ escapePublicationHtml abstractText
-    ++ "</p>"
-    ++ "</div>"
+loadPageListLimit :: String -> Identifier -> Compiler (Maybe Int)
+loadPageListLimit fieldName page = do
+  metadata <- getMetadata page
+  case lookupString fieldName metadata of
+    Nothing -> return Nothing
+    Just value ->
+      case reads value of
+        [(count, "")] | count >= 0 -> return $ Just count
+        _ ->
+          fail $
+            "Could not parse " ++ fieldName ++ " in " ++ show page ++ ": " ++ value
 
 formatAuthorList :: [String] -> String
 formatAuthorList [] = ""
