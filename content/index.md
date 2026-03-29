@@ -111,12 +111,9 @@ Postdoc
 
 Summer Internship
 
-: * Yi-Ting Lo 羅翊庭, A Security Analysis of a Cryptographic Handshake Protocol, ([abstract](/pdf/2025 - 羅翊庭 - A Security Analysis of a Cryptographic Handshake Protocol.pdf)), 2025
-* Anderson Wu 吳智堯, Propositions as Descriptions of Universes of Types and their Categorical Structures, 2025
-* Yu-Chuan Yu 游棫荃, Bridging Combinatorial and Algebraic proof: An Algebraic Approach with Agda ([abstract](/pdf/2024 - 游棫荃 - Bridging Combinatorial and Algebraic proof.pdf)), 2024
-* Chih-Hsiang Chuang 莊智翔, Circuit Realization of Truth Tables and Boolean Functions in Agda ([abstract](/pdf/2024 - 莊智翔 - Circuit realization of truth tables and Boolean functions in Agda.pdf)), 2024
-* Ting-Wu Chang 張庭梧, Constructions and Properties of the Heighway Dragon Curve Formalized in Agda ([abstract](/pdf/2024 - 張庭梧 - Constructions and Properties of the Heighway Dragon Curve Formalized in Agda.pdf)), 2024
-* Wen Chun Kao 高文君, Verification of Correctness and Time Complexity of Skew Binomial Heap via CALF ([abstract](/pdf/2024 - 高文君 - Verification of Correctness and Time Complexity of Skew Binomial Heap via CALF.pdf)), 2024
+<!--SUMMER_INTERNS-->
+
+[See all summer interns](/interns.html)
 
 :::
 
@@ -174,7 +171,4 @@ ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16
 
 (See also: [DBLP](https://dblp.org/pid/153/3116-1.html) or [Google Scholar](https://scholar.google.com/citations?user=9jA3dngAAAAJ))
 
----
-nocite: |
-  @*
----
+<!--PUBLICATIONS-->

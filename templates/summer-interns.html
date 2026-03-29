@@ -1,0 +1,7 @@
+<ul class="mb-0">
+  $for(interns)$
+    <li>
+      $name$, $project$$if(abstractUrl)$ (<a href="$abstractUrl$">abstract</a>)$endif$, $year$
+    </li>
+  $endfor$
+</ul>
