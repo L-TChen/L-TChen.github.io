@@ -1,13 +1,99 @@
-<main class="post container py-5">
-    <div class="row justify-content-center">
-    <div class="col-md-8">
-    <ul>
-        $-for(posts)$
-            <li>
-                <a href="$url$">$title$</a> - $date$
-            </li>
-        $endfor$
-    </ul>
+<div class="post-shell py-5">
+  <header class="post-archive-header post-main-column mx-auto">
+    <h1 class="post-title">$title$</h1>
+    <p class="post-archive-intro">Some random thoughts.</p>
+  </header>
+
+  <div class="post-archive-layout">
+    <aside class="post-filter-column">
+      <section class="post-filter-bar post-filter-sidebar" aria-label="Post tag filters">
+        <p class="post-filter-title">Filter by tag</p>
+        <div class="post-filter-actions">
+          <button type="button" class="btn btn-sm btn-outline-secondary active" data-post-filter="all">All</button>
+          $for(tags)$
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-post-filter="$value$">$label$</button>
+          $endfor$
+        </div>
+      </section>
+    </aside>
+
+    <div class="post-main-column">
+      <section data-post-archive>
+      $for(posts)$
+        <article class="post-summary" data-post-tags="$tagFilter$">
+          <p class="post-summary-meta">$date$ <span aria-hidden="true">&middot;</span> $category$</p>
+          <h2 class="post-summary-title"><a href="$url$">$title$</a></h2>
+          $if(tags)$
+            <div class="post-tag-list" aria-label="Tags">
+              $tags$
+            </div>
+          $endif$
+        </article>
+      $endfor$
+      <p class="post-filter-empty d-none" data-post-empty>No posts match the selected tag yet.</p>
+      </section>
     </div>
-    </div>
-</main>
+
+    <div class="post-filter-spacer" aria-hidden="true"></div>
+  </div>
+</div>
+<script>
+  (() => {
+    const buttons = Array.from(document.querySelectorAll("[data-post-filter]"));
+    const posts = Array.from(document.querySelectorAll("[data-post-tags]"));
+    const emptyState = document.querySelector("[data-post-empty]");
+
+    if (buttons.length === 0 || posts.length === 0) {
+      return;
+    }
+
+    const validFilters = new Set(buttons.map((button) => button.dataset.postFilter));
+
+    const updateUrl = (selectedTag) => {
+      const url = new URL(window.location.href);
+      if (selectedTag === "all") {
+        url.searchParams.delete("tag");
+      } else {
+        url.searchParams.set("tag", selectedTag);
+      }
+      window.history.replaceState({}, "", url);
+    };
+
+    const applyFilter = (selectedTag) => {
+      let visibleCount = 0;
+
+      posts.forEach((post) => {
+        const tags = post.dataset.postTags
+          ? post.dataset.postTags.split("|").filter(Boolean)
+          : [];
+        const isVisible = selectedTag === "all" || tags.includes(selectedTag);
+        post.classList.toggle("d-none", !isVisible);
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      buttons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.postFilter === selectedTag);
+      });
+
+      if (emptyState) {
+        emptyState.classList.toggle("d-none", visibleCount > 0);
+      }
+
+      updateUrl(selectedTag);
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => applyFilter(button.dataset.postFilter));
+    });
+
+    const requestedTag = new URLSearchParams(window.location.search).get("tag");
+    const initialTag =
+      requestedTag && validFilters.has(requestedTag)
+        ? requestedTag
+        : "all";
+
+    applyFilter(initialTag);
+  })();
+</script>

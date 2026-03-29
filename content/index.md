@@ -2,6 +2,7 @@
   lang: en-GB
   title: Liang-Ting Chen
   interns-limit: 5
+  posts-limit: 5
 ---
 ::: {.row}
 
@@ -19,7 +20,7 @@ Assistant Research Fellow (Assistant Professor)\
 
 :::
 
-::: {.col-12}
+::: {.col-6}
 
 ### 🧑🏻‍🔬 About Me
 
@@ -28,6 +29,14 @@ I am an assistant research fellow in the [Theory Research Group](https://www.iis
 I have a double major in Mathematics and Computer Science from the [National Cheng Kung University](https://www.ncku.edu.tw), Taiwan.
 I earned my PhD in [Computer Science](https://www.birmingham.ac.uk/schools/computer-science) at the [University of Birmingham](https://www.birmingham.ac.uk), the UK, under the supervision of [Achim Jung](https://achimjungbham.github.io).
 Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
+
+:::
+
+::: {.col-6}
+
+### Recent Posts
+
+$partial("templates/recent-posts.html")$
 
 :::
 

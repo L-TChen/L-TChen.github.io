@@ -1,0 +1,14 @@
+<div class="post-list-compact">
+$for(posts)$
+<div class="post-list-compact-item">
+  <p class="post-list-compact-title">
+    <a href="$url$">$title$</a>
+  </p>
+  <p class="post-list-compact-meta">$date$ <span aria-hidden="true">&middot;</span> $category$</p>
+</div>
+$endfor$
+</div>
+
+<p class="mb-0 mt-3">
+  <a href="$postsUrl$">More</a>
+</p>

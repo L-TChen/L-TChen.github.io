@@ -2,15 +2,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Monad (foldM)
-import Data.Char (isSpace)
+import Data.Char (isAlphaNum, isSpace, toLower)
 import Data.List (intercalate, sortOn)
 import Data.Ord (Down (..))
 
 import System.FilePath
   ( joinPath,
-    splitPath,
+    splitDirectories,
     takeBaseName,
-    takeDirectory,
   )
 import Text.Pandoc
   ( Extension (..),
@@ -32,6 +31,8 @@ main = hakyll $ do
   summerInternsTemplateDependency <- makePatternDependency KindContent "templates/summer-interns.html"
   publicationsDependency <- makePatternDependency KindContent "assets/bib/published.bib"
   publicationsTemplateDependency <- makePatternDependency KindContent "templates/publications.html"
+  postsDependency <- makePatternDependency KindContent "content/posts/**.md"
+  recentPostsTemplateDependency <- makePatternDependency KindContent "templates/recent-posts.html"
 
   match "assets/html/**" $ do
     route $ gsubRoute "assets/html/" (const "")
@@ -60,6 +61,8 @@ main = hakyll $ do
     , summerInternsTemplateDependency
     , publicationsDependency
     , publicationsTemplateDependency
+    , postsDependency
+    , recentPostsTemplateDependency
     ] $ do
     match "content/index.md" $ do
       route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
@@ -67,7 +70,8 @@ main = hakyll $ do
         page <- getUnderlying
         summerInternsCtx <- loadSummerInternsPageCtx page
         publicationsCtx <- loadPublicationsPageCtx page
-        let pageCtx = summerInternsCtx `mappend` publicationsCtx
+        postsCtx <- loadPostsPageCtx page
+        let pageCtx = summerInternsCtx `mappend` publicationsCtx `mappend` postsCtx
         pandocBiblioTemplateCompiler pageCtx "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
           >>= loadAndApplyTemplates (pageCtx `mappend` defaultContext) defaultTemplate
           >>= relativizeUrls
@@ -101,12 +105,7 @@ main = hakyll $ do
   create ["posts.html"] $ do
     route idRoute
     compile $ do
-      posts <- recentFirst =<< loadAll "content/posts/**"
-      let archiveCtx =
-            listField "posts" postCtx (return posts) `mappend`
-            constField "title" "Posts"               `mappend`
-            defaultContext
-
+      archiveCtx <- loadPostsArchiveCtx
       makeItem ""
         >>= loadAndApplyTemplates archiveCtx postsTemplate
         >>= relativizeUrls
@@ -202,6 +201,97 @@ parseYear yearText =
     [(year, "")] -> year
     _            -> error $ "Could not parse summer intern year: " ++ yearText
 
+data PostTag = PostTag
+  { postTagLabel :: String
+  , postTagValue :: String
+  }
+
+postTagCtx :: Context PostTag
+postTagCtx =
+  field "label" (return . postTagLabel . itemBody) `mappend`
+  field "value" (return . postTagValue . itemBody)
+
+loadPostsPageCtx :: Identifier -> Compiler (Context String)
+loadPostsPageCtx page = do
+  limit <- loadPageListLimit "posts-limit" page
+  posts <- loadPosts
+  let boundedPosts = maybe posts (`take` posts) limit
+  return $
+    listField "posts" postCtx (return boundedPosts) `mappend`
+    constField "postsUrl" "/posts.html"
+
+loadPostsArchiveCtx :: Compiler (Context String)
+loadPostsArchiveCtx = do
+  posts <- loadPosts
+  tags <- loadPostTagItems posts
+  return $
+    listField "posts" postCtx (return posts) `mappend`
+    listField "tags" postTagCtx (return tags) `mappend`
+    constField "title" "Posts" `mappend`
+    defaultContext
+
+loadPosts :: Compiler [Item String]
+loadPosts = recentFirst =<< loadAll "content/posts/**"
+
+loadPostTagItems :: [Item String] -> Compiler [Item PostTag]
+loadPostTagItems posts = do
+  tagNames <- concat <$> mapM postTags posts
+  mapM makeItem $
+    map (\label -> PostTag label (normaliseTagValue label)) $
+    deduplicatePostTags tagNames
+
+deduplicatePostTags :: [String] -> [String]
+deduplicatePostTags =
+  foldr keepFirst [] . sortOn normaliseTagValue
+  where
+    keepFirst label [] = [label]
+    keepFirst label acc@(existing : _)
+      | normaliseTagValue label == normaliseTagValue existing = acc
+      | otherwise = label : acc
+
+postTags :: Item a -> Compiler [String]
+postTags item = do
+  metadata <- getMetadata $ itemIdentifier item
+  return $
+    maybe [] parseTagList $ lookupString "tags" metadata
+
+parseTagList :: String -> [String]
+parseTagList =
+  filter (not . null) .
+  map trimWhitespace .
+  splitOn ","
+
+renderPostTags :: Item a -> Compiler String
+renderPostTags item =
+  intercalate "\n" . map renderPostTagLink <$> postTags item
+
+renderPostTagLink :: String -> String
+renderPostTagLink tag =
+  "<a class=\"post-tag\" href=\"/posts.html?tag=" ++ normaliseTagValue tag ++ "\">" ++ tag ++ "</a>"
+
+normaliseTagValue :: String -> String
+normaliseTagValue =
+  trimChar '-' .
+  collapseRepeated '-' .
+  map simplify
+  where
+    simplify c
+      | isAlphaNum c = toLower c
+      | otherwise = '-'
+
+collapseRepeated :: Eq a => a -> [a] -> [a]
+collapseRepeated _ [] = []
+collapseRepeated marker (x : xs) = x : go x xs
+  where
+    go _ [] = []
+    go previous (y : ys)
+      | previous == marker && y == marker = go previous ys
+      | otherwise = y : go y ys
+
+trimChar :: Eq a => a -> [a] -> [a]
+trimChar marker =
+  reverse . dropWhile (== marker) . reverse . dropWhile (== marker)
+
 splitOn :: Eq a => [a] -> [a] -> [[a]]
 splitOn delimiter input =
   go input
@@ -231,12 +321,20 @@ trimWhitespace = reverse . dropWhile isSpace . reverse . dropWhile isSpace
 postCtx :: Context String
 postCtx =
   dateField "date" "%B %e, %Y" `mappend`
-  defaultContext `mappend`
-  field "category" (\it -> do
-    let paths = drop 2 $ splitPath $ takeDirectory $ toFilePath $ itemIdentifier it
-    if null paths
-      then noResult "no category name is found"
-      else return (joinPath paths))
+  field "category" (\it ->
+    case postCategory (itemIdentifier it) of
+      Just category -> return category
+      Nothing       -> noResult "no category name is found"
+  ) `mappend`
+  field "tags" renderPostTags `mappend`
+  field "tagFilter" (\it -> intercalate "|" . map normaliseTagValue <$> postTags it) `mappend`
+  defaultContext
+
+postCategory :: Identifier -> Maybe String
+postCategory identifier =
+  case dropWhile (/= "posts") $ splitDirectories $ toFilePath identifier of
+    "posts" : category : _ -> Just category
+    _                      -> Nothing
 
 postURL :: Routes
 postURL = customRoute $ \id' ->
