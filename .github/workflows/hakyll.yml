@@ -53,10 +53,10 @@ jobs:
         run: stack build ${FLAGS}
 
       - name: Build the site
-        run: stack exec -- site build
+        run: stack build ${FLAGS} --exec "site build"
 
       - name: Check the site output
-        run: stack exec -- site check --internal-links
+        run: stack build ${FLAGS} --exec "site check --internal-links"
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
