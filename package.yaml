@@ -18,6 +18,8 @@ executables:
     source-dirs:
       - src
     other-modules:
+      - BibTeX
       - Publications
+      - SummerInterns
     ghc-options:
       - -threaded

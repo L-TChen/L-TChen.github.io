@@ -2,10 +2,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Monad (foldM)
-import Data.Char (isAlphaNum, isSpace, toLower)
+import Data.Char (isAlphaNum, toLower)
 import Data.List (intercalate, sortOn)
-import Data.Ord (Down (..))
 
+import BibTeX (splitOn, trimWhitespace)
 import System.FilePath
   ( joinPath,
     splitDirectories,
@@ -24,14 +24,14 @@ import Hakyll hiding (pandocBiblioCompiler)
 import Hakyll.Core.Dependencies (DependencyKind (KindContent))
 import Hakyll.Web.Sass ( sassCompiler )
 import Publications (loadPublicationsPageCtx)
+import SummerInterns (loadSummerInternsPageCtx, summerInternsBibPath)
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-  summerInternsDependency <- makePatternDependency KindContent "content/interns/interns.md"
+  summerInternsDependency <- makePatternDependency KindContent (fromGlob summerInternsBibPath)
   summerInternsTemplateDependency <- makePatternDependency KindContent "templates/summer-interns.html"
   publicationsDependency <- makePatternDependency KindContent "assets/bib/published.bib"
   publicationsTemplateDependency <- makePatternDependency KindContent "templates/publications.html"
-  postsDependency <- makePatternDependency KindContent "content/posts/**.md"
   recentPostsTemplateDependency <- makePatternDependency KindContent "templates/recent-posts.html"
 
   match "assets/html/**" $ do
@@ -61,7 +61,6 @@ main = hakyll $ do
     , summerInternsTemplateDependency
     , publicationsDependency
     , publicationsTemplateDependency
-    , postsDependency
     , recentPostsTemplateDependency
     ] $ do
     match "content/index.md" $ do
@@ -120,38 +119,6 @@ main = hakyll $ do
     postTemplate    = "templates/post.html" : baseTemplate
     defaultTemplate = "templates/default.html" : baseTemplate
 
---------------------------------------------------------------------------------
-summerInternsSource :: Identifier
-summerInternsSource = "content/interns/interns.md"
-
-data SummerIntern = SummerIntern
-  { summerInternYear :: Int
-  , summerInternName :: String
-  , summerInternProject :: String
-  , summerInternAbstract :: Maybe FilePath
-  , summerInternOrder :: Int
-  }
-
-summerInternCtx :: Context SummerIntern
-summerInternCtx =
-  field "year" (return . show . summerInternYear . itemBody) `mappend`
-  field "name" (return . summerInternName . itemBody) `mappend`
-  field "project" (return . summerInternProject . itemBody) `mappend`
-  field "abstractUrl" (\item ->
-    case summerInternAbstract (itemBody item) of
-      Just pdf -> return $ "/pdf/" ++ pdf
-      Nothing  -> noResult "summer intern has no abstract"
-  )
-
-loadSummerInternsPageCtx :: Identifier -> Compiler (Context String)
-loadSummerInternsPageCtx page = do
-  limit <- loadPageListLimit "interns-limit" page
-  interns <- loadSummerInterns summerInternsSource
-  let boundedInterns = maybe interns (`take` interns) limit
-  return $
-    listField "interns" summerInternCtx (return boundedInterns) `mappend`
-    constField "internsUrl" "/interns.html"
-
 loadPageListLimit :: String -> Identifier -> Compiler (Maybe Int)
 loadPageListLimit fieldName page = do
   metadata <- getMetadata page
@@ -163,43 +130,6 @@ loadPageListLimit fieldName page = do
         _ ->
           fail $
             "Could not parse " ++ fieldName ++ " in " ++ toFilePath page ++ ": " ++ value
-
-loadSummerInterns :: Identifier -> Compiler [Item SummerIntern]
-loadSummerInterns source = do
-  metadata <- getMetadata source
-  case lookupString "interns" metadata of
-    Nothing ->
-      fail $ "Missing 'interns' metadata in " ++ toFilePath source
-    Just rawInterns ->
-      mapM makeItem $
-      sortOn (\intern -> (Down (summerInternYear intern), summerInternOrder intern)) $
-      zipWith parseSummerIntern [0 ..] $
-      filter (not . null) $
-      map trimWhitespace $
-      lines rawInterns
-
-parseSummerIntern :: Int -> String -> SummerIntern
-parseSummerIntern order line =
-  case map trimWhitespace (splitOn "||" line) of
-    [yearText, name, project, pdfText] ->
-      SummerIntern
-        { summerInternYear = parseYear yearText
-        , summerInternName = name
-        , summerInternProject = project
-        , summerInternAbstract =
-            case trimWhitespace pdfText of
-              "" -> Nothing
-              pdf -> Just pdf
-        , summerInternOrder = order
-        }
-    _ ->
-      error $ "Could not parse summer intern entry: " ++ line
-
-parseYear :: String -> Int
-parseYear yearText =
-  case reads yearText of
-    [(year, "")] -> year
-    _            -> error $ "Could not parse summer intern year: " ++ yearText
 
 data PostTag = PostTag
   { postTagLabel :: String
@@ -291,32 +221,6 @@ collapseRepeated marker (x : xs) = x : go x xs
 trimChar :: Eq a => a -> [a] -> [a]
 trimChar marker =
   reverse . dropWhile (== marker) . reverse . dropWhile (== marker)
-
-splitOn :: Eq a => [a] -> [a] -> [[a]]
-splitOn delimiter input =
-  go input
-  where
-    go remaining =
-      case breakOn delimiter remaining of
-        Just (before, after) -> before : go after
-        Nothing              -> [remaining]
-
-breakOn :: Eq a => [a] -> [a] -> Maybe ([a], [a])
-breakOn needle haystack = search [] haystack
-  where
-    search _ [] = Nothing
-    search acc rest
-      | needle `isPrefixOf` rest = Just (reverse acc, drop (length needle) rest)
-      | otherwise =
-          case rest of
-            x : xs -> search (x : acc) xs
-
-    isPrefixOf [] _ = True
-    isPrefixOf _ [] = False
-    isPrefixOf (x : xs) (y : ys) = x == y && isPrefixOf xs ys
-
-trimWhitespace :: String -> String
-trimWhitespace = reverse . dropWhile isSpace . reverse . dropWhile isSpace
 
 postCtx :: Context String
 postCtx =
