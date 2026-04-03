@@ -20,7 +20,7 @@ Assistant Research Fellow (Assistant Professor)\
 
 :::
 
-::: {.col-6}
+::: {.col-12 .col-md-6}
 
 ### 🧑🏻‍🔬 About Me
 
@@ -32,7 +32,7 @@ Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
 
 :::
 
-::: {.col-6}
+::: {.col-12 .col-md-6}
 
 ### Recent Posts
 
