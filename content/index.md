@@ -179,6 +179,4 @@ ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16
 
 ### ✍🏼 Publications
 
-(See also: [DBLP](https://dblp.org/pid/153/3116-1.html) or [Google Scholar](https://scholar.google.com/citations?user=9jA3dngAAAAJ))
-
 $partial("templates/publications.html")$
