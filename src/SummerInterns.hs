@@ -23,9 +23,14 @@ import Hakyll
     toFilePath,
     unsafeCompiler,
   )
+import System.Directory (doesFileExist)
+import System.FilePath ((</>))
 
 summerInternsBibPath :: FilePath
 summerInternsBibPath = "assets/bib/interns.bib"
+
+summerInternsPdfDir :: FilePath
+summerInternsPdfDir = "content/interns/pdf"
 
 data SummerIntern = SummerIntern
   { summerInternYear :: Int
@@ -71,27 +76,53 @@ loadSummerInterns :: FilePath -> Compiler [Item SummerIntern]
 loadSummerInterns bibPath =
   mapM makeItem
     =<< ( sortOn (\intern -> (Down (summerInternYear intern), summerInternOrder intern))
-            . zipWith bibEntryToSummerIntern [0 ..]
-            . parseBibEntries
-            <$> unsafeCompiler (readFile bibPath)
+            <$> unsafeCompiler (readSummerInterns bibPath)
         )
 
-bibEntryToSummerIntern :: Int -> BibEntry -> SummerIntern
-bibEntryToSummerIntern order entry =
-  SummerIntern
-    { summerInternYear = parseYear $ fieldOrFail "year"
-    , summerInternName = normalizeBibText $ fieldOrFail "author"
-    , summerInternProject = normalizeBibText $ fieldOrFail "title"
-    , summerInternAbstract = nonEmpty =<< lookupBibField "pdf" entry
-    , summerInternOrder = order
-    }
+readSummerInterns :: FilePath -> IO [SummerIntern]
+readSummerInterns bibPath = do
+  entries <- parseBibEntries <$> readFile bibPath
+  mapM (uncurry (bibEntryToSummerIntern bibPath)) (zip [0 ..] entries)
+
+bibEntryToSummerIntern :: FilePath -> Int -> BibEntry -> IO SummerIntern
+bibEntryToSummerIntern bibPath order entry = do
+  let intern =
+        SummerIntern
+          { summerInternYear = parseYear $ fieldOrFail "year"
+          , summerInternName = normalizeBibText $ fieldOrFail "author"
+          , summerInternProject = normalizeBibText $ fieldOrFail "title"
+          , summerInternAbstract = nonEmpty =<< lookupBibField "pdf" entry
+          , summerInternOrder = order
+          }
+  validateSummerInternAbstract bibPath intern
+  return intern
   where
     fieldOrFail fieldName =
       case lookupBibField fieldName entry of
         Just value -> value
         Nothing ->
           error $
-            "Missing '" ++ fieldName ++ "' field in " ++ summerInternsBibPath
+            "Missing '" ++ fieldName ++ "' field in " ++ bibPath
+
+validateSummerInternAbstract :: FilePath -> SummerIntern -> IO ()
+validateSummerInternAbstract bibPath intern =
+  case summerInternAbstract intern of
+    Nothing -> return ()
+    Just pdf -> do
+      let abstractPath = summerInternsPdfDir </> pdf
+      exists <- doesFileExist abstractPath
+      if exists
+        then return ()
+        else
+          ioError . userError $
+            "Missing summer intern abstract PDF referenced in "
+              ++ bibPath
+              ++ " for "
+              ++ summerInternName intern
+              ++ " ("
+              ++ show (summerInternYear intern)
+              ++ "): expected "
+              ++ abstractPath
 
 parseYear :: String -> Int
 parseYear yearText =

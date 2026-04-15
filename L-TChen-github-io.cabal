@@ -25,6 +25,7 @@ executable site
   ghc-options: -Wall -threaded
   build-depends:
       base >=4.14 && <5
+    , directory
     , filepath
     , hakyll
     , hakyll-sass

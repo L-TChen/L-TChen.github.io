@@ -3,3 +3,5 @@ _cache
 _site
 dist-newstyle
 node_modules
+!content/interns/pdf/
+!content/interns/pdf/*.pdf
