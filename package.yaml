@@ -5,13 +5,18 @@ github: L-TChen/L-TChen.github.io
 ghc-options: -Wall
 
 dependencies:
+  - aeson
   - base >= 4.14 && < 5
+  - bytestring
+  - containers
   - directory
   - filepath
   - hakyll
   - hakyll-sass
   - pandoc
+  - text
   - time
+  - xml-conduit
 
 executables:
   site:
@@ -20,7 +25,19 @@ executables:
       - src
     other-modules:
       - BibTeX
+      - Forester
       - Publications
       - SummerInterns
     ghc-options:
       - -threaded
+
+tests:
+  forester-spec:
+    main: ForesterSpec.hs
+    source-dirs:
+      - test
+      - src
+    other-modules:
+      - Forester
+    dependencies:
+      - hspec

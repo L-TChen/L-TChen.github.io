@@ -2,15 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Monad (foldM)
-import Data.Char (isAlphaNum, toLower)
-import Data.List (intercalate, sortOn)
-
-import BibTeX (splitOn, trimWhitespace)
-import System.FilePath
-  ( joinPath,
-    splitDirectories,
-    takeBaseName,
-  )
+import Data.List (intercalate)
+import Data.Time.Format (defaultTimeLocale, formatTime)
 import Text.Pandoc
   ( Extension (..),
     HTMLMathMethod (..),
@@ -23,6 +16,12 @@ import Text.Pandoc
 import Hakyll hiding (pandocBiblioCompiler)
 import Hakyll.Core.Dependencies (DependencyKind (KindContent))
 import Hakyll.Web.Sass ( sassCompiler )
+import Forester
+  ( ForesterPost (..)
+  , deduplicatePostTags
+  , loadForesterPosts
+  , normaliseTagValue
+  )
 import Publications (loadPublicationsPageCtx)
 import SummerInterns (loadSummerInternsPageCtx, summerInternsBibPath)
 --------------------------------------------------------------------------------
@@ -33,6 +32,27 @@ main = hakyll $ do
   publicationsDependency <- makePatternDependency KindContent "assets/bib/published.bib"
   publicationsTemplateDependency <- makePatternDependency KindContent "templates/publications.html"
   recentPostsTemplateDependency <- makePatternDependency KindContent "templates/recent-posts.html"
+  foresterOutputDependency <- makePatternDependency KindContent foresterOutputPattern
+
+  match foresterManifestPattern $ do
+    route $ gsubRoute "forest/output/" (const "")
+    compile getResourceBody
+
+  -- Keep a textual, non-routed version for the adapter.  The normal version
+  -- below remains an opaque CopyFile so Forester's XML is deployed verbatim.
+  match foresterXmlPattern $ version "metadata" $ compile getResourceBody
+
+  match
+    ( foresterOutputPattern
+        .&&. complement foresterManifestPattern
+        .&&. complement foresterDefaultXslPattern
+    ) $ do
+    route $ gsubRoute "forest/output/" (const "")
+    compile copyFileCompiler
+
+  match "forest/site-theme/default.xsl" $ do
+    route $ constRoute "posts/default.xsl"
+    compile copyFileCompiler
 
   match "assets/html/**" $ do
     route $ gsubRoute "assets/html/" (const "")
@@ -47,7 +67,12 @@ main = hakyll $ do
     compile copyFileCompiler
 
   scssDependency <- makePatternDependency KindContent "bootstrap/package.json"
-  rulesExtraDependencies [scssDependency] $ match "assets/scss/default.scss" $ do
+  rulesExtraDependencies [scssDependency] $ do
+    match "assets/scss/default.scss" $ do
+      route $ setExtension "css" `composeRoutes` gsubRoute "assets/scss/" (const "css/")
+      compile (fmap compressCss <$> sassCompiler)
+
+    match "assets/scss/forester.scss" $ do
       route $ setExtension "css" `composeRoutes` gsubRoute "assets/scss/" (const "css/")
       compile (fmap compressCss <$> sassCompiler)
 
@@ -62,6 +87,7 @@ main = hakyll $ do
     , publicationsDependency
     , publicationsTemplateDependency
     , recentPostsTemplateDependency
+    , foresterOutputDependency
     ] $ do
     match "content/index.md" $ do
       route $ gsubRoute "content/" (const "") `composeRoutes` setExtension "html"
@@ -75,6 +101,10 @@ main = hakyll $ do
           >>= loadAndApplyTemplates (pageCtx `mappend` defaultContext) defaultTemplate
           >>= relativizeUrls
 
+  rulesExtraDependencies
+    [ summerInternsDependency
+    , summerInternsTemplateDependency
+    ] $ do
     match "content/interns/interns.md" $ do
       route $ constRoute "interns.html"
       compile $ do
@@ -91,23 +121,14 @@ main = hakyll $ do
         >>= loadAndApplyTemplates indexCtx defaultTemplate
         >>= relativizeUrls
 
-  match "content/posts/**.md" $ do
-    route $
-      postURL `composeRoutes` setExtension "html"
-
-    let indexCtx = postCtx
-    compile $
-      pandocBiblioCompiler "assets/csl/elsevier-with-titles.csl" "assets/bib/*.bib"
-        >>= loadAndApplyTemplates indexCtx postTemplate
-        >>= relativizeUrls
-
-  create ["posts.html"] $ do
-    route idRoute
-    compile $ do
-      archiveCtx <- loadPostsArchiveCtx
-      makeItem ""
-        >>= loadAndApplyTemplates archiveCtx postsTemplate
-        >>= relativizeUrls
+  rulesExtraDependencies [foresterOutputDependency] $ do
+    create ["posts.html"] $ do
+      route idRoute
+      compile $ do
+        archiveCtx <- loadPostsArchiveCtx
+        makeItem ""
+          >>= loadAndApplyTemplates archiveCtx postsTemplate
+          >>= relativizeUrls
 
   where
     baseTemplate =
@@ -116,8 +137,19 @@ main = hakyll $ do
       , "templates/head.html"
       ]
     postsTemplate   = "templates/posts.html" : "templates/default.html" : baseTemplate
-    postTemplate    = "templates/post.html" : baseTemplate
     defaultTemplate = "templates/default.html" : baseTemplate
+
+foresterManifestPattern :: Pattern
+foresterManifestPattern = "forest/output/posts/forest.json"
+
+foresterOutputPattern :: Pattern
+foresterOutputPattern = "forest/output/posts/**"
+
+foresterDefaultXslPattern :: Pattern
+foresterDefaultXslPattern = "forest/output/posts/default.xsl"
+
+foresterXmlPattern :: Pattern
+foresterXmlPattern = "forest/output/posts/**/index.xml"
 
 loadPageListLimit :: String -> Identifier -> Compiler (Maybe Int)
 loadPageListLimit fieldName page = do
@@ -160,91 +192,32 @@ loadPostsArchiveCtx = do
     constField "title" "Posts" `mappend`
     defaultContext
 
-loadPosts :: Compiler [Item String]
-loadPosts = recentFirst =<< loadAll "content/posts/**"
+loadPosts :: Compiler [Item ForesterPost]
+loadPosts = loadForesterPosts (fromFilePath "forest/output/posts/forest.json") foresterXmlPattern
 
-loadPostTagItems :: [Item String] -> Compiler [Item PostTag]
+loadPostTagItems :: [Item ForesterPost] -> Compiler [Item PostTag]
 loadPostTagItems posts = do
-  tagNames <- concat <$> mapM postTags posts
+  let tagNames = concatMap (foresterPostTags . itemBody) posts
   mapM makeItem $
     map (\label -> PostTag label (normaliseTagValue label)) $
     deduplicatePostTags tagNames
 
-deduplicatePostTags :: [String] -> [String]
-deduplicatePostTags =
-  foldr keepFirst [] . sortOn normaliseTagValue
-  where
-    keepFirst label [] = [label]
-    keepFirst label acc@(existing : _)
-      | normaliseTagValue label == normaliseTagValue existing = acc
-      | otherwise = label : acc
-
-postTags :: Item a -> Compiler [String]
-postTags item = do
-  metadata <- getMetadata $ itemIdentifier item
-  return $
-    maybe [] parseTagList $ lookupString "tags" metadata
-
-parseTagList :: String -> [String]
-parseTagList =
-  filter (not . null) .
-  map trimWhitespace .
-  splitOn ","
-
-renderPostTags :: Item a -> Compiler String
-renderPostTags item =
-  intercalate "\n" . map renderPostTagLink <$> postTags item
+renderPostTags :: Item ForesterPost -> Compiler String
+renderPostTags =
+  return . intercalate "\n" . map renderPostTagLink . foresterPostTags . itemBody
 
 renderPostTagLink :: String -> String
 renderPostTagLink tag =
-  "<a class=\"post-tag\" href=\"/posts.html?tag=" ++ normaliseTagValue tag ++ "\">" ++ tag ++ "</a>"
+  "<a class=\"badge rounded-pill text-bg-secondary text-decoration-none\" href=\"/posts.html?tag=" ++ normaliseTagValue tag ++ "\">" ++ tag ++ "</a>"
 
-normaliseTagValue :: String -> String
-normaliseTagValue =
-  trimChar '-' .
-  collapseRepeated '-' .
-  map simplify
-  where
-    simplify c
-      | isAlphaNum c = toLower c
-      | otherwise = '-'
-
-collapseRepeated :: Eq a => a -> [a] -> [a]
-collapseRepeated _ [] = []
-collapseRepeated marker (x : xs) = x : go x xs
-  where
-    go _ [] = []
-    go previous (y : ys)
-      | previous == marker && y == marker = go previous ys
-      | otherwise = y : go y ys
-
-trimChar :: Eq a => a -> [a] -> [a]
-trimChar marker =
-  reverse . dropWhile (== marker) . reverse . dropWhile (== marker)
-
-postCtx :: Context String
+postCtx :: Context ForesterPost
 postCtx =
-  dateField "date" "%B %e, %Y" `mappend`
-  field "category" (\it ->
-    case postCategory (itemIdentifier it) of
-      Just category -> return category
-      Nothing       -> noResult "no category name is found"
-  ) `mappend`
+  field "title" (return . foresterPostTitle . itemBody) `mappend`
+  field "url" (return . foresterPostUrl . itemBody) `mappend`
+  field "date" (return . formatTime defaultTimeLocale "%B %e, %Y" . foresterPostDate . itemBody) `mappend`
+  field "taxon" (return . foresterPostTaxon . itemBody) `mappend`
   field "tags" renderPostTags `mappend`
-  field "tagFilter" (\it -> intercalate "|" . map normaliseTagValue <$> postTags it) `mappend`
-  defaultContext
-
-postCategory :: Identifier -> Maybe String
-postCategory identifier =
-  case dropWhile (/= "posts") $ splitDirectories $ toFilePath identifier of
-    "posts" : category : _ -> Just category
-    _                      -> Nothing
-
-postURL :: Routes
-postURL = customRoute $ \id' ->
-  let base = takeBaseName $ toFilePath id'
-      (date, title) = splitAt 3 $ splitAll "-" base
-   in joinPath $ "posts" : date ++ [intercalate "-" title]
+  field "tagFilter" (return . intercalate "|" . map normaliseTagValue . foresterPostTags . itemBody)
 
 --------------------------------------------------------------------------------
 ropt :: ReaderOptions

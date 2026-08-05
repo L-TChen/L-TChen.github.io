@@ -1,10 +1,10 @@
-<div class="post-list-compact">
+<div class="list-group list-group-flush">
 $for(posts)$
-<div class="post-list-compact-item">
-  <p class="post-list-compact-title">
+<div class="list-group-item px-0 bg-transparent">
+  <p class="mb-1">
     <a href="$url$">$title$</a>
   </p>
-  <p class="post-list-compact-meta">$date$ <span aria-hidden="true">&middot;</span> $category$</p>
+  <p class="small text-body-secondary mb-0">$date$ <span aria-hidden="true">&middot;</span> $taxon$</p>
 </div>
 $endfor$
 </div>

@@ -5,12 +5,13 @@
 	publisher = {Association for Computing Machinery},
 	series = {CPP '26},
 	title = {Can we formalise type theory intrinsically without any compromise? {A} case study in {Cubical Agda}},
+  abstract = {We present an intrinsic representation of type theory in the proof assistant Cubical Agda, inspired by Awodey’s natural models of type theory. The initial natural model is defined as quotient inductive-inductive-recursive types, leading us to a syntax accepted by Cubical Agda without using any transports, postulates, or custom rewrite rules. We formalise some meta-properties such as the standard model, normalisation by evaluation for typed terms, and strictification constructions. Since our formalisation is carried out using Cubical Agda's native support for quotient inductive types, all our constructions compute at a reasonable speed. When we try to develop more sophisticated metatheory, however, the 'transport hell' problem reappears. Ultimately, it remains a considerable struggle to develop the metatheory of type theory using an intrinsic representation that lacks strict equations. The effort required is about the same whether or not the notion of natural model is used.},
 	doi = {10.1145/3779031.3779090},
 	year = {2026}}
-
 @InProceedings{Chen2024,
 author =	{Chen, Liang-Ting and Ko, Hsiang-Shang},
 title =	{A formal treatment of bidirectional typing},
+abstract = {There has been much progress in designing bidirectional type systems and associated type synthesis algorithms, but mainly on a case-by-case basis.  To remedy the situation, this paper develops a general and formal theory of bidirectional typing for simply typed languages: for every signature that specifies a mode-correct bidirectionally typed language, there exists a proof-relevant type synthesiser which, given an input abstract syntax tree, constructs a typing derivation if any, gives its refutation if not, or reports that the input does not have enough type annotations. Sufficient conditions for deriving a type synthesiser such as soundness, completeness, and mode-correctness are studied universally for all signatures. We propose a preprocessing step called mode decoration, which helps the user to deal with missing type annotations. The entire theory is formally implemented in Agda, so we provide a verified generator of proof-relevant type synthesisers as a by-product of our formalism.},
 booktitle =	{33rd European Symposium on Programming ({ESOP})},
 doi = {10.1007/978-3-031-57262-3_5},
 editor = {Stephanie Weirich},
@@ -21,6 +22,7 @@ year =	{2024},
 author =	{Ko, Hsiang-Shang and Chen, Liang-Ting and Lin, Tzu-Chi},
 title =	{Datatype-Generic Programming Meets Elaborator Reflection},
 booktitle =	{27th {ACM} {SIGPLAN} International Conference on Functional Programming ({ICFP})},
+abstract = {Datatype-generic programming is natural and useful in dependently typed languages such as Agda. However, datatype-generic libraries in Agda are not reused as much as they should be, because traditionally they work only on datatypes decoded from a library’s own version of datatype descriptions; this means that different generic libraries cannot be used together, and they do not work on native datatypes, which are preferred by the practical Agda programmer for better language support and access to other libraries. Based on elaborator reflection, we present a framework in Agda featuring a set of general metaprograms for instantiating datatype-generic programs as, and for, a useful range of native datatypes and functions — including universe-polymorphic ones — in programmer-friendly and customisable forms. We expect that datatype-generic libraries built with our framework will be more attractive to the practical Agda programmer. As the elaborator reflection features used by our framework become more widespread, our design can be ported to other languages too.},
 doi = {10.1145/3547629},
 year =	{2022},
 }

@@ -18,17 +18,48 @@ executable site
   main-is: site.hs
   other-modules:
       BibTeX
+      Forester
       Publications
       SummerInterns
   hs-source-dirs:
       src
   ghc-options: -Wall -threaded
   build-depends:
-      base >=4.14 && <5
+      aeson
+    , base >=4.14 && <5
+    , bytestring
+    , containers
     , directory
     , filepath
     , hakyll
     , hakyll-sass
     , pandoc
+    , text
     , time
+    , xml-conduit
+  default-language: Haskell2010
+
+test-suite forester-spec
+  type: exitcode-stdio-1.0
+  main-is: ForesterSpec.hs
+  other-modules:
+      Forester
+  hs-source-dirs:
+      test
+      src
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , base >=4.14 && <5
+    , bytestring
+    , containers
+    , directory
+    , filepath
+    , hakyll
+    , hakyll-sass
+    , hspec
+    , pandoc
+    , text
+    , time
+    , xml-conduit
   default-language: Haskell2010

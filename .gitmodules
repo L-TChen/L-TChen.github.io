@@ -2,3 +2,6 @@
 	path = bootstrap
 	url = https://github.com/twbs/bootstrap.git
 	shallow = true
+[submodule "forest/theme"]
+	path = forest/theme
+	url = https://git.sr.ht/~jonsterling/forester-base-theme

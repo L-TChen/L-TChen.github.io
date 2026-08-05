@@ -1,40 +1,38 @@
-<div class="post-shell py-5">
-  <header class="post-archive-header post-main-column mx-auto">
-    <h1 class="post-title">$title$</h1>
-    <p class="post-archive-intro">Some random thoughts.</p>
-  </header>
+<div class="py-5">
+  <div class="row g-4 align-items-start">
+    <div class="col-12 col-xl-8 offset-xl-2 order-2 order-xl-1">
+      <header class="mb-4">
+        <h1>$title$</h1>
+        <p class="text-body-secondary mb-0">Some random thoughts.</p>
+      </header>
 
-  <div class="post-archive-layout">
-    <aside class="post-filter-column">
-      <section class="post-filter-bar post-filter-sidebar" aria-label="Post tag filters">
-        <p class="post-filter-title">Filter by tag</p>
-        <div class="post-filter-actions">
-          <button type="button" class="btn btn-sm btn-outline-secondary active" data-post-filter="all">All</button>
-          $for(tags)$
-            <button type="button" class="btn btn-sm btn-outline-secondary" data-post-filter="$value$">$label$</button>
-          $endfor$
-        </div>
-      </section>
-    </aside>
-
-    <div class="post-main-column">
-      <section data-post-archive>
+      <section class="list-group list-group-flush" data-post-archive>
       $for(posts)$
-        <article class="post-summary" data-post-tags="$tagFilter$">
-          <p class="post-summary-meta">$date$ <span aria-hidden="true">&middot;</span> $category$</p>
-          <h2 class="post-summary-title"><a href="$url$">$title$</a></h2>
+        <article class="list-group-item px-0 py-4 bg-transparent" data-post-tags="$tagFilter$">
+          <p class="small text-body-secondary mb-1">$date$ <span aria-hidden="true">&middot;</span> $taxon$</p>
+          <h2 class="h4 mb-0"><a href="$url$">$title$</a></h2>
           $if(tags)$
-            <div class="post-tag-list" aria-label="Tags">
+            <div class="d-flex flex-wrap gap-2 mt-3" aria-label="Tags">
               $tags$
             </div>
           $endif$
         </article>
       $endfor$
-      <p class="post-filter-empty d-none" data-post-empty>No posts match the selected tag yet.</p>
+      <p class="d-none text-body-secondary pt-3" data-post-empty>No posts match the selected tag yet.</p>
       </section>
     </div>
 
-    <div class="post-filter-spacer" aria-hidden="true"></div>
+    <aside class="col-12 col-xl-2 order-1 order-xl-2 sticky-xl-top sticky-below-navbar">
+      <section class="border rounded-3 bg-body-tertiary p-3" aria-label="Post tag filters">
+        <p class="small fw-semibold text-body-secondary mb-3">Filter by tag</p>
+        <div class="d-flex flex-wrap flex-xl-column gap-2">
+          <button type="button" class="btn btn-sm btn-outline-secondary active text-start" data-post-filter="all" aria-pressed="true">All</button>
+          $for(tags)$
+            <button type="button" class="btn btn-sm btn-outline-secondary text-start" data-post-filter="$value$" aria-pressed="false">$label$</button>
+          $endfor$
+        </div>
+      </section>
+    </aside>
   </div>
 </div>
 <script>
@@ -74,7 +72,9 @@
       });
 
       buttons.forEach((button) => {
-        button.classList.toggle("active", button.dataset.postFilter === selectedTag);
+        const isActive = button.dataset.postFilter === selectedTag;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
       });
 
       if (emptyState) {

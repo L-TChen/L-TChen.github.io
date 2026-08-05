@@ -1,35 +1,35 @@
-<div class="publications-list">
+<div class="list-group list-group-flush mt-3">
 $for(publications)$
-<article class="publication-entry">
-<h4 class="publication-title">$title$</h4>
+<article class="list-group-item px-0 bg-transparent">
+<h4 class="h6 mb-1">$title$</h4>
 $if(abstractText)$
-<div class="publication-authors-block">
-<input class="publication-abstract-toggle" type="checkbox" id="$abstractId$">
-<div class="publication-authors-row"><p class="publication-authors">$authors$</p><label class="publication-abstract-label" for="$abstractId$">Abstract</label></div>
-<div class="publication-abstract-body">
-<p>$abstractText$</p>
+<div class="d-flex flex-wrap align-items-baseline gap-2">
+<p class="mb-0">$authors$</p>
+<button class="btn btn-sm btn-link link-secondary p-0 text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#$abstractId$" aria-expanded="false" aria-controls="$abstractId$">Abstract</button>
+</div>
+<div class="collapse" id="$abstractId$">
+<div class="border-start border-secondary-subtle ps-3 mt-2">
+<p class="small text-body-secondary mb-0">$abstractText$</p>
 </div>
 </div>
 $else$
-<div class="publication-authors-row">
-<p class="publication-authors">$authors$</p>
-</div>
+<p class="mb-0">$authors$</p>
 $endif$
-<p class="publication-meta">$venueAndYear$</p>
+<p class="small text-body-secondary my-1">$venueAndYear$</p>
 $if(doiUrl)$
-<div class="publication-links"><a class="publication-link" href="$doiUrl$">DOI</a>
-$-if(slideUrl)$<a class="publication-link" href="$slideUrl$">Slides</a>$endif-$
-$if(preprintUrl)$<a class="publication-link" href="$preprintUrl$">Preprint</a>$endif-$
+<div class="d-flex flex-wrap gap-2 mt-2"><a class="btn btn-sm btn-outline-secondary" href="$doiUrl$">DOI</a>
+$-if(slideUrl)$<a class="btn btn-sm btn-outline-secondary" href="$slideUrl$">Slides</a>$endif-$
+$if(preprintUrl)$<a class="btn btn-sm btn-outline-secondary" href="$preprintUrl$">Preprint</a>$endif-$
 </div>
 $else$
 $if(slideUrl)$
-<div class="publication-links"><a class="publication-link" href="$slideUrl$">Slides</a>
-$if(preprintUrl)$<a class="publication-link" href="$preprintUrl$">Preprint</a>$endif$
+<div class="d-flex flex-wrap gap-2 mt-2"><a class="btn btn-sm btn-outline-secondary" href="$slideUrl$">Slides</a>
+$if(preprintUrl)$<a class="btn btn-sm btn-outline-secondary" href="$preprintUrl$">Preprint</a>$endif$
 </div>
 $else$
 $if(preprintUrl)$
-<div class="publication-links">
-<a class="publication-link" href="$preprintUrl$">Preprint</a>
+<div class="d-flex flex-wrap gap-2 mt-2">
+<a class="btn btn-sm btn-outline-secondary" href="$preprintUrl$">Preprint</a>
 </div>
 $endif$
 $endif$

@@ -1,0 +1,82 @@
+/* Compatibility for Forester markup that cannot carry Bootstrap utilities. */
+
+html {
+  scroll-padding-top: 4.5rem;
+}
+
+article > section.block {
+  padding: 0;
+}
+
+article > section.block:hover {
+  background-color: transparent;
+}
+
+.metadata,
+.slug,
+.doi,
+.orcid,
+.edit-button,
+span.taxon,
+nav#toc,
+nav#toc a,
+nav#toc .taxon {
+  color: var(--bs-secondary-color);
+}
+
+.forester-shell article > section > details > summary > header > h1 > .taxon {
+  color: var(--bs-secondary-color);
+}
+
+a.slug {
+  display: block;
+  margin-top: .25rem;
+  font-size: 1rem;
+}
+
+.block:hover,
+.enclosing.macro-scope > .enclosing:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
+.block.highlighted,
+.highlighted,
+.highlighted:hover {
+  border-color: var(--bs-border-color);
+  background-color: rgba(var(--bs-warning-rgb), .18);
+}
+
+pre,
+code {
+  background-color: var(--bs-tertiary-bg);
+}
+
+blockquote {
+  border-inline-start: var(--bs-border-width) solid var(--bs-border-color);
+  color: var(--bs-secondary-color);
+}
+
+nav#toc ul {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.macro-is-private {
+  color: var(--bs-secondary-color);
+}
+
+.tooltip .tooltiptext {
+  color: var(--bs-body-bg);
+  background-color: var(--bs-emphasis-color);
+}
+
+.tooltiptext a {
+  color: var(--bs-body-bg);
+}
+
+a.slug:hover,
+a.bullet:hover,
+.edit-button:hover,
+.link:hover {
+  background-color: var(--bs-tertiary-bg);
+}

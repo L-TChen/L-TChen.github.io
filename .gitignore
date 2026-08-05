@@ -3,5 +3,6 @@ _cache
 _site
 dist-newstyle
 node_modules
+forest/output/
 !content/interns/pdf/
 !content/interns/pdf/*.pdf
