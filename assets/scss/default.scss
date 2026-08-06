@@ -1,6 +1,25 @@
 @import "../../bootstrap/scss/bootstrap.scss";
 @import "site-layout";
 
+a:where([href]:not(.nav-link)),
+a:where([href]:not(.nav-link)):hover {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+}
+
+// Match Forester's dotted treatment for links within this site.
+a:where([href^="/"]:not([href^="//"], .nav-link)),
+a:where([href^="#"]:not(.nav-link)),
+a:where([href^="./"]:not(.nav-link)),
+a:where([href^="../"]:not(.nav-link)) {
+  text-decoration-style: dotted;
+}
+
+a:where([href]):where(:not(.nav-link, .btn, .badge, [role="button"])):hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
 .csl-entry {
   padding: .5em 2em;
 }
