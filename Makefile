@@ -23,13 +23,13 @@ test:
 
 build-hakyll:
 	$(STACK) build $(STACK_FLAGS)
-	$(STACK) exec $(STACK_FLAGS) -- site rebuild
+	$(STACK) build $(STACK_FLAGS) --exec "site rebuild"
 
 check: test
-	$(STACK) exec $(STACK_FLAGS) -- site check --internal-links
+	$(STACK) build $(STACK_FLAGS) --exec "site check --internal-links"
 
 clean:
-	$(STACK) exec $(STACK_FLAGS) -- site clean
+	$(STACK) build $(STACK_FLAGS) --exec "site clean"
 	rm -rf forest/output
 
 watch: build
@@ -41,4 +41,4 @@ watch: build
 			$(MAKE) build-forest FORESTER="$(FORESTER)" & \
 		forester_watch_pid=$$!; \
 		trap 'kill "$$forester_watch_pid" 2>/dev/null || true; wait "$$forester_watch_pid" 2>/dev/null || true' EXIT INT TERM; \
-		$(STACK) run $(STACK_FLAGS) -- site watch
+		$(STACK) build $(STACK_FLAGS) --exec "site watch"
