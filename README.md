@@ -26,6 +26,28 @@ opam exec -- make check
 the combined site locally. The CI-specific Hakyll flags can be supplied with
 `STACK_FLAGS="..."`.
 
+### Blank Forester post pages
+
+Forester posts are generated as XML and rendered in the browser with XSLT. If
+`/posts/<id>/index.xml` appears blank even though the XML contains content,
+check that the Forester theme submodule is initialized. Without it,
+`default.xsl` is generated but its base-theme includes (`core.xsl`,
+`metadata.xsl`, `links.xsl`, and `tree.xsl`) are missing, so the browser cannot
+transform the XML into HTML. This can explain why the same page works from a
+clone on another computer.
+
+Initialize all submodules and rebuild the generated output:
+
+```console
+git submodule update --init --recursive
+make clean
+make build
+```
+
+A leading `-` in `git submodule status forest/theme` means that the theme
+submodule has not been initialized. Browser developer tools may also show 404
+responses for the missing XSL files under `/posts/`.
+
 ## Author posts with Forester
 
 Add a `.tree` file under `forest/trees`. A dated entry is not included on the

@@ -40,7 +40,73 @@ $partial("templates/recent-posts.html")$
 
 :::
 
-::: {.col-12 .order-md-last}
+::: {.col-12 .home-masonry}
+
+::: {.home-masonry-item}
+
+#### 📜 Research Interests
+
+I am generally interested in mathematical structures in computer science, specifically, the so-called ['theory B'](https://cstheory.stackexchange.com/a/1523/51895) of theoretical computer science.
+My work so far spans dependently typed programming, programming languages, logic, and automata theory, employing logical and categorical methods.
+
+Recently, I have been exploring the computational and logical aspects of type theory, particularly through the lens of [Curry-Howard](https://en.wikipedia.org/wiki/Curry–Howard_correspondence) correspondence.
+I have worked on both the theory and practice of programming languages using [Agda](https://agda.readthedocs.io/), a proof assistant and a dependently typed language.
+This approach allows me to produce reliable, reproducible, and sometimes useful results.
+
+:::
+
+::: {.home-masonry-item}
+
+#### 🎤 Invited Talk
+
+* *From Datatype-Generic Programming to Language-Generic Programming*\
+  Workshop on Type-Driven Development ([TyDe 2025](https://conf.researchr.org/details/icfp-splash-2025/tyde-2025-papers/10/From-Datatype-Generic-Programming-to-Language-Generic-Programming)), Singapore, Singapore, 2025
+
+* *From Datatype Genericity to Language Genericity*\
+  [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
+* *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
+  Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
+
+:::
+
+::: {.home-masonry-item}
+
+#### 💰 Funding
+
+* 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD&#36;2,181,000)
+* 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD&#36;2,851,000, PI: Hsiang-Shang Ko)
+
+:::
+
+::: {.home-masonry-item}
+
+#### 🏅 Award
+
+* *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
+
+* PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
+
+:::
+
+::: {.home-masonry-item}
+
+#### 🧑‍🏫 Supervision
+
+##### Postdoc
+
+* [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
+
+##### Recent Summer Interns
+
+$partial("templates/summer-interns.html")$
+
+[More](/interns.html)
+
+:::
+
+:::
+
+::: {.col-12}
 
 #### 🫵🏼 Hiring 徵才啟事 🫵🏼
 
@@ -65,65 +131,6 @@ For Chinese applicants, please note that only short-term student visits can be a
 :::
 
 :::
-
-:::
-
-::: {.col-12 .col-md-6}
-
-#### 📜 Research Interests
-
-I am generally interested in mathematical structures in computer science, specifically, the so-called ['theory B'](https://cstheory.stackexchange.com/a/1523/51895) of theoretical computer science.
-My work so far spans dependently typed programming, programming languages, logic, and automata theory, employing logical and categorical methods.
-
-Recently, I have been exploring the computational and logical aspects of type theory, particularly through the lens of [Curry-Howard](https://en.wikipedia.org/wiki/Curry–Howard_correspondence) correspondence.
-I have worked on both the theory and practice of programming languages using [Agda](https://agda.readthedocs.io/), a proof assistant and a dependently typed language.
-This approach allows me to produce reliable, reproducible, and sometimes useful results.
-
-:::
-
-::: {.col-12 .col-md-6}
-
-#### 🏅 Award
-
-* *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
-
-* PhD Studentship from the UK EPSRC Project *Coalgebraic Logic—Extending the Scope*, 2009
-
-:::
-
-::: {.col-12 .col-md-6}
-
-#### 🎤 Invited Talk
-
-* *From Datatype-Generic Programming to Language-Generic Programming*\
-  Workshop on Type-Driven Development ([TyDe 2025](https://conf.researchr.org/details/icfp-splash-2025/tyde-2025-papers/10/From-Datatype-Generic-Programming-to-Language-Generic-Programming)), Singapore, Singapore, 2025
-
-* *From Datatype Genericity to Language Genericity*\
-  [WG6 Meeting](https://europroofnet.github.io/wg6-leuven/) of European Research Network on Formal Proofs, Leuven, Belgium, 2024
-* *Foundations of Mathematics, Topoi, and Functional Programming Languages*\
-  Math Club, Department of Mathematics, National Taiwan University, Taiwan, 2023
-
-
-#### 💰 Funding
-
-* 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD&#36;2,181,000)
-* 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD&#36;2,851,000, PI: Hsiang-Shang Ko)
-
-:::
-
-::: {.col-12 .col-md-6}
-
-#### 🧑‍🏫 Supervision
-
-##### Postdoc
-
-* [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
-
-##### Recent Summer Interns
-
-$partial("templates/summer-interns.html")$
-
-[More](/interns.html)
 
 :::
 
