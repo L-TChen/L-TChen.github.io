@@ -26,6 +26,7 @@ executables:
     other-modules:
       - BibTeX
       - Forester
+      - ForesterStyle
       - Publications
       - SummerInterns
     ghc-options:

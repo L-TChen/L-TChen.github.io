@@ -3,6 +3,7 @@
 
 import Control.Monad (foldM)
 import Data.List (intercalate)
+import qualified Data.Text as T
 import Data.Time.Format (defaultTimeLocale, formatTime)
 import Text.Pandoc
   ( Extension (..),
@@ -22,6 +23,7 @@ import Forester
   , loadForesterPosts
   , normaliseTagValue
   )
+import ForesterStyle (stripLegacyForesterStyles)
 import Publications (loadPublicationsPageCtx)
 import SummerInterns (loadSummerInternsPageCtx, summerInternsBibPath)
 --------------------------------------------------------------------------------
@@ -33,6 +35,7 @@ main = hakyll $ do
   publicationsTemplateDependency <- makePatternDependency KindContent "templates/publications.html"
   recentPostsTemplateDependency <- makePatternDependency KindContent "templates/recent-posts.html"
   foresterOutputDependency <- makePatternDependency KindContent foresterOutputPattern
+  siteLayoutDependency <- makePatternDependency KindContent "assets/scss/site-layout.scss"
 
   match foresterManifestPattern $ do
     route $ gsubRoute "forest/output/" (const "")
@@ -42,16 +45,25 @@ main = hakyll $ do
   -- below remains an opaque CopyFile so Forester's XML is deployed verbatim.
   match foresterXmlPattern $ version "metadata" $ compile getResourceBody
 
+  match foresterStylePattern $ do
+    route $ gsubRoute "forest/output/" (const "")
+    compile $ do
+      source <- getResourceString
+      case stripLegacyForesterStyles $ T.pack $ itemBody source of
+        Left err -> fail err
+        Right css -> return $ fmap (const $ T.unpack css) source
+
   match
     ( foresterOutputPattern
         .&&. complement foresterManifestPattern
         .&&. complement foresterDefaultXslPattern
+        .&&. complement foresterStylePattern
     ) $ do
     route $ gsubRoute "forest/output/" (const "")
     compile copyFileCompiler
 
-  match "forest/site-theme/default.xsl" $ do
-    route $ constRoute "posts/default.xsl"
+  match "forest/site-theme/*.xsl" $ do
+    route $ gsubRoute "forest/site-theme/" (const "posts/")
     compile copyFileCompiler
 
   match "assets/html/**" $ do
@@ -67,11 +79,12 @@ main = hakyll $ do
     compile copyFileCompiler
 
   scssDependency <- makePatternDependency KindContent "bootstrap/package.json"
-  rulesExtraDependencies [scssDependency] $ do
+  rulesExtraDependencies [scssDependency, siteLayoutDependency] $ do
     match "assets/scss/default.scss" $ do
       route $ setExtension "css" `composeRoutes` gsubRoute "assets/scss/" (const "css/")
       compile (fmap compressCss <$> sassCompiler)
 
+  rulesExtraDependencies [scssDependency] $ do
     match "assets/scss/forester.scss" $ do
       route $ setExtension "css" `composeRoutes` gsubRoute "assets/scss/" (const "css/")
       compile (fmap compressCss <$> sassCompiler)
@@ -147,6 +160,9 @@ foresterOutputPattern = "forest/output/posts/**"
 
 foresterDefaultXslPattern :: Pattern
 foresterDefaultXslPattern = "forest/output/posts/default.xsl"
+
+foresterStylePattern :: Pattern
+foresterStylePattern = "forest/output/posts/style.css"
 
 foresterXmlPattern :: Pattern
 foresterXmlPattern = "forest/output/posts/**/index.xml"

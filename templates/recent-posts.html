@@ -1,14 +1,14 @@
 <div class="list-group list-group-flush">
 $for(posts)$
-<div class="list-group-item px-0 bg-transparent">
-  <p class="mb-1">
+<div class="list-group-item recent-post-item">
+  <p class="recent-post-title">
     <a href="$url$">$title$</a>
   </p>
-  <p class="small text-body-secondary mb-0">$date$ <span aria-hidden="true">&middot;</span> $taxon$</p>
+  <p class="recent-post-meta">$date$ <span aria-hidden="true">&middot;</span> $taxon$</p>
 </div>
 $endfor$
 </div>
 
-<p class="mt-4">
+<p class="recent-post-more">
   <a href="$postsUrl$">See all posts</a>
 </p>

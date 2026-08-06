@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:template name="site-navbar">
+    <nav xmlns="http://www.w3.org/1999/xhtml" class="navbar navbar-expand navbar-dark site-navbar">
+      <div class="site-navbar-inner">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/posts.html">Posts</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#hiring-徵才啟事">Hiring</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#service">Service</a></li>
+          <li class="nav-item"><a class="nav-link" href="/index.html#publications">Publications</a></li>
+        </ul>
+
+        <span class="navbar-nav site-navbar-social">
+          <a class="nav-link" href="https://orcid.org/0000-0002-3250-1331"><i class="fab fa-orcid"></i></a>
+          <a class="nav-link" href="https://scholar.google.com/citations?hl=en&amp;user=9jA3dngAAAAJ&amp;view_op=list_works&amp;sortby=pubdate"><i class="fab fa-google-scholar"></i></a>
+          <a class="nav-link" href="https://mathstodon.xyz/@ltchen"><i class="fab fa-mastodon"></i></a>
+          <a class="nav-link" href="https://github.com/L-TChen"><i class="fab fa-github"></i></a>
+        </span>
+      </div>
+    </nav>
+  </xsl:template>
+</xsl:stylesheet>

@@ -1,90 +1,36 @@
 <?xml version="1.0"?>
-<!-- Site-owned shell for the pinned Forester 5.0 base theme. -->
+<!-- Site-owned composition root for the pinned Forester 5.0 base theme. -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:f="http://www.forester-notes.org">
 
   <xsl:output method="html" encoding="utf-8" indent="yes" doctype-public="" doctype-system="" omit-xml-declaration="yes"/>
   <xsl:strip-space elements="f:author f:contributor"/>
+
+  <!-- Forester's structural renderers. -->
   <xsl:include href="core.xsl" />
   <xsl:include href="metadata.xsl" />
   <xsl:include href="links.xsl" />
   <xsl:include href="tree.xsl" />
 
-  <!-- Override the base theme's root template while retaining its renderers. -->
+  <!-- Site layout, mirroring the Hakyll template layers. -->
+  <xsl:include href="head.xsl" />
+  <xsl:include href="navbar.xsl" />
+  <xsl:include href="main.xsl" />
+  <xsl:include href="footer.xsl" />
+  <xsl:include href="scripts.xsl" />
+
   <xsl:template match="/">
-    <xsl:variable name="has-toc" select="f:tree/f:mainmatter/f:tree[not(@toc='false')] and not(f:tree/f:frontmatter/f:meta[@name='toc']/.='false')" />
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en" data-bs-theme="auto" data-base-url="{/f:tree/@base-url}">
-      <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="/src/bootstrap-auto-dark-mode.js"></script>
-        <script async="async" src="https://kit.fontawesome.com/d25dd1f650.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{/f:tree/@base-url}style.css" />
-        <link rel="stylesheet" href="/css/default.css" />
-        <link rel="stylesheet" href="{/f:tree/@base-url}katex.min.css" />
-        <link rel="stylesheet" href="/css/forester.css" />
-        <script type="text/javascript">
-          <xsl:if test="/f:tree/f:frontmatter/f:source-path">
-            <xsl:text>window.sourcePath = '</xsl:text>
-            <xsl:value-of select="/f:tree/f:frontmatter/f:source-path" />
-            <xsl:text>'</xsl:text>
-          </xsl:if>
-        </script>
-        <script type="module" src="{/f:tree/@base-url}forester.js"></script>
-        <title>
-          <xsl:value-of select="/f:tree/f:frontmatter/f:title/@text" />
-        </title>
-      </head>
+      <xsl:call-template name="site-head" />
       <body>
         <ninja-keys placeholder="Start typing a note title or ID"></ninja-keys>
-
-        <nav class="navbar navbar-expand navbar-dark bg-secondary sticky-top">
-          <div class="container-md px-5 justify-content-between flex-column flex-md-row">
-            <ul class="navbar-nav pb-0">
-              <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="/posts.html">Posts</a></li>
-              <li class="nav-item"><a class="nav-link" href="/index.html#hiring-徵才啟事">Hiring</a></li>
-              <li class="nav-item"><a class="nav-link" href="/index.html#service">Service</a></li>
-              <li class="nav-item"><a class="nav-link" href="/index.html#publications">Publications</a></li>
-            </ul>
-
-            <span class="navbar-nav">
-              <a class="nav-link" href="https://orcid.org/0000-0002-3250-1331"><i class="fab fa-orcid"></i></a>
-              <a class="nav-link" href="https://scholar.google.com/citations?hl=en&amp;user=9jA3dngAAAAJ&amp;view_op=list_works&amp;sortby=pubdate"><i class="fab fa-google-scholar"></i></a>
-              <a class="nav-link" href="https://mathstodon.xyz/@ltchen"><i class="fab fa-mastodon"></i></a>
-              <a class="nav-link" href="https://github.com/L-TChen"><i class="fab fa-github"></i></a>
-            </span>
-          </div>
-        </nav>
-
-        <main role="main" class="forester-shell container-md py-sm-5 px-sm-5 border-start border-end">
-          <div id="grid-wrapper" class="row d-flex g-4 align-items-start">
-            <article class="col-12 col-xl-8 offset-xl-2 mw-100 me-0">
-              <xsl:apply-templates select="f:tree" />
-            </article>
-            <xsl:if test="$has-toc">
-              <nav id="toc" class="d-none d-xl-block col-xl-2 sticky-xl-top sticky-below-navbar ms-0" aria-label="Table of contents">
-                <div class="block border rounded-3 bg-body-tertiary p-3 small">
-                  <p class="fw-semibold text-body-secondary mb-3">Table of Contents</p>
-                  <xsl:apply-templates select="f:tree/f:mainmatter" mode="toc" />
-                </div>
-              </nav>
-            </xsl:if>
-          </div>
+        <xsl:call-template name="site-navbar" />
+        <main role="main" class="forester-shell site-main">
+          <xsl:call-template name="site-main-content" />
         </main>
-
-        <footer id="footer" class="container py-4">
-          <div class="text-center text-muted small">
-            Site crafted with ❤️ , <a href="https://getbootstrap.com/">Bootstrap</a> and GPT-5,
-            generated by <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, and
-            hosted on <a href="https://pages.github.com">GitHub Pages</a>.
-          </div>
-        </footer>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-          crossorigin="anonymous"></script>
+        <xsl:call-template name="site-footer" />
+        <xsl:call-template name="site-scripts" />
       </body>
     </html>
   </xsl:template>

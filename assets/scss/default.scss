@@ -1,4 +1,5 @@
 @import "../../bootstrap/scss/bootstrap.scss";
+@import "site-layout";
 
 .csl-entry {
   padding: .5em 2em;
@@ -10,8 +11,4 @@
 
 .csl-right-inline {
   display: inline;
-}
-
-.sticky-below-navbar {
-  top: 5.5rem;
 }

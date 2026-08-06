@@ -1,39 +1,37 @@
-<div class="py-5">
-  <div class="row g-4 align-items-start">
-    <div class="col-12 col-xl-8 offset-xl-2 order-2 order-xl-1">
-      <header class="mb-4">
-        <h1>$title$</h1>
-        <p class="text-body-secondary mb-0">Some random thoughts.</p>
-      </header>
+<div class="site-content-layout">
+  <div class="site-primary-column site-primary-column--archive">
+    <header class="post-archive-header">
+      <h1>$title$</h1>
+      <p class="post-archive-subtitle">Some random thoughts.</p>
+    </header>
 
-      <section class="list-group list-group-flush" data-post-archive>
-      $for(posts)$
-        <article class="list-group-item px-0 py-4 bg-transparent" data-post-tags="$tagFilter$">
-          <p class="small text-body-secondary mb-1">$date$ <span aria-hidden="true">&middot;</span> $taxon$</p>
-          <h2 class="h4 mb-0"><a href="$url$">$title$</a></h2>
-          $if(tags)$
-            <div class="d-flex flex-wrap gap-2 mt-3" aria-label="Tags">
-              $tags$
-            </div>
-          $endif$
-        </article>
-      $endfor$
-      <p class="d-none text-body-secondary pt-3" data-post-empty>No posts match the selected tag yet.</p>
-      </section>
-    </div>
-
-    <aside class="col-12 col-xl-2 order-1 order-xl-2 sticky-xl-top sticky-below-navbar">
-      <section class="border rounded-3 bg-body-tertiary p-3" aria-label="Post tag filters">
-        <p class="small fw-semibold text-body-secondary mb-3">Filter by tag</p>
-        <div class="d-flex flex-wrap flex-xl-column gap-2">
-          <button type="button" class="btn btn-sm btn-outline-secondary active text-start" data-post-filter="all" aria-pressed="true">All</button>
-          $for(tags)$
-            <button type="button" class="btn btn-sm btn-outline-secondary text-start" data-post-filter="$value$" aria-pressed="false">$label$</button>
-          $endfor$
-        </div>
-      </section>
-    </aside>
+    <section class="list-group list-group-flush" data-post-archive>
+    $for(posts)$
+      <article class="list-group-item post-archive-item" data-post-tags="$tagFilter$">
+        <p class="post-archive-meta">$date$ <span aria-hidden="true">&middot;</span> $taxon$</p>
+        <h2 class="post-archive-title"><a href="$url$">$title$</a></h2>
+        $if(tags)$
+          <div class="post-tag-list" aria-label="Tags">
+            $tags$
+          </div>
+        $endif$
+      </article>
+    $endfor$
+    <p class="d-none post-archive-empty" data-post-empty>No posts match the selected tag yet.</p>
+    </section>
   </div>
+
+  <aside class="site-sidebar">
+    <section class="site-panel" aria-label="Post tag filters">
+      <p class="site-panel-title">Filter by tag</p>
+      <div class="site-filter-list">
+        <button type="button" class="btn btn-sm btn-outline-secondary active site-filter-button" data-post-filter="all" aria-pressed="true">All</button>
+        $for(tags)$
+          <button type="button" class="btn btn-sm btn-outline-secondary site-filter-button" data-post-filter="$value$" aria-pressed="false">$label$</button>
+        $endfor$
+      </div>
+    </section>
+  </aside>
 </div>
 <script>
   (() => {

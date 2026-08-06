@@ -19,6 +19,7 @@ executable site
   other-modules:
       BibTeX
       Forester
+      ForesterStyle
       Publications
       SummerInterns
   hs-source-dirs:

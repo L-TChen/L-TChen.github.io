@@ -12,6 +12,12 @@ article > section.block:hover {
   background-color: transparent;
 }
 
+.forester-shell article p {
+  text-align: justify;
+  text-justify: auto;
+  hyphens: auto;
+}
+
 .metadata,
 .slug,
 .doi,
