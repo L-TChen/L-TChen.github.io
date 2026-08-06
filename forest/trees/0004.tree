@@ -1,0 +1,11 @@
+\title{Category with Families}
+\author{l-tchen}
+\date{2026-08-04}
+\taxon{Definition}
+
+\p{A \em{category with families} (CwF) consists of
+  \ol{
+    \li{a set #{Con}}
+    \li{a family of sets #{Ty\;\Gamma} indexed by #{\Gamma \in Con}}
+  }
+}

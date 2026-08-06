@@ -1,0 +1,11 @@
+\title{Presheaf}
+\author{l-tchen}
+\date{2026-08-06}
+\taxon{Definition}
+
+\def\catC{\mathcal{C}}
+\def\catSet{\mathbf{Set}}
+\def\op{\mathit{op}}
+
+\p{A \em{presheaf} over a category #{\catC} is a functor #{F} from the opposite category #{\catC^{\op}} to #{\catSet}. The \em{category of presheaves} #{\mathbf{Psh}(\catC)} over a category #{\catC} is the functor category #{[\catC^\op, \catSet]}.}
+\p{\strong{Convention}. We often denote #{Ff(x)} by #{xf} as a right action, so #{x(fg) = (xf)g} instead of #{F(fg)(x) = Fg(Ff(x))}.}
