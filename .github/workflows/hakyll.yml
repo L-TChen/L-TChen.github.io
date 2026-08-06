@@ -56,8 +56,11 @@ jobs:
           restore-keys: |
             stack-${{ runner.os }}-
 
-      - name: Build and check the combined site
-        run: opam exec -- make check STACK_FLAGS="${FLAGS}"
+      - name: Build the site
+        run: make build STACK_FLAGS="${FLAGS}"
+
+      - name: Check the site
+        run: make check STACK_FLAGS="${FLAGS}"
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
