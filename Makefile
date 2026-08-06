@@ -23,18 +23,14 @@ test:
 
 build-hakyll:
 	$(STACK) build $(STACK_FLAGS)
-	$(STACK) exec -- site clean
-	$(STACK) exec -- site build
+	$(STACK) exec $(STACK_FLAGS) -- site rebuild
 
 check: test
-	$(STACK) exec -- site check --internal-links
+	$(STACK) exec $(STACK_FLAGS) -- site check --internal-links
 
 clean:
-	$(STACK) exec -- site clean
+	$(STACK) exec $(STACK_FLAGS) -- site clean
 	rm -rf forest/output
-
-serve: build
-	$(STACK) exec -- site watch
 
 watch: build
 	@command -v "$(WATCHEXEC)" >/dev/null || { echo "watchexec is required for make watch" >&2; exit 1; }
@@ -45,4 +41,4 @@ watch: build
 			$(MAKE) build-forest FORESTER="$(FORESTER)" & \
 		forester_watch_pid=$$!; \
 		trap 'kill "$$forester_watch_pid" 2>/dev/null || true; wait "$$forester_watch_pid" 2>/dev/null || true' EXIT INT TERM; \
-		$(STACK) run -- site watch
+		$(STACK) run $(STACK_FLAGS) -- site watch
