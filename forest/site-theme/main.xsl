@@ -11,7 +11,7 @@
         <xsl:apply-templates select="f:tree" />
       </article>
       <xsl:if test="$has-toc">
-        <nav id="toc" class="site-toc" aria-label="Table of contents">
+        <nav id="toc" class="site-rail" aria-label="Table of contents">
           <div class="block site-panel site-panel--small">
             <p class="site-panel-title">Table of Contents</p>
             <xsl:apply-templates select="f:tree/f:mainmatter" mode="toc" />

@@ -80,52 +80,30 @@
   @include make-col-ready();
   @include make-col(12);
 
+  order: 2;
   max-width: 100%;
   margin-inline-end: 0;
 
   @include media-breakpoint-up(xl) {
-    @include make-col(9);
+    @include make-col(8);
     @include make-col-offset(1);
-  }
-}
-
-.site-primary-column--archive {
-  order: 2;
-
-  @include media-breakpoint-up(xl) {
     order: 1;
   }
 }
 
-.site-sidebar,
-.site-toc {
+.site-rail {
   @include make-col-ready();
   @include make-col(12);
-}
 
-.site-sidebar {
   order: 1;
 
   @include media-breakpoint-up(xl) {
-    @include make-col(2);
+    @include make-col(3);
 
     position: sticky;
     top: 5.5rem;
     z-index: $zindex-sticky;
     order: 2;
-  }
-}
-
-.site-toc {
-  display: none;
-
-  @include media-breakpoint-up(xl) {
-    @include make-col(2);
-
-    position: sticky;
-    top: 5.5rem;
-    z-index: $zindex-sticky;
-    display: block;
   }
 }
 
