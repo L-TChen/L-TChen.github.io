@@ -7,6 +7,7 @@
     <head xmlns="http://www.w3.org/1999/xhtml">
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#6c757d" />
       <script src="/src/bootstrap-auto-dark-mode.js"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
