@@ -26,15 +26,3 @@ a:where([href^="../"]:not(.nav-link)) {
 a:where([href]):where(:not(.nav-link, .btn, .badge, [role="button"])):hover {
   background-color: var(--bs-tertiary-bg);
 }
-
-.csl-entry {
-  padding: .5em 2em;
-}
-
-.csl-left-margin {
-  display: none;
-}
-
-.csl-right-inline {
-  display: inline;
-}
