@@ -6,11 +6,10 @@
 ---
 ::: {.row}
 
-::: {.col-12}
+::: {.col-9 .home-column}
 
 # __Chen, Liang-Ting 陳亮廷__
 
-<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="profile-photo float-end rounded-circle" alt="Profile Photo">
 
 ✉️ [ltchen@iis.sinica.edu.tw](<javascript:location='&#109;&#97;i&#108;t&#111;&#58;\u006c\u0074\u0063\u0068\u0065\u006e\u0040\u0069\u0069\u0073\u002e\u0073\u0069\u006e\u0069\u0063\u0061\u002e\u0065\u0064\u0075\u002e\u0074\u0077';void 0>)
 
@@ -20,7 +19,15 @@ Assistant Research Fellow (Assistant Professor)\
 
 :::
 
-::: {.col-12 .col-md-6}
+::: {.col-3 .home-column}
+<img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="profile-photo rounded-circle" alt="Profile Photo">
+:::
+
+:::
+
+::: {.row}
+
+::: {.col-12 .col-md-6 .home-column}
 
 ### 🧑🏻‍🔬 About Me
 
@@ -32,13 +39,17 @@ Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
 
 :::
 
-::: {.col-12 .col-md-6}
+::: {.col-12 .col-md-6 .home-column}
 
 ### 📝 Recent Posts
 
 $partial("templates/recent-posts.html")$
 
 :::
+
+:::
+
+::: {.row}
 
 ::: {.col-12 .home-masonry}
 
@@ -106,17 +117,20 @@ $partial("templates/summer-interns.html")$
 
 :::
 
-::: {.col-12}
+:::
 
-::: {.row .text-center}
+*  *  *  *
+
+::: {.row}
+
+::: {.col-12 .text-center .home-column}
 ### 🫵🏼 Hiring 徵才啟事 🫵🏼
 
 有興趣探索「程式語言」或「型別論」的學生，歡迎寄信給我詳談細節。
 :::
 
-::: {.row}
 
-::: {.col-12 .col-md-6}
+::: {.col-12 .col-md-6 .home-column}
 Prospective research assistants
 : I typically have funding available to hire a self-motivated research assistant to join me at Academia Sinica.
 If you are interested in the research topics of my recent work, please feel free to drop me an email with a brief statement and your résumé to initiate a conversation.
@@ -124,7 +138,7 @@ If you are interested in the research topics of my recent work, please feel free
 For Chinese applicants, please note that only short-term student visits can be accommodated due to the current geopolitical circumstances.
 :::
 
-::: {.col-12 .col-md-6}
+::: {.col-12 .col-md-6 .home-column}
 兼任助理
 : 初步以背景知識研習為主，同時使用定理證明器 Agda 加強數學論證能力及實作能力，逐步發展研究題目。
 
@@ -134,18 +148,20 @@ For Chinese applicants, please note that only short-term student visits can be a
 
 :::
 
-:::
-
-:::
-
 *  *  *  *
 
-::: {.row .text-center}
-### 🛠️ Service
+::: {.row}
+
+::: {.col .text-center .home-column}
+
+### 🛠️ Service 👷
+:::
+
 :::
 
 ::: {.row}
-::: {.col-lg-8}
+
+::: {.col-lg-8 .home-column}
 
 #### PC Membership
 
@@ -170,7 +186,8 @@ For Chinese applicants, please note that only short-term student visits can be a
 : * *Workshop on Type-Driven Development* (TyDe)
 
 :::
-::: {.col-lg-4}
+
+::: {.col-lg-4 .home-column}
 
 #### Organising
 
@@ -184,12 +201,17 @@ For Chinese applicants, please note that only short-term student visits can be a
 
 ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
 :::
+
 :::
 
 *  *  *  *
 
 ::: {.row .text-center}
-### ✍🏼 Publications
+
+::: {.col-12 .text-center .home-column}
+### ✍🏼 Publications 📜
+:::
+
 :::
 
 $partial("templates/publications.html")$

@@ -30,10 +30,19 @@
 }
 
 .profile-photo {
-  width: 30%;
+  width: 100%;
+  padding-block: map-get($spacers, 2);
+
+  @include media-breakpoint-up(sm) {
+    width: 90%;
+  }
 
   @include media-breakpoint-up(md) {
-    width: 15%;
+    width: 80%;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: 70%;
   }
 }
 
@@ -67,14 +76,13 @@
 
 .site-footer {
   @include site-container-from(sm);
-
-  padding-block: map-get($spacers, 4);
 }
 
 .site-footer-content {
   color: var(--bs-secondary-color);
   font-size: $font-size-sm;
   text-align: center;
+  padding-block: map-get($spacers, 3);
 }
 
 .site-content-layout {
@@ -140,10 +148,15 @@
   }
 }
 
+.home-column,
+.home-masonry-item {
+  padding-top: map-get($spacers, 2);
+  padding-bottom: map-get($spacers, 2);
+}
+
 .home-masonry-item {
   display: inline-block;
   width: 100%;
-  margin-bottom: map-get($spacers, 4);
   vertical-align: top;
   break-inside: avoid;
 }
