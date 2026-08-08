@@ -18,32 +18,25 @@
   }
 }
 
-.site-main {
+.site-main,
+.site-navbar-inner {
   @include site-container-from(md);
 
-  padding-block: map-get($spacers, 3);
+  padding-inline: map-get($spacers, 4);
+}
+
+.site-main {
+
   border-inline: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+  padding-block: map-get($spacers, 3);
 
   @include media-breakpoint-up(sm) {
-    padding: map-get($spacers, 5);
+    padding-block: map-get($spacers, 4);
   }
 }
 
 .profile-photo {
   width: 100%;
-  padding-block: map-get($spacers, 2);
-
-  @include media-breakpoint-up(sm) {
-    width: 90%;
-  }
-
-  @include media-breakpoint-up(md) {
-    width: 80%;
-  }
-
-  @include media-breakpoint-up(xl) {
-    width: 70%;
-  }
 }
 
 .site-navbar {
@@ -56,22 +49,15 @@
 }
 
 .site-navbar-inner {
-  @include site-container-from(md);
-
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
-  padding-inline: map-get($spacers, 5);
 
   @include media-breakpoint-up(md) {
     flex-direction: row;
   }
-}
-
-.site-navbar-social {
-  line-height: 1;
 }
 
 .site-footer {

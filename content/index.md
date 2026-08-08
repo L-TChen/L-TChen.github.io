@@ -8,26 +8,21 @@
 
 ::: {.col-12 .home-column}
 
-# __Chen, Liang-Ting 陳亮廷__
+# __陳亮廷 Chen, Liang-Ting__
 
-
-✉️ [ltchen@iis.sinica.edu.tw](<javascript:location='&#109;&#97;i&#108;t&#111;&#58;\u006c\u0074\u0063\u0068\u0065\u006e\u0040\u0069\u0069\u0073\u002e\u0073\u0069\u006e\u0069\u0063\u0061\u002e\u0065\u0064\u0075\u002e\u0074\u0077';void 0>)
 
 :::
 
-:::
+::: {.col-8 .home-column}
 
-::: {.row}
-
-::: {.col-8 .col-sm-9 .home-column}
-
+✉️ [ltchen@iis.sinica.edu.tw](<javascript:location='&#109;&#97;i&#108;t&#111;&#58;\u006c\u0074\u0063\u0068\u0065\u006e\u0040\u0069\u0069\u0073\u002e\u0073\u0069\u006e\u0069\u0063\u0061\u002e\u0065\u0064\u0075\u002e\u0074\u0077';void 0>)\
 Assistant Research Fellow (Assistant Professor)\
-[Institute of Information Science](https://www.iis.sinica.edu.tw)\
-[Academia Sinica](https://www.sinica.edu.tw/), Taiwan 
+[Institute of Information Science](https://www.iis.sinica.edu.tw), [Academia Sinica](https://www.sinica.edu.tw/)\
+Taipei, Taiwan 
 
 :::
 
-::: {.col-4 .col-sm-3 .home-column}
+::: {.col-4 .col-md-3 .col-lg-2 .home-column}
 <img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" class="profile-photo rounded-circle" alt="Profile Photo">
 :::
 
@@ -90,7 +85,7 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-### 💰 Funding
+### 💰 Projects
 
 * 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD&#36;2,181,000)
 * 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD&#36;2,851,000, PI: Hsiang-Shang Ko)
@@ -140,7 +135,7 @@ $partial("templates/summer-interns.html")$
 
 ::: {.col-12 .col-md-6 .home-column}
 Prospective research assistants
-: I typically have funding available to hire a self-motivated research assistant to join me at Academia Sinica.
+: Typically I have funding available to hire a self-motivated research assistant to join me at Academia Sinica.
 If you are interested in the research topics of my recent work, please feel free to drop me an email with a brief statement and your résumé to initiate a conversation.
 
 For Chinese applicants, please note that only short-term student visits can be accommodated due to the current geopolitical circumstances.
