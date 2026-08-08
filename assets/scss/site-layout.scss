@@ -214,8 +214,6 @@
 }
 
 .publication-title {
-  @include font-size($h6-font-size);
-
   margin-bottom: map-get($spacers, 1);
 }
 
