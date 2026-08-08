@@ -81,7 +81,6 @@
   @include make-col(12);
 
   order: 2;
-  max-width: 100%;
   margin-inline-end: 0;
 
   @include media-breakpoint-up(xl) {
@@ -121,7 +120,6 @@
 .site-panel-title {
   margin-bottom: map-get($spacers, 3);
   color: var(--bs-secondary-color);
-  font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
 }
 
@@ -131,7 +129,6 @@
 
   @include media-breakpoint-up(md) {
     column-count: 2;
-    column-fill: balance;
   }
 }
 
