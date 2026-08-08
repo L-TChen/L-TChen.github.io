@@ -2,7 +2,7 @@
 \author{l-tchen}
 \date{2026-03-29}
 \taxon{Blog post}
-\meta{site-publish}{true}
+\meta{published}{}
 
 \p{I’ve been using Codex (powered by GPT-5.4) to vibe code and restructure a few websites I’m maintaining using [Hakyll](https://hackage.haskell.org/package/hakyll). I think vibe coding really makes my life much easier.}
 

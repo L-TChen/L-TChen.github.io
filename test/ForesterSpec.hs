@@ -38,20 +38,25 @@ main = hspec $ do
       fmap (map foresterPostTitle) (decodeForesterPosts (manifest entries) xml)
         `shouldBe` Right ["Newer", "Older"]
 
-    it "ignores entries without the explicit publish marker" $ do
+    it "ignores entries without the published marker" $ do
       decodeForesterPosts (manifest [unpublishedEntry "draft"]) [("draft.xml", treeXml "draft" "/posts/draft/" [])]
         `shouldBe` Right []
 
-    it "rejects invalid publish marker values" $ do
-      let source = "[{\"title\":\"Draft\",\"uri\":\"draft\",\"taxon\":null,\"tags\":[],\"route\":\"/posts/draft/\",\"metas\":{\"site-publish\":\"yes\"}}]"
-      decodeForesterPosts source [] `shouldFailWith` "Invalid site-publish value"
+    it "uses only the presence of the published marker" $ do
+      let source = "[{\"title\":\"Post\",\"uri\":\"post\",\"taxon\":\"Note\",\"tags\":[],\"route\":\"/posts/post/\",\"metas\":{\"published\":\"any value is ignored\"}}]"
+      fmap (map foresterPostTitle) (decodeForesterPosts source [("post.xml", treeXml "post" "/posts/post/" ["2026-01-01"])])
+        `shouldBe` Right ["Post"]
+
+    it "ignores the former site-publish marker" $ do
+      let source = "[{\"title\":\"Draft\",\"uri\":\"draft\",\"taxon\":null,\"tags\":[],\"route\":\"/posts/draft/\",\"metas\":{\"site-publish\":\"true\"}}]"
+      decodeForesterPosts source [] `shouldBe` Right []
 
     it "rejects malformed manifests" $
       decodeForesterPosts "not JSON" [] `shouldFailWith` "Could not parse Forester manifest"
 
     it "requires title, taxon, and a complete date for published entries" $ do
       let missingTitle = publishedEntry "post" "/posts/post/" "" "Note" []
-      let missingTaxon = "[{\"title\":\"Post\",\"uri\":\"post\",\"taxon\":null,\"tags\":[],\"route\":\"/posts/post/\",\"metas\":{\"site-publish\":\"true\"}}]"
+      let missingTaxon = "[{\"title\":\"Post\",\"uri\":\"post\",\"taxon\":null,\"tags\":[],\"route\":\"/posts/post/\",\"metas\":{\"published\":\"\"}}]"
       decodeForesterPosts (manifest [missingTitle]) [] `shouldFailWith` "missing title"
       decodeForesterPosts missingTaxon [] `shouldFailWith` "missing taxon"
       decodeForesterPosts (manifest [publishedEntry "post" "/posts/post/" "Post" "Note" []]) [("post.xml", treeXml "post" "/posts/post/" [])]
@@ -95,7 +100,7 @@ publishedEntry uri route title taxon tags =
     ++ "\",\"taxon\":\"" ++ taxon
     ++ "\",\"tags\":[" ++ joinWithComma (map quote tags)
     ++ "],\"route\":\"" ++ route
-    ++ "\",\"metas\":{\"site-publish\":\"true\"}}"
+    ++ "\",\"metas\":{\"published\":\"\"}}"
 
 unpublishedEntry :: String -> String
 unpublishedEntry uri =

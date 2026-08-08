@@ -5,7 +5,8 @@
 
 \import{0005}
 
-\p{The \em{category of elements} #{\int~F} of a presheaf #{F} consists of as objects #{(X, x)} for an object #{X} in #{\catC} and an element of #{x \in FX} and as morphisms #{f : (Y , y) \to (X , x)} if #{y = x\,f}.}
+\p{The \em{category of elements} #{\int~F} of a [presheaf](0005) #{F} consists of as objects #{(X, x)} for an object #{X} in #{\catC} and an element of #{x \in FX} and as morphisms #{f : (Y , y) \to (X , x)} if #{y = x\,f}.}
 
 \p{A natural transformation #{\tau} from #{F} to #{G} gives a functor from #{\int F} to #{\int G} defined by sending objects #{(X, x)} to #{(X, \tau\,x)} and morphisms #{f : (Y, x\,f) \to (X , x)} to #{f : (Y, \tau\,(x\,f)) \to (X , \tau\,x)} where #{(\tau\,x)\,f} is required to be #{\tau\,(x\,f)} but that holds by naturality of #{\tau}.}
 
+\p{As a presheaf #{F} can be considered as a \em{variable set}, we can "unpack" #{F} as a category consisting of its all elements but keep the same element across indices related.}

@@ -136,15 +136,9 @@ decodeForesterPosts manifestSource xmlSources = do
 
 publicationStatus :: ManifestEntry -> Either String (Maybe ManifestEntry)
 publicationStatus entry =
-  case Map.lookup "site-publish" (manifestMetas entry) of
-    Nothing -> Right Nothing
-    Just "true" -> Right $ Just entry
-    Just value ->
-      Left $
-        "Invalid site-publish value for Forester tree "
-          ++ Text.unpack (manifestUri entry)
-          ++ ": expected true, got "
-          ++ Text.unpack value
+  if Map.member "published" (manifestMetas entry)
+    then Right $ Just entry
+    else Right Nothing
 
 entryToPost :: Map.Map Text XmlEntry -> ManifestEntry -> Either String ForesterPost
 entryToPost xmlByUri entry = do

@@ -135,8 +135,13 @@
 }
 
 .home-column,
-.home-masonry-item {
+.home-masonry-item,
+.forester-shell .site-primary-column {
   padding-top: map-get($spacers, 2);
+}
+
+.home-column,
+.home-masonry-item {
   padding-bottom: map-get($spacers, 2);
 }
 

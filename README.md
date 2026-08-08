@@ -57,15 +57,16 @@ Hakyll homepage or archive until it opts in explicitly:
 \title{Example title}
 \date{2026-08-03}
 \taxon{Note}
-\meta{site-publish}{true}
+\meta{published}{}
 \tag{english}
 
 \p{Post content goes here.}
 ```
 
 For a published entry, `\title`, at least one complete `\date`, and `\taxon`
-are required. `\meta{site-publish}{true}` is the only
-accepted opt-in value; malformed or incomplete published entries fail the
+are required. The presence of `\meta{published}{}` opts the entry in; its value
+is ignored. Forester 5.0 requires the empty second brace group as part of the
+generic `\meta` syntax. Malformed or incomplete published entries fail the
 Hakyll build. Use `\tag{...}` once per optional archive tag (this is Forester
 5.0's source syntax for the manifest's tag content). Tags are normalized and
 deduplicated for filtering.
