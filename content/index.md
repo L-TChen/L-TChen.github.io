@@ -108,15 +108,17 @@ $partial("templates/summer-interns.html")$
 
 ::: {.col-12}
 
+::: {.row .text-center}
 #### 🫵🏼 Hiring 徵才啟事 🫵🏼
 
 有興趣探索「程式語言」或「型別論」的學生，歡迎寄信給我詳談細節。
+:::
 
 ::: {.row}
 
 ::: {.col-12 .col-md-6}
 Prospective research assistants
-: I have funding available to hire self-motivated research assistants to join me at Academia Sinica.
+: I typically have funding available to hire a self-motivated research assistant to join me at Academia Sinica.
 If you are interested in the research topics of my recent work, please feel free to drop me an email with a brief statement and your résumé to initiate a conversation.
 
 For Chinese applicants, please note that only short-term student visits can be accommodated due to the current geopolitical circumstances.
