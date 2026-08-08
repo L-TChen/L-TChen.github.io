@@ -29,6 +29,14 @@
   }
 }
 
+.profile-photo {
+  width: 30%;
+
+  @include media-breakpoint-up(md) {
+    width: 15%;
+  }
+}
+
 .site-navbar {
   --bs-bg-opacity: 1;
 
