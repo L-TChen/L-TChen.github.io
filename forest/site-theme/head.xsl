@@ -11,7 +11,7 @@
       <script src="/src/bootstrap-auto-dark-mode.js"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&amp;family=Noto+Serif+TC:wght@300;400;700;900&amp;display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&amp;family=LXGW+WenKai+Mono+TC&amp;display=swap" />
       <script async="async" src="https://kit.fontawesome.com/d25dd1f650.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="{/f:tree/@base-url}style.css" />
       <link rel="stylesheet" href="/css/default.css" />
