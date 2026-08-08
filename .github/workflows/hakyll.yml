@@ -21,7 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FLAGS: "--flag hakyll:-previewServer --flag hakyll:-watchServer --flag hakyll:-checkexternal"
+      FORESTER_VERSION: "5.0"
       LANG: en_US.UTF-8
+      OCAML_VERSION: "5.3"
 
     steps:
       - uses: actions/checkout@v6
@@ -37,14 +39,29 @@ jobs:
           stack-no-global: true
           stack-version: latest
 
-      - uses: ocaml/setup-ocaml@v3
+      - name: Cache Forester
+        id: cache-forester
+        uses: actions/cache@v4
         with:
-          ocaml-compiler: "5.3"
+          path: ~/.cache/forester/bin
+          key: forester-${{ env.FORESTER_VERSION }}-ocaml-${{ env.OCAML_VERSION }}-${{ runner.os }}-${{ runner.arch }}-v1
+
+      - uses: ocaml/setup-ocaml@v3
+        if: steps.cache-forester.outputs.cache-hit != 'true'
+        with:
+          ocaml-compiler: ${{ env.OCAML_VERSION }}
 
       - name: Install Forester
+        if: steps.cache-forester.outputs.cache-hit != 'true'
         run: |
-          opam install forester.5.0
-          echo "$(opam var bin)" >> $GITHUB_PATH
+          opam install "forester.${FORESTER_VERSION}"
+          install -Dm755 "$(opam var bin)/forester" "$HOME/.cache/forester/bin/forester"
+
+      - name: Add Forester to PATH
+        run: echo "$HOME/.cache/forester/bin" >> "$GITHUB_PATH"
+
+      - name: Verify Forester
+        run: test "$(forester --version)" = "${FORESTER_VERSION}"
 
       - name: Cache Stack state
         uses: actions/cache@v4
