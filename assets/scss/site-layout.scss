@@ -21,6 +21,7 @@
 .site-main {
   @include site-container-from(md);
 
+  margin-block-start: map-get($spacers, 2);
   padding-block: map-get($spacers, 2);
   border-inline: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
 
