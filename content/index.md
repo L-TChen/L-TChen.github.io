@@ -8,7 +8,7 @@
 
 ::: {.col-12}
 
-## __Chen, Liang-Ting 陳亮廷__
+# __Chen, Liang-Ting 陳亮廷__
 
 <img src="/img/profile.jpg" srcset="/img/profile-hires.jpg 2x" width="15%" class="float-end rounded-circle" alt="Profile Photo">
 
@@ -34,7 +34,7 @@ Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
 
 ::: {.col-12 .col-md-6}
 
-### Recent Posts
+### 📝 Recent Posts
 
 $partial("templates/recent-posts.html")$
 
@@ -44,7 +44,7 @@ $partial("templates/recent-posts.html")$
 
 ::: {.home-masonry-item}
 
-#### 📜 Research Interests
+### 🤹 Research Interests
 
 I am generally interested in mathematical structures in computer science, specifically, the so-called ['theory B'](https://cstheory.stackexchange.com/a/1523/51895) of theoretical computer science.
 My work so far spans dependently typed programming, programming languages, logic, and automata theory, employing logical and categorical methods.
@@ -57,7 +57,7 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-#### 🎤 Invited Talk
+### 🎤 Invited Talk
 
 * *From Datatype-Generic Programming to Language-Generic Programming*\
   Workshop on Type-Driven Development ([TyDe 2025](https://conf.researchr.org/details/icfp-splash-2025/tyde-2025-papers/10/From-Datatype-Generic-Programming-to-Language-Generic-Programming)), Singapore, Singapore, 2025
@@ -71,7 +71,7 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-#### 💰 Funding
+### 💰 Funding
 
 * 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD&#36;2,181,000)
 * 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD&#36;2,851,000, PI: Hsiang-Shang Ko)
@@ -80,7 +80,7 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-#### 🏅 Award
+### 🏅 Award
 
 * *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
 
@@ -90,13 +90,13 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-#### 🧑‍🏫 Supervision
+### 𓀓𓀝 Supervision
 
-##### Postdoc
+#### Postdoc
 
 * [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
 
-##### Recent Summer Interns
+#### Recent Summer Interns
 
 $partial("templates/summer-interns.html")$
 
@@ -109,7 +109,7 @@ $partial("templates/summer-interns.html")$
 ::: {.col-12}
 
 ::: {.row .text-center}
-#### 🫵🏼 Hiring 徵才啟事 🫵🏼
+### 🫵🏼 Hiring 徵才啟事 🫵🏼
 
 有興趣探索「程式語言」或「型別論」的學生，歡迎寄信給我詳談細節。
 :::
@@ -140,7 +140,9 @@ For Chinese applicants, please note that only short-term student visits can be a
 
 *  *  *  *
 
+::: {.row .text-center}
 ### 🛠️ Service
+:::
 
 ::: {.row}
 ::: {.col-lg-8}
@@ -186,6 +188,8 @@ ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16
 
 *  *  *  *
 
+::: {.row .text-center}
 ### ✍🏼 Publications
+:::
 
 $partial("templates/publications.html")$
