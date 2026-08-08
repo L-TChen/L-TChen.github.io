@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Serif+TC:wght@300;400;700;900&display=swap");
+
 @import "../../bootstrap/scss/bootstrap.scss";
 @import "site-layout";
 
@@ -8,10 +10,11 @@ a:where([href]:not(.nav-link)):hover {
   text-decoration-style: dashed;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
-
-h1, h2, h3 , h4{
-  font-family: "Merriweather", sans-serif;
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Merriweather", "Noto Serif TC", serif;
 }
 
 // Match Forester's dotted treatment for links within this site.
