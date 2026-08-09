@@ -4,27 +4,41 @@ WATCHEXEC ?= watchexec
 XSLTPROC ?= xsltproc
 STACK_FLAGS ?=
 
-.PHONY: forest forest-incremental render-forest test hakyll build check clean serve watch
+.PHONY: check-tools check-stack check-forester check-watchexec check-xsltproc \
+	forest forest-incremental render-forest test hakyll build check clean serve watch
+
+check-tools: check-stack check-forester check-watchexec check-xsltproc
+
+check-stack:
+	@command -v "$(STACK)" >/dev/null 2>&1 || { echo "$(STACK) is required but was not found in PATH" >&2; exit 1; }
+
+check-forester:
+	@command -v "$(FORESTER)" >/dev/null 2>&1 || { echo "$(FORESTER) is required but was not found in PATH" >&2; exit 1; }
+
+check-watchexec:
+	@command -v "$(WATCHEXEC)" >/dev/null 2>&1 || { echo "$(WATCHEXEC) is required but was not found in PATH" >&2; exit 1; }
+
+check-xsltproc:
+	@command -v "$(XSLTPROC)" >/dev/null 2>&1 || { echo "$(XSLTPROC) is required but was not found in PATH" >&2; exit 1; }
 
 build: build-forest build-hakyll
 	$(MAKE) render-forest
 
 # Forester does not remove files for deleted trees, so always rebuild its
 # ignored output directory from scratch.
-rebuild-forest:
+rebuild-forest: check-forester
 	rm -rf forest/output
 	cd forest && $(FORESTER) build
 
 # Keep generated files present while Hakyll is watching. Clean builds still use
 # the target above so output for deleted trees is removed before deployment.
-build-forest:
+build-forest: check-forester
 	cd forest && $(FORESTER) build
 
 # Pre-render Forester XML after Hakyll has assembled the deployed XSLT tree.
 # Read XML from Forester's output so this can be rerun even after the deployed
 # XML copies have been removed.
-render-forest:
-	@command -v "$(XSLTPROC)" >/dev/null || { echo "xsltproc is required for make render-forest" >&2; exit 1; }
+render-forest: check-xsltproc
 	@set -eu; \
 		stylesheet="$$PWD/_site/posts/default.xsl"; \
 		test -f "$$stylesheet"; \
@@ -36,22 +50,21 @@ render-forest:
 			rm -f "_site/posts/$$rel"; \
 		done
 
-test:
+test: check-stack
 	$(STACK) test $(STACK_FLAGS)
 
-build-hakyll:
+build-hakyll: check-stack
 	$(STACK) build $(STACK_FLAGS)
 	$(STACK) build $(STACK_FLAGS) --exec "site rebuild"
 
-check: test
+check: check-stack test
 	$(STACK) build $(STACK_FLAGS) --exec "site check --internal-links"
 
-clean:
+clean: check-stack
 	$(STACK) build $(STACK_FLAGS) --exec "site clean"
 	rm -rf forest/output
 
-watch: build
-	@command -v "$(WATCHEXEC)" >/dev/null || { echo "watchexec is required for make watch" >&2; exit 1; }
+watch: check-watchexec build
 	@set -eu; \
 		$(WATCHEXEC) --project-origin . --postpone --on-busy-update=queue \
 			--watch forest/trees --watch forest/assets \
