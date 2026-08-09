@@ -73,4 +73,12 @@ legacyRules =
         , ""
         ]
     )
+  , ( "external link underline"
+    , T.unlines
+        [ ".link.external {"
+        , "  text-decoration: underline;"
+        , "}"
+        , ""
+        ]
+    )
   ]
