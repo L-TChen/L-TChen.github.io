@@ -8,7 +8,8 @@ Clone the repository with its pinned Bootstrap and Forester theme submodules:
 git clone --recurse-submodules https://github.com/L-TChen/L-TChen.github.io.git
 ```
 
-The build needs Stack, OCaml 5.3, and exactly Forester 5.0. With opam:
+The build needs Stack, OCaml 5.3, exactly Forester 5.0, and `xsltproc` from
+libxslt. With opam:
 
 ```console
 opam switch create 5.3.0
@@ -21,22 +22,24 @@ Run the complete build and verification from the repository root:
 opam exec -- make check
 ```
 
-`make build` performs a clean Forester build followed by a clean Hakyll build.
-`make test` runs the Haskell adapter tests, and `make serve` builds and serves
-the combined site locally. The CI-specific Hakyll flags can be supplied with
-`STACK_FLAGS="..."`.
+`make build` builds the Forester and Hakyll outputs, then pre-renders each
+Forester `index.xml` as `_site/posts/<id>/index.html` with `xsltproc` and removes
+the deployed XML copy. `make watch` keeps the same rendering stage active as
+Forester, Hakyll, or the XSLT changes. `make test` runs the Haskell adapter tests,
+and `make serve` builds and serves the combined site locally. The CI-specific
+Hakyll flags can be supplied with `STACK_FLAGS="..."`.
 
-### Blank Forester post pages
+### Forester rendering
 
-Forester posts are generated as XML and rendered in the browser with XSLT. If
-`/posts/<id>/index.xml` appears blank even though the XML contains content,
-check that the Forester theme submodule is initialized. Without it,
-`default.xsl` is generated but its base-theme includes (`core.xsl`,
-`metadata.xsl`, `links.xsl`, and `tree.xsl`) are missing, so the browser cannot
-transform the XML into HTML. This can explain why the same page works from a
-clone on another computer.
+Forester still generates XML under `forest/output`, but the published and local
+Hakyll site is rendered to HTML ahead of time. The renderer uses
+`_site/posts/default.xsl`, after Hakyll has assembled the site-owned stylesheet
+with the Forester base-theme includes (`core.xsl`, `metadata.xsl`, `links.xsl`,
+and `tree.xsl`). This keeps the browser from having to perform the XSLT
+transformation itself.
 
-Initialize all submodules and rebuild the generated output:
+If rendering fails because the base-theme includes are missing, initialize all
+submodules and rebuild the generated output:
 
 ```console
 git submodule update --init --recursive
@@ -45,8 +48,7 @@ make build
 ```
 
 A leading `-` in `git submodule status forest/theme` means that the theme
-submodule has not been initialized. Browser developer tools may also show 404
-responses for the missing XSL files under `/posts/`.
+submodule has not been initialized.
 
 ## Author posts with Forester
 
