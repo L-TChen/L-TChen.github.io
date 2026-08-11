@@ -32,7 +32,7 @@ Taipei, Taiwan
 
 ::: {.col-12 .col-md-6 .home-column}
 
-### 🧑🏻‍🔬 About Me
+## 🧑🏻‍🔬 About Me {.home-section-title}
 
 I am an assistant research fellow in the [Theory Research Group](https://www.iis.sinica.edu.tw/en/page/ResearchOverview/Groups/Theory.html) at the Institute of Information Science, [Academia Sinica](https://en.wikipedia.org/wiki/Academia_Sinica).
 
@@ -44,7 +44,7 @@ Following my PhD, I worked as a postdoc in Germany, the USA, and the UK.
 
 ::: {.col-12 .col-md-6 .home-column}
 
-### 📝 Recent Posts
+## 📝 Recent Posts {.home-section-title}
 
 $partial("templates/recent-posts.html")$
 
@@ -58,7 +58,7 @@ $partial("templates/recent-posts.html")$
 
 ::: {.home-masonry-item}
 
-### 🤹 Research Interests
+## 🤹 Research Interests {.home-section-title}
 
 I am generally interested in mathematical structures in computer science, specifically, the so-called ['theory B'](https://cstheory.stackexchange.com/a/1523/51895) of theoretical computer science.
 My work so far spans dependently typed programming, programming languages, logic, and automata theory, employing logical and categorical methods.
@@ -71,7 +71,7 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-### 🎤 Invited Talk
+## 🎤 Invited Talk {.home-section-title}
 
 * *From Datatype-Generic Programming to Language-Generic Programming*\
   Workshop on Type-Driven Development ([TyDe 2025](https://conf.researchr.org/details/icfp-splash-2025/tyde-2025-papers/10/From-Datatype-Generic-Programming-to-Language-Generic-Programming)), Singapore, Singapore, 2025
@@ -85,7 +85,7 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-### 💰 Projects
+## 💰 Projects {.home-section-title}
 
 * 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD&#36;2,181,000)
 * 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD&#36;2,851,000, PI: Hsiang-Shang Ko)
@@ -94,7 +94,7 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-### 🏅 Award
+## 🏅 Award {.home-section-title}
 
 * *EATCS Best Paper Award* at the 42nd International Symposium on Mathematical Foundations of Computer Science, 2017
 
@@ -104,13 +104,13 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-### 𓀓𓀝 Supervision
+## 𓀓𓀝 Supervision {.home-section-title}
 
-#### Postdoc
+### Postdoc {.home-subsection-title}
 
 * [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
 
-#### Recent Summer Interns
+### Recent Summer Interns {.home-subsection-title}
 
 $partial("templates/summer-interns.html")$
 
@@ -127,7 +127,7 @@ $partial("templates/summer-interns.html")$
 ::: {.row}
 
 ::: {.col-12 .text-center .home-column}
-### 🫵🏼 Hiring 徵才啟事 🫵🏼
+## 🫵🏼 Hiring 徵才啟事 🫵🏼 {.home-section-title}
 
 有興趣探索「程式語言」或「型別論」的學生，歡迎寄信給我詳談細節。
 :::
@@ -157,7 +157,7 @@ For Chinese applicants, please note that only short-term student visits can be a
 
 ::: {.col .text-center .home-column}
 
-### 🛠️ Service 👷
+## 🛠️ Service 👷 {.home-section-title}
 :::
 
 :::
@@ -166,7 +166,7 @@ For Chinese applicants, please note that only short-term student visits can be a
 
 ::: {.col-lg-8 .home-column}
 
-#### PC Membership
+### PC Membership {.home-subsection-title}
 
 2026
 : * *European Symposium on Programming* (ESOP)
@@ -192,7 +192,7 @@ For Chinese applicants, please note that only short-term student visits can be a
 
 ::: {.col-lg-4 .home-column}
 
-#### Organising
+### Organising {.home-subsection-title}
 
 * *Formosan Summer School on Logic, Language, and Computation* ([FLOLAC](https://flolac.iis.sinica.edu.tw/))
 : Co-organiser (2024, 2022, 2020, 2018) with [Hsiang-Shang Ko](https://josh-hs-ko.github.io), Lecturer (2024, 2022, 2020, 2018, 2016, 2014)
@@ -200,7 +200,7 @@ For Chinese applicants, please note that only short-term student visits can be a
 * *Agda Implementors' Meeting XXXVII* ([AIM XXXVII](https://wiki.portal.chalmers.se/agda/Main/AIMXXXVII))
 : Local organiser
 
-#### External Review
+### External Review {.home-subsection-title}
 
 ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16, PODS'16, LICS'15, MPC'10, ICFP'09
 :::
@@ -212,7 +212,7 @@ ICFP'24, CPP'24, PPDP'20, CONCUR'20, POPL'18, SAC'18, CALCO'17, LICS'17, LICS'16
 ::: {.row .text-center}
 
 ::: {.col-12 .text-center .home-column}
-### ✍🏼 Publications 📜
+## ✍🏼 Publications 📜 {.home-section-title}
 :::
 
 :::

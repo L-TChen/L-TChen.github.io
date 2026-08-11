@@ -87,7 +87,7 @@
 
   @include media-breakpoint-up(xl) {
     @include make-col(8);
-    @include make-col-offset(1);
+//    @include make-col-offset(1);
     order: 1;
   }
 }
@@ -99,7 +99,7 @@
   order: 1;
 
   @include media-breakpoint-up(xl) {
-    @include make-col(3);
+    @include make-col(4);
 
     position: sticky;
     top: 5.5rem;
@@ -143,6 +143,14 @@
 .home-column,
 .home-masonry-item {
   padding-bottom: map-get($spacers, 2);
+}
+
+h2.home-section-title {
+  @include font-size($h3-font-size);
+}
+
+h3.home-subsection-title {
+  @include font-size($h4-font-size);
 }
 
 .home-masonry-item {
@@ -219,6 +227,8 @@
 }
 
 .publication-title {
+  @include font-size($h5-font-size);
+
   margin-bottom: map-get($spacers, 1);
 }
 

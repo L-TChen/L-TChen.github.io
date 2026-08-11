@@ -30,8 +30,35 @@ nav#toc .taxon {
   color: var(--bs-secondary-color);
 }
 
-.forester-shell article > section > details > summary > header > h1 > .taxon {
+.forester-shell article > section > details > summary > header > .forester-heading > .taxon {
   color: var(--bs-secondary-color);
+}
+
+// Preserve the base theme's compact tree-heading styles independently of the
+// semantic h1--h6 element selected by the site renderer.
+.forester-shell details > summary > header > .forester-heading {
+  display: inline;
+  font-size: 13pt;
+}
+
+.forester-shell section .block[data-taxon] details > summary > header > .forester-heading,
+.forester-shell .link-list > section > details > summary > header .forester-heading {
+  font-size: 12pt;
+}
+
+.forester-shell article > section > details > summary > header > .forester-heading {
+  font-size: 1.5em;
+}
+
+.forester-shell article > section > details > summary > header > .forester-heading > .taxon {
+  display: block;
+  padding-bottom: 5pt;
+  font-size: .9em;
+}
+
+.forester-shell section section[data-taxon="Reference"] > details > summary > header > .forester-heading > .taxon,
+.forester-shell section section[data-taxon="Person"] > details > summary > header > .forester-heading > .taxon {
+  display: none;
 }
 
 a.slug {

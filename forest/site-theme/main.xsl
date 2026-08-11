@@ -20,4 +20,55 @@
       </xsl:if>
     </div>
   </xsl:template>
+
+  <!--
+    The base theme uses h1 for every tree, including nested subtrees and
+    generated backmatter. Keep its content rendering while deriving the
+    semantic heading level from the tree depth.
+  -->
+  <xsl:template match="f:frontmatter" priority="1">
+    <xsl:variable name="tree-depth" select="count(ancestor::f:tree)" />
+    <xsl:variable name="heading-level">
+      <xsl:choose>
+        <xsl:when test="$tree-depth &gt; 6">6</xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$tree-depth" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <header>
+      <xsl:element name="{concat('h', normalize-space($heading-level))}">
+        <xsl:attribute name="class">forester-heading</xsl:attribute>
+        <span class="taxon">
+          <xsl:apply-templates select=".." mode="tree-taxon-with-number">
+            <xsl:with-param name="suffix">.&#160;</xsl:with-param>
+          </xsl:apply-templates>
+        </span>
+
+        <xsl:apply-templates select="f:title" />
+        <xsl:text>&#032;</xsl:text>
+        <xsl:apply-templates select="f:display-uri" />
+        <xsl:text>&#032;</xsl:text>
+        <xsl:apply-templates select="f:source-path" />
+      </xsl:element>
+      <div class="metadata">
+        <ul>
+          <xsl:apply-templates select="f:date" />
+          <xsl:if test="not(f:meta[@name = 'author']/.='false')">
+            <xsl:apply-templates select="f:authors" />
+          </xsl:if>
+          <xsl:apply-templates select="f:meta[@name='position']" />
+          <xsl:apply-templates select="f:meta[@name='institution']" />
+          <xsl:apply-templates select="f:meta[@name='venue']" />
+          <xsl:apply-templates select="f:meta[@name='source']" />
+          <xsl:apply-templates select="f:meta[@name='doi']" />
+          <xsl:apply-templates select="f:meta[@name='orcid']" />
+          <xsl:apply-templates select="f:meta[@name='external']" />
+          <xsl:apply-templates select="f:meta[@name='slides']" />
+          <xsl:apply-templates select="f:meta[@name='video']" />
+        </ul>
+      </div>
+    </header>
+  </xsl:template>
 </xsl:stylesheet>
