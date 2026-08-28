@@ -134,19 +134,13 @@ $partial("templates/summer-interns.html")$
 
 
 ::: {.col-12 .col-md-6 .home-column}
-Prospective research assistants
-: Typically I have funding available to hire a self-motivated research assistant to join me at Academia Sinica.
-If you are interested in the research topics of my recent work, please feel free to drop me an email with a brief statement and your résumé to initiate a conversation.
-
-For Chinese applicants, please note that only short-term student visits can be accommodated due to the current geopolitical circumstances.
+暑期實習生
+: 申請參加兩個月的「中研院資訊科學研究所暑期實習生研究計畫」，規劃上會先參與相關暑期課程如 [FLOLAC](https://flolac.iis.sinica.edu.tw/) 或詳讀相關線上教科書，並從現有的研究興趣（不限於程式語言或型別論）中發展可用定理證明器如 Agda 協同工作的個人專題研究，藉此學習此領域的知識跟原則，以及可以應用的範圍。
 :::
 
 ::: {.col-12 .col-md-6 .home-column}
 兼任助理
 : 初步以背景知識研習為主，同時使用定理證明器 Agda 加強數學論證能力及實作能力，逐步發展研究題目。
-
-暑期實習生
-: 申請參加兩個月的「中研院資訊科學研究所暑期實習生研究計畫」，規劃上會先參與相關暑期課程如 [FLOLAC](https://flolac.iis.sinica.edu.tw/) 或詳讀相關線上教科書，並從現有的研究興趣（不限於程式語言或型別論）中發展可用定理證明器如 Agda 協同工作的個人專題研究，藉此學習此領域的知識跟原則，以及可以應用的範圍。
 :::
 
 :::
