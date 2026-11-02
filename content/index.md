@@ -85,7 +85,12 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-## 💰 Projects {.home-section-title}
+## 🛠 Current Projects {.home-section-title}
+
+* 2025--2027, *Theory, Applications, and Implementation of Inductive Types*
+* 2025--, *[Agda Web](https://agda-web.github.io)*
+
+## 💰 Funded Projects {.home-section-title}
 
 * 2025--2027, Principal investigator, *Theory, Applications, and Implementation of Inductive Types*, funded by NSTC (114-2222-E-001-001-MY3, TWD&#36;2,181,000)
 * 2020--2023, Unnamed, *Type-theoretic foundations for metaprogramming*, funded by NSTC (109-2222-E-001-002-MY3, TWD&#36;2,851,000, PI: Hsiang-Shang Ko)
@@ -151,40 +156,43 @@ $partial("templates/summer-interns.html")$
 
 ::: {.col .text-center .home-column}
 
-## 🛠️ Service 👷 {.home-section-title}
+## 🫱🏻‍🫲🏽 Services 🫱‍🫲🏼 {.home-section-title}
 :::
 
 :::
 
 ::: {.row}
 
-::: {.col-lg-8 .home-column}
+::: {.col-lg-6 .home-column}
 
 ### PC Membership {.home-subsection-title}
 
+2027
+: * *Workshop on the Implementation of Type Systems* ([WITS](https://wits2027.github.io))
+
 2026
-: * *European Symposium on Programming* (ESOP)
-* *ACM SIGPLAN International Conference on Functional Programming* (ICFP)
+: * *European Symposium on Programming* ([ESOP](https://etaps.org/2026/conferences/esop/))
+* *ACM SIGPLAN International Conference on Functional Programming* ([ICFP](https://icfp26.sigplan.org))
 
 2025
-: * *International Conference on Types for Proofs and Programs* (TYPES)
-* *ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation* (PEPM)
+: * *International Conference on Types for Proofs and Programs* ([TYPES](https://msp.cis.strath.ac.uk/types2025/))
+* *ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation* ([PEPM](https://popl25.sigplan.org/home/pepm-2025))
   
 2024
 : * *ACM Student Research Competition* (SRC) at ICFP
-* *ACM SIGPLAN Haskell Symposium*
-* *Workshop on Mathematically Structured Functional Programming* (MSFP)
+* *ACM SIGPLAN Haskell Symposium* ([Haskell](https://icfp24.sigplan.org/home/haskellsymp-2024))
+* *Workshop on Mathematically Structured Functional Programming* ([MSFP](https://msfp-workshop.github.io/msfp2024/))
 * SRC at *Asian Symposium on Programming Languages and Systems* (APLAS)
 
 2023
-: * *ACM SIGPLAN International Conference on Functional Programming*
+: * *ACM SIGPLAN International Conference on Functional Programming* ([ICFP](https://conf.researchr.org/home/icfp-2023))
 
 2021
-: * *Workshop on Type-Driven Development* (TyDe)
+: * *Workshop on Type-Driven Development* ([TyDe](https://icfp21.sigplan.org/home/tyde-2021))
 
 :::
 
-::: {.col-lg-4 .home-column}
+::: {.col-lg-6 .home-column}
 
 ### Organising {.home-subsection-title}
 
