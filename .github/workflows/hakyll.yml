@@ -54,7 +54,7 @@ jobs:
       - name: Install Forester
         if: steps.cache-forester.outputs.cache-hit != 'true'
         run: |
-          opam install "forester.${FORESTER_VERSION}"
+          opam install "forester.${FORESTER_VERSION}" "lsp.1.27.0"
           install -Dm755 "$(opam var bin)/forester" "$HOME/.cache/forester/bin/forester"
 
       - name: Add Forester to PATH
