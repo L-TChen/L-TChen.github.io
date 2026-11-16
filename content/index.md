@@ -109,11 +109,18 @@ This approach allows me to produce reliable, reproducible, and sometimes useful 
 
 ::: {.home-masonry-item}
 
-## 𓀓𓀝 Supervision {.home-section-title}
+## 𓀓𓀝  Team {.home-section-title}
 
 ### Postdoc {.home-subsection-title}
 
 * [Shu-Hung You](https://scholar.google.com/citations?user=QbLe_g4AAAAJ) 游書泓, 2025--
+
+### Research Assistant {.home-subsection-title}
+
+* [Andy Pan](https://github.com/andy0130tw) 潘廣霖, 2026--
+* Yu-Chuan Yu 游棫荃, 2026--
+* (Part-time) Willy Ho Lok Chan 陳澔樂, 2026--
+* (Part-time) Yu-Chun Yeh 葉宥均, 2026--
 
 ### Recent Summer Interns {.home-subsection-title}
 
